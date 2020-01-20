@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "UMD",
+        "esModuleInterop": true,
+        "outDir": "../static/build",
+        "rootDir": ".",
+        "sourceMap": true,
+        "strict": true
+    }
+}

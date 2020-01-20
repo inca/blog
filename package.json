@@ -1,0 +1,44 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Boris Okunskiy Blog",
+  "scripts": {
+    "clean": "rm -rf out",
+    "compile": "tsc -b",
+    "dev": "run-p clean compile && run-p watch serve",
+    "watch": "run-p watch:*",
+    "watch:ts": "tsc -b -w",
+    "watch:css": "postcss stylesheets/index.css -w -o static/build/index.css",
+    "watch:posts": "node out/build/watch",
+    "serve": "firebase serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inca/blog.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "Boris Okunskiy",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/debounce": "^1.2.0",
+    "@types/glob": "^7.1.1",
+    "@types/json5": "0.0.30",
+    "@types/node": "^13.1.8",
+    "@types/ws": "^7.2.0",
+    "chokidar": "^3.3.1",
+    "debounce": "^1.2.0",
+    "glob": "^7.1.6",
+    "json5": "^2.1.1",
+    "moment": "^2.24.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^7.0.26",
+    "postcss-cli": "^7.1.0",
+    "postcss-import": "^12.0.1",
+    "typescript": "^3.7.5",
+    "ws": "^7.2.1"
+  },
+  "dependencies": {}
+}

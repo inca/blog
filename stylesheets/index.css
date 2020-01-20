@@ -1,0 +1,6 @@
+@import './reset.css';
+@import './layout.css';
+
+html {
+    font: 16px/1.5 'Lora', serif;
+}
