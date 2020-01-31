@@ -13,5 +13,6 @@
     --color-link--visited: hsl(355deg, 50%, 45%);
     --color-code: hsl(320deg, 50%, 40%);
     --color-code--bg: hsl(320deg, 20%, 97%);
+    --color-target: hsl(320deg, 25%, 95%);
 
 }

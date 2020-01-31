@@ -9,9 +9,9 @@ Is this something stupid to say? Or does that make some sense? 🤔
 
 Disclaimer: I'm not a mathematician. Not even close. Not even _almost_ mathematician.
 
-I've once used this "almost infinitely" phrase somewhere (in some random non-scientific context), but somehow it immediately felt awkward. Like the time you use a phrase and not sure if it means what you intended to say.
+So I once used the "almost infinitely" phrase in some random non-scientific context, but somehow it immediately felt awkward. Like one of those moments when you say something smart, only to realize next second that you actually know shit about what you've just said.
 
-A quick googling to satisfy my [confirmation bias](https://en.wikipedia.org/wiki/Confirmation_bias) has revealed that I'm not [the][l1] [only][l2] [one][l3] [who][l4] [is][l4] curious on the subject.
+As most of us do in this kind of situation, I felt an urge to google it. You know, just to confirm that I'm not the only person in the World who would say such a (potentially stupid) thing. This time around I got lucky, so a quick googling has revealed that I'm not [the][l1] [only][l2] [one][l3] [who][l4] [is][l4] curious on the subject.
 
 [l1]: https://www.quora.com/What-is-the-symbol-letter-or-code-for-almost-infinity-What-does-almost-infinity-symbolize
 [l2]: https://www.quora.com/If-a-number-is-almost-infinity-then-is-it-also-infinity
@@ -20,54 +20,70 @@ A quick googling to satisfy my [confirmation bias](https://en.wikipedia.org/wiki
 [l5]: https://www.physicsforums.com/threads/almost-infinity.59753/
 [surreal]: https://en.wikipedia.org/wiki/Surreal_number
 
-In my attempts to find out The Truth — whether it is even appropriate to say such a thing in public — I've learned [a lot][surreal].
+In my attempts to find out The Truth, I've certainly learned [a lot][surreal].
+
+But honestly, none of the Quora answers were fully satisfactory, so I decided to take a shot at it myself.
 
 ## What is "infinity"?
 
-To avoid reciting the entire internet, here are few relevant facts about %%\infty%%.
+To avoid reciting the entire internet, here's just a few relevant facts about %%\infty%%.
 
 {.sidenote}
 For the sake of sanity we only focus on a "really really big" infinity here and skip all other kinds of infinities.
 
-1. It's _much_ bigger than any real number.
+1. It's _much_ bigger than any real number.                 {}{#inf-1}
 
     $$+ \infty > r, r \in \Bbb R$$
 
-2. If you add any real number to infinity, you'll get exactly infinity.
+2. If you add any real number to infinity, you'll get exactly infinity. {#inf-2}
 
     $$r + \infty = \infty, r \in \Bbb R$$
 
-3. You can go further and even multiply infinity by real number, guess what you'll end up with?
+    So you can pretty much add a gazillion to it, as long as the gazillion is quantifiable (i.e. a real number) the result stays the same.
+
+3. Why stop at gazillions if we can add two infinities together?        {#inf-3}
+
+    $$\infty + \infty = \infty$$
+
+4. Where's one, there's two, right?                              {#inf-4}
+    So you can go further and multiply infinity by a real number.
+    Guess what you'll end up with?
 
     $$r \cdot \infty = \infty, r \in \Bbb R$$
 
-What does that tell us? Well, you can pretty much add a gazillion to infinity. As long as this gazillion is quantifiable (i.e. a real number), then you'd get an infinity back.
+5. But... Just as you become happy with all above, this happens:        {#inf-5}
+
+    $$\infty - \infty = undefined$$
+
+    {.subtle}
+    Which, honestly, makes some kind of sense (esp. considering all the ~nonsense~ above).
+
+6. Are there things greater than infinity? Why yes:                     {#inf-6}
+
+    $$ \infty^2 > \infty $$
+
+Ok, that's about enough to keep our brain at reasonable temperature level.
 
 ~~~ {.subtle}
-Does that mean that infinity is like a Black Hole so you can add anything to it or multiply it by anything and you'll still get back the exact same infinity?
 
-Not quite. Turns out, if you multiply an infinity by another infinity, you'll get an infinity squared. And that one turns out to be _another_ kind of infinity which is, khm, infinitely greater than that first infinity.
+Wanna know which fact is the most important for answering our original question?
 
-$$\infty \cdot \infty = \infty^2 > \infty$$
+Of course, the one with %%undefined%%. Let's elaborate on that.
 
-However, math books say that adding one infinity to another infinity still equals infinity.
+When you say %%5 - 5%% you know that the result is %%0%%. You might also know that if you add %%0%% to %%5%%, you'll get %%5%%. So when you see an equation like %%5 + 5 - 5%% it is kind of obvious that two of those three fives cancel out (the ones with the opposite signs) and you'll get just %%5%% in the end.
 
-$$\infty + \infty = \infty$$
+Now you've already noticed that real number arithmetics doesn't quite work with infinities black-hole-like arithmetics.
+Specifically, in equations like %%\infty + \infty - \infty%% infinities don't simply cancel out — instead you get %%undefined%%.
 
-And if you're truly curious, then there's something more you need to know.
+This %%undefined%% isn't really a special number or value or some other mathematical phenomena. It's just another way of saying "I don't know". Or more specifically: "I can't possibly know". The above equation may resolve into %%0%%, %%1%%, %%1000000%%, %%gazillion%%, %%\infty%%, %%2 \infty%% or even %%gazillion \cdot \infty%%.
 
-$$\infty - \infty = undefined$$
-
-Oh well. Now life doesn't seem that complicated anymore.
 ~~~
-
-Ok, that's about enough to keep our brain at reasonable temperature levels.
 
 ## What is "almost"?
 
-Now, really. What does that "almost" part mean?
+Now, to the second part.
 
-Let's try and be scholars about it. Say you have %%foo%% and you have %%foo_{almost}%% which is defined as "almost foo". Then there must be a small difference between %%foo%% and %%foo_{almost}%%. Mathematicians love to use an uppercase Greek letter Delta to indicate differences, so we'll do the same:
+Let's try and be scholars about this "almost" thing. Say you have %%foo%% and you have %%foo_{almost}%% which is defined as "almost foo". Then there must be a small-ish difference between %%foo%% and %%foo_{almost}%%. Mathematicians love to use an uppercase Greek letter "delta" to indicate differences, so we'll do the same:
 
 $$
 \begin{eqnarray}
@@ -78,7 +94,10 @@ $$
 
 Obviously.
 
-It is also implied (mostly from the dictionaries that from math definitions) that the magnitude of "almost foo" is comparable to %%foo%% itself. This makes our %%\Delta_{foo}%% insignificant enough, which means it's smaller than both %%foo%% and %%foo_{almost}%%.
+It is also implied (much rather from the dictionaries than from any kind of math definitions) that the magnitude of "almost foo" is comparable to %%foo%% itself. This makes our %%\Delta_{foo}%% insignificant enough, which means it's smaller than both %%foo%% and %%foo_{almost}%%.
+
+{.sidenote}
+Note how I chose to avoid tossing absolute values in the picture when discussing magnitudes. It doesn't make that much difference for the argument, but can become increasingly annoying when juggling equation terms.
 
 $$
 \begin{eqnarray}
@@ -89,12 +108,80 @@ $$
 
 ## What is "almost infinity"?
 
-First, let's figure what %%\Delta_\infty%% is.
+Now to find %%\infty_{almost}%%. Let's substitute our %%foo%% with %%\infty%%:
 
 $$
-\Delta_\infty = \infty - \infty_{almost}
+\begin{eqnarray}
+\infty_{almost} & = & \infty - \Delta_\infty \\
+\Delta_\infty & < & \infty \\
+\Delta_\infty & < & \infty_{almost} \\
+\end{eqnarray}
 $$
 
-Sounds pretty %%undefined%%, eh? But wait! We don't know what %%\infty_{almost}%% is, how can we tell for sure then?
+So we need to find such %%\Delta_\infty%% and %%\infty_{almost}%% which satisfies all the of the above equations.
 
-Well, it turns out, we do know that %%\Delta_\infty < \infty%% and %%\Delta_\infty < \infty_{almost}%%.
+1. Let's first assume %%\Delta_\infty \in \Bbb R%%, which means it's a real number, say a gazillion (a real gazillion).
+    Let's call it %%r%% now, for simplicity.
+
+    - It [definitely](#inf-1) satisfies the %%\Delta_\infty < \infty%% part...
+
+    - ...but it [also](#inf-2) means that:
+
+        $$\infty_{almost} = \infty - \Delta_\infty = \infty - r = \infty$$
+
+    - ...which leads us to suggest that:
+
+        $$\Delta_\infty = \infty - \infty_{almost} = \infty - \infty$$
+
+    - ...which we [know](#inf-5) to be %%undefined%%...
+
+    - ...which is a contradiction to our original assumption.
+
+    Math guys hate contradictions, so it's an end of story. %%\Delta_\infty%% is not a real number.
+
+2. What else can %%\Delta_\infty%% be to satisfy our equations?
+
+    - It can be something smaller than %%\infty%%, but not a real number.
+
+    - %%\sqrt{\infty}%%, perhaps? Yup, why not, it still [satisfies](#inf-6) the %%\Delta_\infty < \infty%% equation.
+
+    - Since I don't trust myself with calculating %%\infty - \sqrt{\infty}%%, I had to [ask for help](https://www.wolframalpha.com/input/?i=infinity+-+sqrt%28infinity%29):
+
+        {.centered.shadow}
+        ![](/img/misc/infinity minus sqrt infinity.png)
+
+    - Ah, our good friend %%undefined%%, good to see you again.
+
+    This assumption does not hold true, because %%\sqrt{\infty} \neq undefined%% (because, well, square root of infinity is sort of defined, in mathematical terms at least).
+
+3. Feels like we're running out of assumptions on %%\Delta_\infty%%: we've tried arbitrary real numbers, we've tried powers of infinities. Seems like everything we try results in us converging on %%\Delta_\infty%% being %%undefined%% in the end. Which ruins our assumptions.
+
+    Unless we assume that %%\Delta_\infty%% *is* %%undefined%%.
+
+    Then our %%\infty_{almost} = \infty - undefined = ...%%
+
+    🥁🥁🥁
+
+    Of course, it's %%undefined%%.
+
+    🎉🎉🎉
+
+    But wait. We said it has to satisfy all three equations. Does %%\Delta_\infty = undefined%% satisfy %%\Delta_\infty < \infty%% and %%\Delta_\infty < \infty_{almost}%%?
+
+    $$
+    \begin{eqnarray}
+    undefined & < & \infty \\
+    undefined & < & undefined \\
+    \end{eqnarray}
+    $$
+
+    The answer to both is %%undefined%%.
+
+Which, incidentally, is the answer to our original dilemma. %%\blacksquare%%
+
+## To Summarize
+
+- Is it appropriate to say "Almost infinitely" in your day-to-day life? — %%undefined%%
+- Does "almost infinity" exist? — %%undefined%%
+- Does "almost infinity" make any logical, illogical, rational, irrational, rhetorical or any other kind of sense? — %%undefined%%
+- Does this article make any sense? — %%undefined%%
