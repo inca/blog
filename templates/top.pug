@@ -15,6 +15,15 @@ html
     body
         block body
         script(src="/lib/highlight.pack.js")
-        script
-            | hljs.initHighlightingOnLoad();
+        script.
+            hljs.initHighlightingOnLoad();
         script(src="/build/index.js")
+        script(src="https://polyfill.io/v3/polyfill.min.js?features=es6")
+        script.
+            MathJax = {
+                extensions: ["TeX/AMSmath.js", "TeX/AMSsymbol.js"],
+                tex: {
+                    inlineMath: [['%%', '%%']],
+                },
+            }
+        script#MathJax-script(async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js")

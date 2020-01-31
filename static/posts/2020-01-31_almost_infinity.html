@@ -1,0 +1,54 @@
+<!DOCTYPE html><html><head><title></title><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&amp;display=swap&amp;subset=cyrillic"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,700,700i&amp;display=swap&amp;subset=cyrillic"><link rel="stylesheet" href="/build/index.css"><link rel="shortcut icon" href="/favicon.ico"></head><body><div class="header"><div class="header__container container"></div></div><div class="content"><div class="content__container container"><article class="post"><div class="post__cal cal" title="January 31, 2020 12:00 AM"><div class="cal__day">31</div><div class="cal__sub"><div class="cal__month">Jan</div><div class="cal__year">20</div></div></div><header class="post__title"><h1>Almost infinity</h1></header><div class="post__content"><p class="subtitle">Is this something stupid to say? Or does that make some sense? 🤔</p>
+<p>Disclaimer: I'm not a mathematician. Not even close. Not even <em>almost</em> mathematician.</p>
+<p>I've once used this "almost infinitely" phrase somewhere (in some random non-scientific context), but somehow it immediately felt awkward. Like the time you use a phrase and not sure if it means what you intended to say.</p>
+<p>A quick googling to satisfy my <a href="https://en.wikipedia.org/wiki/Confirmation_bias">confirmation bias</a> has revealed that I'm not <a href="https://www.quora.com/What-is-the-symbol-letter-or-code-for-almost-infinity-What-does-almost-infinity-symbolize">the</a> <a href="https://www.quora.com/If-a-number-is-almost-infinity-then-is-it-also-infinity">only</a> <a href="https://www.quora.com/Is-%E2%80%9Calmost-infinity%E2%80%9D-infinity">one</a> <a href="https://math.stackexchange.com/questions/443099/when-does-it-make-sense-to-say-that-something-is-almost-infinite">who</a> <a href="https://math.stackexchange.com/questions/443099/when-does-it-make-sense-to-say-that-something-is-almost-infinite">is</a> curious on the subject.</p>
+<p>In my attempts to find out The Truth — whether it is even appropriate to say such a thing in public — I've learned <a href="https://en.wikipedia.org/wiki/Surreal_number">a lot</a>.</p>
+<h2>What is "infinity"?</h2>
+<p>To avoid reciting the entire internet, here are few relevant facts about %%\infty%%.</p>
+<p class="sidenote">For the sake of sanity we only focus on a "really really big" infinity here and skip all other kinds of infinities.</p>
+<ol><li><p>It's <em>much</em> bigger than any real number.</p>
+<p>$$+ \infty &gt; r, r \in \Bbb R$$</p></li>
+<li><p>If you add any real number to infinity, you'll get exactly infinity.</p>
+<p>$$r + \infty = \infty, r \in \Bbb R$$</p></li>
+<li><p>You can go further and even multiply infinity by real number, guess what you'll end up with?</p>
+<p>$$r \cdot \infty = \infty, r \in \Bbb R$$</p></li></ol>
+<p>What does that tell us? Well, you can pretty much add a gazillion to infinity. As long as this gazillion is quantifiable (i.e. a real number), then you'd get an infinity back.</p>
+<div class="subtle"><p>Does that mean that infinity is like a Black Hole so you can add anything to it or multiply it by anything and you'll still get back the exact same infinity?</p>
+<p>Not quite. Turns out, if you multiply an infinity by another infinity, you'll get an infinity squared. And that one turns out to be <em>another</em> kind of infinity which is, khm, infinitely greater than that first infinity.</p>
+<p>$$\infty \cdot \infty = \infty^2 &gt; \infty$$</p>
+<p>However, math books say that adding one infinity to another infinity still equals infinity.</p>
+<p>$$\infty + \infty = \infty$$</p>
+<p>And if you're truly curious, then there's something more you need to know.</p>
+<p>$$\infty - \infty = undefined$$</p>
+<p>Oh well. Now life doesn't seem that complicated anymore.</p></div>
+<p>Ok, that's about enough to keep our brain at reasonable temperature levels.</p>
+<h2>What is "almost"?</h2>
+<p>Now, really. What does that "almost" part mean?</p>
+<p>Let's try and be scholars about it. Say you have %%foo%% and you have %%foo_{almost}%% which is defined as "almost foo". Then there must be a small difference between %%foo%% and %%foo_{almost}%%. Mathematicians love to use an uppercase Greek letter Delta to indicate differences, so we'll do the same:</p>
+<p>$$
+\begin{eqnarray}
+\Delta_{foo} &amp; = &amp; foo - foo_{almost} \\
+foo_{almost} &amp; = &amp; foo - \Delta_{foo} \\
+\end{eqnarray}
+$$</p>
+<p>Obviously.</p>
+<p>It is also implied (mostly from the dictionaries that from math definitions) that the magnitude of "almost foo" is comparable to %%foo%% itself. This makes our %%\Delta_{foo}%% insignificant enough, which means it's smaller than both %%foo%% and %%foo_{almost}%%.</p>
+<p>$$
+\begin{eqnarray}
+\Delta_{foo} &amp; &lt; &amp; foo              \\
+\Delta_{foo} &amp; &lt; &amp; foo_{almost}     \\
+\end{eqnarray}
+$$</p>
+<h2>What is "almost infinity"?</h2>
+<p>First, let's figure what %%\Delta_\infty%% is.</p>
+<p>$$
+\Delta_\infty = \infty - \infty_{almost}
+$$</p>
+<p>Sounds pretty %%undefined%%, eh? But wait! We don't know what %%\infty_{almost}%% is, how can we tell for sure then?</p>
+<p>Well, it turns out, we do know that %%\Delta_\infty &lt; \infty%% and %%\Delta_\infty &lt; \infty_{almost}%%.</p>
+</div></article></div></div><div class="footer"><div class="footer__container container"></div></div><script src="/lib/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script src="/build/index.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script>MathJax = {
+    extensions: ["TeX/AMSmath.js", "TeX/AMSsymbol.js"],
+    tex: {
+        inlineMath: [['%%', '%%']],
+    },
+}</script><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></body></html>

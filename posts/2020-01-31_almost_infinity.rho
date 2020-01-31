@@ -1,0 +1,100 @@
+{
+    title: 'Almost infinity',
+    date: '2020-01-31',
+    tags: ['math', 'philosophy', 'infinity', 'half-joking'],
+}
+
+{.subtitle}
+Is this something stupid to say? Or does that make some sense? 🤔
+
+Disclaimer: I'm not a mathematician. Not even close. Not even _almost_ mathematician.
+
+I've once used this "almost infinitely" phrase somewhere (in some random non-scientific context), but somehow it immediately felt awkward. Like the time you use a phrase and not sure if it means what you intended to say.
+
+A quick googling to satisfy my [confirmation bias](https://en.wikipedia.org/wiki/Confirmation_bias) has revealed that I'm not [the][l1] [only][l2] [one][l3] [who][l4] [is][l4] curious on the subject.
+
+[l1]: https://www.quora.com/What-is-the-symbol-letter-or-code-for-almost-infinity-What-does-almost-infinity-symbolize
+[l2]: https://www.quora.com/If-a-number-is-almost-infinity-then-is-it-also-infinity
+[l3]: https://www.quora.com/Is-%E2%80%9Calmost-infinity%E2%80%9D-infinity
+[l4]: https://math.stackexchange.com/questions/443099/when-does-it-make-sense-to-say-that-something-is-almost-infinite
+[l5]: https://www.physicsforums.com/threads/almost-infinity.59753/
+[surreal]: https://en.wikipedia.org/wiki/Surreal_number
+
+In my attempts to find out The Truth — whether it is even appropriate to say such a thing in public — I've learned [a lot][surreal].
+
+## What is "infinity"?
+
+To avoid reciting the entire internet, here are few relevant facts about %%\infty%%.
+
+{.sidenote}
+For the sake of sanity we only focus on a "really really big" infinity here and skip all other kinds of infinities.
+
+1. It's _much_ bigger than any real number.
+
+    $$+ \infty > r, r \in \Bbb R$$
+
+2. If you add any real number to infinity, you'll get exactly infinity.
+
+    $$r + \infty = \infty, r \in \Bbb R$$
+
+3. You can go further and even multiply infinity by real number, guess what you'll end up with?
+
+    $$r \cdot \infty = \infty, r \in \Bbb R$$
+
+What does that tell us? Well, you can pretty much add a gazillion to infinity. As long as this gazillion is quantifiable (i.e. a real number), then you'd get an infinity back.
+
+~~~ {.subtle}
+Does that mean that infinity is like a Black Hole so you can add anything to it or multiply it by anything and you'll still get back the exact same infinity?
+
+Not quite. Turns out, if you multiply an infinity by another infinity, you'll get an infinity squared. And that one turns out to be _another_ kind of infinity which is, khm, infinitely greater than that first infinity.
+
+$$\infty \cdot \infty = \infty^2 > \infty$$
+
+However, math books say that adding one infinity to another infinity still equals infinity.
+
+$$\infty + \infty = \infty$$
+
+And if you're truly curious, then there's something more you need to know.
+
+$$\infty - \infty = undefined$$
+
+Oh well. Now life doesn't seem that complicated anymore.
+~~~
+
+Ok, that's about enough to keep our brain at reasonable temperature levels.
+
+## What is "almost"?
+
+Now, really. What does that "almost" part mean?
+
+Let's try and be scholars about it. Say you have %%foo%% and you have %%foo_{almost}%% which is defined as "almost foo". Then there must be a small difference between %%foo%% and %%foo_{almost}%%. Mathematicians love to use an uppercase Greek letter Delta to indicate differences, so we'll do the same:
+
+$$
+\begin{eqnarray}
+\Delta_{foo} & = & foo - foo_{almost} \\
+foo_{almost} & = & foo - \Delta_{foo} \\
+\end{eqnarray}
+$$
+
+Obviously.
+
+It is also implied (mostly from the dictionaries that from math definitions) that the magnitude of "almost foo" is comparable to %%foo%% itself. This makes our %%\Delta_{foo}%% insignificant enough, which means it's smaller than both %%foo%% and %%foo_{almost}%%.
+
+$$
+\begin{eqnarray}
+\Delta_{foo} & < & foo              \\
+\Delta_{foo} & < & foo_{almost}     \\
+\end{eqnarray}
+$$
+
+## What is "almost infinity"?
+
+First, let's figure what %%\Delta_\infty%% is.
+
+$$
+\Delta_\infty = \infty - \infty_{almost}
+$$
+
+Sounds pretty %%undefined%%, eh? But wait! We don't know what %%\infty_{almost}%% is, how can we tell for sure then?
+
+Well, it turns out, we do know that %%\Delta_\infty < \infty%% and %%\Delta_\infty < \infty_{almost}%%.

@@ -46,6 +46,7 @@
     padding: 2px;
     float: left;
     margin-right: 32px;
+    border-radius: 2px;
 }
 
 .cal__day {

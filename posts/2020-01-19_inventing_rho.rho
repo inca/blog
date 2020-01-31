@@ -9,11 +9,11 @@ The reasoning behind reinventing the most popular text-to-html markup language i
 
 Ok, here's a brief backstory. Roughly 5 years ago I've quit my job as a jack-of-all-trades-developer at [one company](https://eduterra.pro) and decided to try some new adventures as a plain simple senior developer at [some other company](https://ub.io).
 
-If you work full-time with the same people over a long period and are committed enough to what you do, switching the job can become a life changing event: you get to meet new kinds of people, you face new kinds of challenges (both technical and not), you adapt (a lot!) to new situations and circumstances, you learn new awesome things and you (sometimes regretfully) abandon what you have learned before; ultimately, you learn to give up on things like your past achievements, look critically at your experience and sometimes even have to compromise your "core values" in an effort to be able to reach for a brighter future. Before you know it, you become a different person.
+If you work full-time with the same people over a long period and are committed enough to what you do, switching the job can become a life-changing event: you get to meet new kinds of people, you face new kinds of challenges (both technical and not), you adapt (a lot!) to new situations and circumstances, you learn some new awesome things, but equally you have to abandon what you have learned before; ultimately, you learn to give up on things like your past achievements, look critically at your experience and sometimes even have to compromise your "core values" in an effort to be able to reach for a brighter future. Before you know it, you become a different person.
 
-But anyway, this post is not about that. As I learned later, one part of the deal was that I had to abandon some cool open source projects I've created in past — no, not because it was forbidden on a new position to commit to open source or anything like that; it's not exactly the "I have no time" issue: I _did_ have time to maintain these projects, but rather these projects weren't on top of the ever-growing list of my priorities. Simply speaking, over time I've lost the motivation to push them forward, and absence of leadership is fatal to software. It dies.
+But anyway, this post is not about that. As I learned later, one part of the deal was that I had to abandon some cool open source projects I've created in past — no, not because it was forbidden on a new position to commit to open source or anything like that; it's not exactly the "I have no time" issue either: I _did_ have time to maintain these projects, but rather these projects weren't on top of the ever-expanding list of my priorities. Simply speaking, over time I've lost the motivation to push them forward, and absence of leadership is fatal to software. It dies.
 
-One such cool project was [Rho](https://github.com/inca/rho) — a Markdown alternative with extra features, (rather rudimentary) extensibility and a dash of opinions.
+One such cool project was [Rho](https://github.com/inca/rho) — a Markdown alternative with some cool features, (rather rudimentary) extensibility and a dash of opinions.
 
 ~~~ {.sidenote}
 Even if you don't know what Markdown is, there's a decent chance you've seen it and even used it. Basically, it's the thing some software like GitHub or Slack use to make the text you type look fancier. For example, it can render a `*text like this*` into a *text like this*.
@@ -28,38 +28,56 @@ Old [Rho.js](https://inca.github.com/rho) website, introduced circa 2013, unmodi
 
 So as part of my New Year Resolutions™ in 2020 I've promised to myself to:
 
-    1. revive my blogging activities
-    2. revive (and learn to appreciate) some really great things I've created in past
+    1. revive my blogging activities,
+    2. revive (and learn to appreciate) some really great things I've created in past.
 
 In case you're reading this, my promises are actually getting fulfilled. Yay! 🎉
 
 ## Initial design goals
 
-It may not sound like it, but back in 2013 it was about the same kind of crazy to start implementing a Markdown equivalent as it is in 2020. Turns out, 7 years don't make much difference: there are plenty of readily available implementations which satisfy _almost_ all possible needs in the text-to-html business. But more importantly: just like 7 years ago, they also leave plenty to be desired.
+It may not sound like it, but back in 2013 it was about the same kind of crazy to start implementing a Markdown equivalent as it is in 2020. Turns out, 7 years don't make as much difference as you'd think: there are still plenty of readily available implementations which satisfy _almost_ all possible needs in the text-to-html business. But more importantly: just like 7 years ago, they also leave plenty to be desired.
 
-Back then we still decided to go for it, for a number of reasons. Here are the ones I managed to derive from a hindsight (not necessarily sorted by importance).
+Back then we decided to go for it for a number of reasons. Here are the ones I managed to derive from a hindsight (not necessarily sorted by importance).
 
 1. We needed a stricter, more predictable rules for core features, which are more easily understood by non-technical people.
 
-    The project was initially conceived for a relatively big e-learning platform featuring its own content management system. Part of making such platform successful was to make sure that non-technical people like professors, tutors, teachers, coaches of many different domains could easily create visually and structurally appealing content which would also be accessible for all sorts of devices and search engines, renderable into PDF and ePub, and friendly to revision control systems (you know, for situations when one person writes a lecture, and the other one proof reads it, you'd typically want to avoid loss of changes if the author later decides to rephrase that ugly sentence).
+    The project was initially conceived for a relatively big e-learning platform featuring its own content management system. Part of making such platform successful was to make sure that non-technical people like professors, tutors, teachers, coaches of many different domains could easily create visually and structurally appealing content which would also be accessible for all sorts of devices and search engines, renderable into PDF and ePub, and friendly to revision control systems (you know, for situations when one person writes a lecture and the other one proof reads it — so you'd typically want to avoid data loss if the author later decides to rephrase that ugly sentence).
 
-    Standard Markdown featuring multiple ways of spelling headings, lists, em/strong elements and multiple flavours of code blocks (with magical 4 indentation) wasn't doing much good for ordinary people who were trying to create cheatsheets and developing some oddly sounding 4-space-tapping techniques in order to keep that semantic markup beast tamed (I bet they also hated us for having them to get used to Markdown and, after a while, abandon their hard earned habits).
+    In practice, we found authors to be confused by some of the rules, especially the ones which involved nested lists with sub-blocks and magical 4 space indentation which turned everything into "ugly looking text" (of course I'm referring to the indented code block rule). People were creating cheatsheets and have developed some weird 4 space calculation techniques in an effort to keep that semantic markup beast tamed (I bet they also hated us for having them to get used to Markdown and, after a while, abandon their hard earned habits).
 
-    Also, people produced a lot of content. We needed to make sure they stick to roughly the same style guide, so that people could easily take over the others' work.
+    In addition to that, people were producing a lot of content, so it was beneficial for us to reasonably limit the number of ways to achieve a specific semantic construct. Standard Markdown featuring multiple ways of spelling headings, lists, em/strong elements and multiple flavours of code blocks (with magical 4 indentation) wasn't doing much good for people who tried to pick up somebody else's work.
 
 2. We needed more!
 
-    Yeah, less is more, I 💯 agree. With text content you don't typically need too much. Sometimes though, you need _just a tiny bit more_ than your favorite Markdown can offer.
+    Yeah, less is more, I 💯 agree. You don't typically need too much from semantic texts when you write READMEs, or quickly put together some comments, or even when you write some technical articles and even certain kinds of blog posts.
 
-    We were quick to realize that content needs a bit more stylistic diversity than what can be achieved by any kind of combinations of `p`, `ul`, `ol`, `li`, `hX`, `blockquote`, `pre` + handful more tags that Markdown can spit out. The concept of "selector expressions" I've introduced made a whole lot of difference: users could now add arbitrary classes to blocks by specifying `{.things.like.these}` on the first line. Now platform could provide a handful of block types like "pro tips", "warning", etc. to make its authors and readers almost infinitely happy!
+    However, sometimes you need _just a tiny bit more_ than Markdown has to offer.
+
+    {.sidenote}
+    In an ideal world, one could use a Markdown engine which allowed for implementing extensions to achieve what's desired, instead of completely reimplementing the whole thing from scratch. I'll touch on the extensibility bit later on.
+
+    We were quick to realize that our content needed a bit more stylistic diversity than what can be achieved by any kind of combinations of `p`, `ul`, `ol`, `li`, `hX`, `blockquote`, `pre` + handful more tags that Markdown can spit out.
+
+    The newly introduced concept of "selector expressions" made a whole lot of difference: users could now add arbitrary classes to blocks by specifying `{.things.like.these}` on the first line. Now platform could provide a handful of block types like "note", "pro tip", "warning", etc. to make its authors and readers almost infinitely happy.
 
     We've also faced some interesting challenges when we first tried to make math formulae with [MathJax](https://www.mathjax.org/) due to extensive use of backslashes in it and how Markdown was eager to digest them all.
 
     And of course lots of smaller features (like being able to programmatically resolve media references like `![Alt text][some-id-from-database]` or, say, to support reusable markup fragments) definitely helped with engineering a better end product.
 
-3. Ok now this one is tricky. It did not occur to me up until I have implemented that semantic text markup language myself. As it turns out, when you have a markup language you can control, at your disposal, you can do more with it. You start to have more ideas, which were not previously considered feasible.
+3. Existing solutions work. But how?
 
-    This is how I've implemented a superset of semantic markup rules for creating quizzes from plain text. You, as an author, would write things like:
+    If you're like me, you'd want to sniff around the existing implementations and see if they can be "convinced" to do what I want. Chances are you'd expect to see some proper compiler pipelines with lexers, parsers, ASTs and renderers where you can elegantly add more logic.
+
+    Unfortunately, I was in for a surprise. Most implementations happen to contain pretty much the entire lexing/pasing logic [in a single gazillion-line method](https://github.com/markedjs/marked/blob/master/src/Lexer.js#L55-L401) which is virtually impossible to comprehend, let alone modify or extend. The same is true with a [reference implementation](https://daringfireball.net/projects/markdown/), which is just a myriad of regular expressions salted with ifs.
+
+    I'm sorry, but working with code like this is not an option for me. Designing a better solution is. For what it's worth, I could spend a lot more time in debugging some complicated edge cases than it would take me to design a more appropriate solutions whereby each rule is implemented in a bit more modular way and predictable way.
+
+    "Why so complicated?" you'd ask. >>>>>>>>>>
+    [like this guy did](https://stackoverflow.com/questions/55127847/parsing-subset-of-markdown-with-regex)
+
+4. Ok now this one is tricky. It did not occur to me up until I've implemented my own semantic text markup language. As it turns out, when you have a markup language you can tinker with, you start to get some pretty cool ideas out of nowhere. Suddenly you realize you can do a whole lot more.
+
+    As an example, this is how I've implemented a superset of semantic markup rules for creating quizzes. You, as an author, would write things like:
 
     ```{.plaintext}
     2 + 2 =
@@ -71,13 +89,14 @@ Back then we still decided to go for it, for a number of reasons. Here are the o
     ( ) 5
     ```
 
-    The library would render a form with radio buttons, without leaking any information about the correct answer, and on server side would have ways to validate the submitted answer. We've implemented the same for other types of tasks such as multiple choice, drag-to-order and even type text with diff-based answer assessment. It was so freaking cool!
+    The library would render a form with radio buttons, without leaking any information about the correct answer, and on server side would have ways to validate the submitted answer. We've implemented the same for other types of tasks such as multiple choice, drag-to-order and even type text with diff-based answer assessment. _So freaking cool!_
 
-    From there I've conceived an idea of making the parser _extensible_ so that anyone could write a parsing rule and effortlessly add it to parser — but I was never able to achieve that back then.
-
-4. Last but not least, it was fun!
+5. Last but not least, it was fun!
 
     We tend to forget that software can be a bit more than just means to an end. I'm pretty sure everyone is familiar with this delightful feeling of accomplishment when carefully designed non-trivial program starts to produce the results you expect for the first time.
+
+
+
 
 As far as the open source goes, I've never had an ambition for Rho to take over the world. Markdown is crazy popular and even inertia aside, it has its own use cases and, therefore, its users. Not everyone necessarily cares about the parser being extensible, not every product needs to provide its users with more stylistic diversity (sometimes it's the other way around!), and sometimes it's just a matter of existing content being incompatible. That's right, full Markdown compatibility was never among the Rho design goals.
 
@@ -106,7 +125,7 @@ Since leadership in software world is just a fancy word to describe one's opinio
 
     Nevertheless, in my opinion, designing a modular parsing system is one of the most important objectives for Rho. This would allow users to implement their own semantic markup rules and effortlessly add it to the processor, without having to modify the core itself. Imagine the possibilities! 🌠
 
-3. *Features vs compatibility.* Initially I took a rather strong stance on compatibility with Markdown. For example, we defined that unordered lists would only use `* ` markers (as opposed to Markdown which also supports `- ` and `+ `). However, over time I've learned that some of these limitations were deal breakers for some users.
+3. *Features vs compatibility.* Initially I took a rather strong stance on compatibility with Markdown. For example, we defined that unordered lists would only use `*` markers (as opposed to Markdown which also supports `-` and `+`). However, over time I've learned that some of these limitations were deal breakers for some users.
 
     So I decided to relax a couple of constraints in an effort to make Rho more enjoyable experience for those already familiar with Markdown. And whilst 100% compatibility isn't something that I consider useful, I figured that a sweet spot is totally achievable.
 
