@@ -1,9 +1,8 @@
 import path from 'path';
 import chokidar from 'chokidar';
 import { postsSrcDir, buildPost, buildAllPosts } from './post';
-import debounce from 'debounce';
-
-const outDir = path.join(process.cwd(), 'out');
+import { templatesDir } from './templates';
+import { debounce } from 'debounce';
 
 // Watch blog post file changes, only when added/modified
 const watchPosts = chokidar.watch(postsSrcDir);
@@ -15,8 +14,9 @@ watchPosts.on('ready', () => {
     });
 });
 
-// Watch out file for template changes, and rebuild all posts
-const watchOut = chokidar.watch(outDir);
+// Watch for template changes, and rebuild all posts
+const watchOut = chokidar.watch(templatesDir);
 watchOut.on('change', debounce(() => {
+    console.log('Templates changed, rebuilding');
     buildAllPosts();
 }, 300));

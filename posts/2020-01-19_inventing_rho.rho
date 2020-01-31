@@ -7,14 +7,14 @@
 {.subtitle}
 A quick guide to reinventing the most popular text-to-html markup language in the World.
 
-Ok, here's a brief backstory. Roughly 5 years ago I've quit my job as a senior software developer + product owner + project manager + UX engineer + (poor) graphical designer + ... at [one company](https://eduterra.pro) and decided to try some new adventures as a plain simple senior developer at [some other company](https://ub.io).
+Ok, here's a brief backstory. Roughly 5 years ago I've quit my job jack-of-all-trades-developer at [one company](https://eduterra.pro) and decided to try some new adventures as a plain simple senior developer at [some other company](https://ub.io).
 
-If you work full-time with the same people and are committed enough to what you do, switching the job can become a life changing event: you get to meet new kinds of people, you face new kinds of challenges (both technical and not), you adapt (a lot!) to new situations and circumstances, you learn new awesome things and you (sometimes regretfully) abandon what you have learned before; ultimately, you learn to give up on things like your past achievements, look critically at your experience and sometimes even have to compromise your "core values" in an effort to be able to reach for a brighter future. Before you know it, you become a different person.
+If you work full-time with the same people over a long period and are committed enough to what you do, switching the job can become a life changing event: you get to meet new kinds of people, you face new kinds of challenges (both technical and not), you adapt (a lot!) to new situations and circumstances, you learn new awesome things and you (sometimes regretfully) abandon what you have learned before; ultimately, you learn to give up on things like your past achievements, look critically at your experience and sometimes even have to compromise your "core values" in an effort to be able to reach for a brighter future. Before you know it, you become a different person.
 
 But anyway, this post is not about that. As I learned later, one part of the deal was that I had to abandon some cool open source projects I've created in past — no, not because it was forbidden on a new position to commit to open source or anything like that; it's not exactly the "I have no time" issue: I _did_ have time to maintain these projects, but rather these projects weren't on top of the ever-growing list of my priorities. Simply speaking, over time I've lost the motivation to push them forward, and absence of leadership is fatal to software. It dies.
 
 {.sidenote}
-Even if you don't know what Markdown is, there's a decent chance you've seen it and even used it. Basically, it's the thing some software like GitHub or Slack use to make the text you type look fancier. For example, it can render a `*text like this*` into *text like this*.
+Even if you don't know what Markdown is, there's a decent chance you've seen it and even used it. Basically, it's the thing some software like GitHub or Slack use to make the text you type look fancier. For example, it can render a `*text like this*` into a *text like this*.
 
 One of such cool projects was [Rho](https://github.com/inca/rho) — a Markdown alternative with extra features, (rather rudimentary) extensibility and a dash of opinions.
 

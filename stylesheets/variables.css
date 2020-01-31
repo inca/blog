@@ -1,0 +1,9 @@
+:root {
+    --font-size: 18px;
+    --font-size--code: 16px;
+
+    --color-subtle: #654;
+    --color-link: hsl(340deg, 65%, 50%);
+    --color-link--visited: hsl(340deg, 50%, 50%);
+    --color-code: hsl(320deg, 50%, 40%);
+}

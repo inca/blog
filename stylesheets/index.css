@@ -1,6 +1,14 @@
-@import './reset.css';
+@import './variables.css';
 @import './layout.css';
+@import './content.css';
+
+html, body, img, form {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
 
 html {
-    font: 16px/1.5 'Lora', serif;
+    font: var(--font-size)/1.5 'EB Garamond', serif;
+    -webkit-font-smoothing: antialiased;
 }

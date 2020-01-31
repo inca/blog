@@ -5,7 +5,7 @@ import { rho } from 'rho';
 import moment from 'moment';
 import glob from 'glob';
 import { promisify } from 'util';
-import * as layout from './layout';
+import { renderTemplate } from './templates';
 
 const globAsync = promisify(glob);
 
@@ -45,7 +45,7 @@ export async function readPost(id: string): Promise<Post> {
     const i = txt.indexOf('\n}\n') + 3;
     const json = Json5.parse(txt.substring(0, i));
     const text = txt.substring(i);
-    const html = rho.process(text);
+    const html = rho.toHtml(text);
     return {
         id,
         srcFile,
@@ -59,7 +59,7 @@ export async function readPost(id: string): Promise<Post> {
 }
 
 export async function writePost(post: Post) {
-    const out = layout.post(post);
+    const out = renderTemplate('post.pug', { post });
     await fs.writeFile(post.dstFile, out, 'utf-8');
 }
 

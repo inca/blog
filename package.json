@@ -27,6 +27,7 @@
     "@types/glob": "^7.1.1",
     "@types/json5": "0.0.30",
     "@types/node": "^13.1.8",
+    "@types/pug": "^2.0.4",
     "@types/ws": "^7.2.0",
     "chokidar": "^3.3.1",
     "debounce": "^1.2.0",
@@ -37,6 +38,7 @@
     "postcss": "^7.0.26",
     "postcss-cli": "^7.1.0",
     "postcss-import": "^12.0.1",
+    "pug": "^2.0.4",
     "typescript": "^3.7.5",
     "ws": "^7.2.1"
   },

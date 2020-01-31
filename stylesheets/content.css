@@ -1,0 +1,25 @@
+a {
+    color: var(--color-link);
+}
+
+a:visited {
+    color: var(--color-link--visited);
+}
+
+img {
+    max-width: 100%;
+}
+
+code {
+    font-size: var(--font-size--code);
+    color: var(--color-code);
+}
+
+.centered {
+    text-align: center;
+}
+
+.subtle {
+    font-size: .8em;
+    color: var(--color-subtle);
+}
