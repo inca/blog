@@ -2,10 +2,11 @@ extends layout.pug
 
 block content
     article.post
-        .post__cal.cal
+        .post__cal.cal(title=post.date.format('LLL'))
             .cal__day= post.date.format('DD')
-            .cal__month= post.date.format('MM')
-            .cal__year= post.date.format('YYYY')
+            .cal__sub
+                .cal__month= post.date.format('MMM')
+                .cal__year= post.date.format('YY')
         header.post__title
             h1= post.title
         .post__content!= post.html

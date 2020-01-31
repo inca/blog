@@ -1,6 +1,7 @@
 @import './variables.css';
 @import './layout.css';
 @import './content.css';
+@import './hljs.css';
 
 html, body, img, form {
     margin: 0;
@@ -9,6 +10,7 @@ html, body, img, form {
 }
 
 html {
-    font: var(--font-size)/1.5 'EB Garamond', serif;
+    font: var(--font-size)/1.5 var(--font-face), serif;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }

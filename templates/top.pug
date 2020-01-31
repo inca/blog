@@ -3,10 +3,18 @@ html
     head
         block title
             title= title
-        link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap&subset=cyrillic")
-        link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=EB+Garamond&display=swap&subset=cyrillic")
-        link(rel="stylesheet" href="/build/index.css")
-        link(rel="shortcut icon" href="/favicon.ico")
+        link(rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap&subset=cyrillic")
+        link(rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,700,700i&display=swap&subset=cyrillic")
+        link(rel="stylesheet"
+            href="/build/index.css")
+        link(
+            rel="shortcut icon"
+            href="/favicon.ico")
     body
         block body
+        script(src="/lib/highlight.pack.js")
+        script
+            | hljs.initHighlightingOnLoad();
         script(src="/build/index.js")

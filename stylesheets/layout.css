@@ -1,11 +1,69 @@
 .container {
     box-sizing: border-box;
     padding: 0 1em;
+    position: relative;
+}
+
+.sidenote {
+    width: 200px;
+    font-size: var(--font-size--small);
 }
 
 @media (min-width: 640px) {
     .container {
         width: 640px;
+    }
+}
+
+@media (max-width: 960px) {
+    .sidenote {
+        margin: 0 0 0 auto;
+    }
+}
+
+@media (min-width: 960px) {
+    .container {
+        margin-left: 4em;
+    }
+
+    .sidenote {
+        position: absolute;
+        left: 100%;
+        margin-top: -60px;
+        padding-left: 32px;
+    }
+}
+
+@media (min-width: 1152px) {
+    .container {
         margin: 0 auto;
     }
+}
+
+.cal {
+    text-align: center;
+    background: var(--color-red);
+    padding: 2px;
+    float: left;
+    margin-right: 32px;
+}
+
+.cal__day {
+    font-size: 32px;
+    width: 64px;
+    height: 64px;
+    line-height: 64px;
+    background: #fff;
+}
+
+.cal__sub {
+    color: #fff;
+}
+
+.cal__month, .cal__year {
+    display: inline-block;
+}
+
+.cal__year::before {
+    content: '\'';
 }

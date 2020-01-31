@@ -1,9 +1,17 @@
 :root {
+    --font-face: 'EB Garamond';
     --font-size: 18px;
-    --font-size--code: 16px;
+    --font-face--code: 'Monaco';
+    --font-size--code: .75em;
+
+    --font-size--small: 16px;
+
+    --color-red: hsl(355deg, 65%, 50%);
 
     --color-subtle: #654;
-    --color-link: hsl(340deg, 65%, 50%);
-    --color-link--visited: hsl(340deg, 50%, 50%);
+    --color-link: hsl(355deg, 65%, 50%);
+    --color-link--visited: hsl(355deg, 50%, 45%);
     --color-code: hsl(320deg, 50%, 40%);
+    --color-code--bg: hsl(320deg, 20%, 97%);
+
 }
