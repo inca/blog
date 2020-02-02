@@ -13,7 +13,7 @@ If you work full-time with the same people over a long period and are committed 
 
 But anyway, this post is not about that. As I learned later, one part of the deal was that I had to abandon some cool open source projects I've created in past — no, not because it was forbidden on a new position to commit to open source or anything like that; it's not exactly the "I have no time" issue either: I _did_ have time to maintain these projects, but rather these projects weren't on top of the ever-expanding list of my priorities. Simply speaking, over time I've lost the motivation to push them forward, and absence of leadership is fatal to software. It dies.
 
-One such cool project was [Rho](https://github.com/inca/rho) — a Markdown alternative with some cool features, (rather rudimentary) extensibility and a dash of opinions.
+One such cool project was [Rho](https://github.com/inca/rho) — a Markdown alternative with some cool features and a dash of opinions.
 
 ~~~ {.sidenote}
 Even if you don't know what Markdown is, there's a decent chance you've seen it and even used it. Basically, it's the thing some software like GitHub or Slack use to make the text you type look fancier. For example, it can render a `*text like this*` into a *text like this*.
@@ -49,7 +49,7 @@ Back then we decided to go for it for a number of reasons. Here are the ones I m
 
 2. We needed more!
 
-    Yeah, less is more, I 💯 agree. You don't typically need too much from semantic texts when you write READMEs, or quickly put together some comments, or even when you write some technical articles and even certain kinds of blog posts.
+    Less is more, I agree. 💯 You don't typically need too much from semantic texts when you write READMEs, or quickly put together some comments, or even when you write some technical articles and even certain kinds of blog posts.
 
     However, sometimes you need _just a tiny bit more_ than Markdown has to offer.
 
@@ -70,12 +70,13 @@ Back then we decided to go for it for a number of reasons. Here are the ones I m
 
     Unfortunately, I was in for a surprise. Most implementations happen to contain pretty much the entire lexing/pasing logic [in a single gazillion-line method](https://github.com/markedjs/marked/blob/master/src/Lexer.js#L55-L401) which is virtually impossible to comprehend, let alone modify or extend. The same is true with a [reference implementation](https://daringfireball.net/projects/markdown/), which is just a myriad of regular expressions executed in a particular order.
 
-    {.subtle}
-    "Why so complicated?" you'd ask. Well, despite [perceived simplicity](https://stackoverflow.com/questions/55127847/parsing-subset-of-markdown-with-regex), Markdown rules are actually quite complicated. Blocks can be arranged in hierarchies and should be processed recursively; same goes for inline markup which can be nested in each other. In order to tackle all this with regular expressions they need to be executed in a particular order, in a well-established scope and most of the time they also need to contain knowledge of other regular expressions (i.e. other nested markup rules which could interfere with a current lexical scope). Assemble all this into a single lexer — and you'll get a [perfect spaghetti](/img/misc/statemachinespaghetti.png). 🍝
+    ~~~ {.subtle}
+    "Why so complicated?" you'd ask. Well, despite [perceived simplicity](https://stackoverflow.com/questions/55127847/parsing-subset-of-markdown-with-regex), Markdown rules are actually quite complicated. Blocks can be arranged in hierarchies and should be processed recursively; same goes for inline markup which can be nested in each other. In order to tackle all this with regular expressions they need to be executed in a particular order, in a well-established scope and most of the time they also need to contain knowledge of other regular expressions (i.e. other nested markup rules which could interfere with a current lexical scope). Now toss all this into a single lexer method, layer them with tons of `if`, `else`, `switch`, `case` and mutable scope variables — and you'll get what's known in the industry as spaghetti. 🍝
+    ~~~
 
-    Working with code like this is not an option for me. Designing a better solution is. For what it's worth, I could spend a lot more time in debugging some complicated edge cases than it would take me to design a more appropriate solutions whereby each rule is implemented in a bit more modular way and predictable way.
+    Working with code like this is not an option for me. Designing a better solution is. Fwiw I could spend a lot more time in debugging some complicated edge cases than it would take me to design a more appropriate solution whereby each rule is implemented in a modular way with minimal impact on other rules.
 
-4. Ok now this one is tricky. It did not occur to me up until I've implemented my own semantic text markup language. As it turns out, when you have a markup language you can tinker with, you start to get some pretty cool ideas out of nowhere. Suddenly you realize you can do a whole lot more.
+4. Ok now this one is tricky. It did not occur to me up until I've implemented my own semantic text markup language. As it turns out, when you have a markup language you can tinker with, you start getting some pretty cool ideas out of nowhere. Suddenly you realize you can do a lot more.
 
     As an example, this is how I've implemented a superset of semantic markup rules for creating quizzes. You, as an author, would write things like:
 
@@ -95,35 +96,31 @@ Back then we decided to go for it for a number of reasons. Here are the ones I m
 
     We tend to forget that software can be a bit more than just means to an end. I'm pretty sure everyone is familiar with this delightful feeling of accomplishment when carefully designed non-trivial program starts to produce the results you expect for the first time.
 
->>>>>>>>>>>>>>>>
-
-
-As far as the open source goes, I've never had an ambition for Rho to take over the world. Markdown is crazy popular and even inertia aside, it has its own use cases and, therefore, its users. Not everyone necessarily cares about the parser being extensible, not every product needs to provide its users with more stylistic diversity (sometimes it's the other way around!), and sometimes it's just a matter of existing content being incompatible. That's right, full Markdown compatibility was never among the Rho design goals.
-
-~~~ {.idea}
-Did you know that Markdown was first implemented in Perl, with 1.0 release dated 28 Aug 2004 — whooping 16 years ago!
-~~~
-
-Still, Markdown definitely needed (and still needs) a hero. If you ever tried to tweak any existing Markdown library into doing what you want (e.g. to resolve the media objects externally like I've described above), you would be quick to find out it's virtually impossible to do so. Their parsers/lexers are [inherently monolithic](https://github.com/markedjs/marked/blob/master/src/Lexer.js#L52-L401) and in a nutshell are just a bunch of regular expressions on top of regular expressions, crunching strings like crazy.
-
+That's right, Markdown needed a hero 7 years ago, and definitely needs one now.
 
 ## 2020 re-design objectives
 
-So I decided to resume my blogging, and that's what prompted me to start renovating that poor old library covered with a thick layer of dust. Ugh. It was 2013, no modern ECMAScript features, just plain `Foo.prototype.bar =` assignments and loads of `var`. After all, 7 years is a lot in this industry.
+Truth to be told, it is this blog which prompted me to start renovating my poor old library covered with a thick layer of dust. Sure I could just sugar-coat it with type definitions and that would probably be sufficient, but... Ugh. It was 2013, no modern ECMAScript features, just plain `Foo.prototype.bar =` assignments, loads of `var`.
 
-It's time to renovate. But what to do exactly?
+Despite what [big cats say](https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/) I maintain that rewriting software from scratch is still valid and could actually be the one and only measure that can save the project from certain death. All depends, of course.
+
+But what to do exactly?
 
 Since leadership in software world is just a fancy word to describe one's opinions, I've quickly got mine together and came up with roughly the following plan.
 
 1. *TypeScript.* It makes absolutely no sense to start any serious development for Node.js / Browser library in any other language.
 
+    ~~~ {.subtle}
     TypeScript is pretty much everywhere in the web now. Libs that have views to make it into the second quarter of XXI are already in TypeScript. And those poor ones who did not publish the typings to npm are probably dead. Presence or absence of typings has become a new heuristic of library liveliness.
+    ~~~
 
 2. *Extensibility.* Core should not contain any actual text processing rules. Rather, it should be a framework whereby all rules are implemented as separate modules and then can be plugged together to achieve the desired result.
 
+    ~~~ {.subtle}
     This doesn't sound too complicated — but only until you get into the nitty gritty details. For example, lists are hierarchical blocks which may consist of other kinds of blocks, code blocks support a limited set of inline rules like escaping commong HTML characters (`&`, `<`, `>`) and are sensitive to indentation, some inline markup would contain nested inline markup and so forth.
 
     Nevertheless, in my opinion, designing a modular parsing system is one of the most important objectives for Rho. This would allow users to implement their own semantic markup rules and effortlessly add it to the processor, without having to modify the core itself. Imagine the possibilities! 🌠
+    ~~~
 
 3. *Features vs compatibility.* Initially I took a rather strong stance on compatibility with Markdown. For example, we defined that unordered lists would only use `*` markers (as opposed to Markdown which also supports `-` and `+`). However, over time I've learned that some of these limitations were deal breakers for some users.
 
@@ -132,13 +129,10 @@ Since leadership in software world is just a fancy word to describe one's opinio
     {.subtle}
     In theory, with extensibility it is possible to make Rho closer to full Markdown compatibility via plugins. Perhaps something for community to look into, hehe.
 
-4. *Performance.* Not a crucially important one as it is unlikely you would compile megabytes of text in real time, and most content management solutions would just cache the produced html and only re-render when the source has changed.
+4. *Performance.* Not a crucially important as it is unlikely you would compile megabytes of text in real time. Most content management solutions would just cache the produced html and only re-render when the source has changed.
 
     ~~~ {.sidenote}
     My initial implementation was almost *4 times slower* than [Marked](https://github.com/markedjs/marked), but I managed to squeeze some juice from it. 💪 It was an enjoyable experience, and I will write a separate post about it.
     ~~~
 
-    Besides, with more features added it is somewhat expected for performance to drop within reasonable levels.
-    All things considered, it would still be nice to have comparable performance to "competitors".
-
-5. *AST.* >>>>>>>>>>>>>>>>>>>>>>>>>>>
+    But it would still be nice to have at least comparable performance to "competitors".

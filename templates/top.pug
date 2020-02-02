@@ -12,11 +12,9 @@ html
             href="/favicon.ico")
     body
         block body
-        script(src="/lib/highlight.pack.js")
-        script.
-            hljs.initHighlightingOnLoad();
-        script(src="/build/index.js")
         script(src="https://polyfill.io/v3/polyfill.min.js?features=es6")
+        script(src="/lib/highlight.pack.js")
+        script(src="/build/main.js")
         script.
             MathJax = {
                 extensions: ["TeX/AMSmath.js", "TeX/AMSsymbol.js"],
@@ -25,3 +23,5 @@ html
                 },
             }
         script#MathJax-script(async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js")
+        if !isProduction
+            script(src="/build/dev.js")

@@ -1,7 +1,7 @@
 extends layout.pug
 
 block content
-    article.post
+    article.post(data-post-id=post.id)
         .post__cal.cal(title=post.date.format('LLL'))
             .cal__day= post.date.format('DD')
             .cal__sub

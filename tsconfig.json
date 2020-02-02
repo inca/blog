@@ -1,6 +1,14 @@
 {
-    "files": [],
-    "references": [
-        { "path": "./build" },
+    "compilerOptions": {
+        "target": "es5",
+        "module": "es6",
+        "esModuleInterop": true,
+        "outDir": "./static/build",
+        "rootDir": "src",
+        "sourceMap": true,
+        "strict": true
+    },
+    "include": [
+        "src"
     ]
 }

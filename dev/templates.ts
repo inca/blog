@@ -1,7 +1,9 @@
 import path from 'path';
 import pug from 'pug';
-
-export const templatesDir = path.resolve(process.cwd(), 'templates');
+import {
+    templatesDir,
+    isProduction,
+} from './config';
 
 export function renderTemplate(templateName: string, data: any): string {
     const file = path.join(templatesDir, templateName);
@@ -9,6 +11,7 @@ export function renderTemplate(templateName: string, data: any): string {
         basedir: templatesDir,
         cache: false,
         filename: templateName,
+        isProduction,
         ...data
     });
 }

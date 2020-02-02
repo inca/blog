@@ -8,5 +8,4 @@ yarn.lock
 !.env.example
 !.env.test
 
-static/build
 out/

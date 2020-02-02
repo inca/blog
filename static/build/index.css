@@ -1,0 +1,227 @@
+:root {
+    --font-face: 'EB Garamond';
+    --font-size: 18px;
+    --font-face--code: 'Monaco';
+    --font-size--code: .75em;
+
+    --font-size--small: 16px;
+
+    --color-red: hsl(355deg, 65%, 50%);
+
+    --color-subtle: #654;
+    --color-link: hsl(355deg, 65%, 50%);
+    --color-link--visited: hsl(355deg, 50%, 45%);
+    --color-code: hsl(320deg, 50%, 40%);
+    --color-code--bg: hsl(320deg, 20%, 97%);
+    --color-target: hsl(320deg, 25%, 95%);
+}
+.container {
+    box-sizing: border-box;
+    padding: 0 1em;
+    position: relative;
+}
+.sidenote {
+    width: 200px;
+    font-size: var(--font-size--small);
+}
+@media (min-width: 640px) {
+    .container {
+        width: 640px;
+    }
+}
+@media (max-width: 960px) {
+    .sidenote {
+        margin: 0 0 0 auto;
+    }
+}
+@media (min-width: 960px) {
+    .container {
+        margin-left: 4em;
+    }
+
+    .sidenote {
+        position: absolute;
+        left: 100%;
+        margin-top: -60px;
+        padding-left: 32px;
+    }
+}
+@media (min-width: 1152px) {
+    .container {
+        margin: 0 auto;
+    }
+}
+.cal {
+    text-align: center;
+    background: var(--color-red);
+    padding: 2px;
+    float: left;
+    margin-right: 32px;
+    border-radius: 2px;
+}
+.cal__day {
+    font-size: 32px;
+    width: 64px;
+    height: 64px;
+    line-height: 64px;
+    background: #fff;
+}
+.cal__sub {
+    color: #fff;
+}
+.cal__month, .cal__year {
+    display: inline-block;
+}
+.cal__year::before {
+    content: '\'';
+}
+a {
+    color: var(--color-link);
+}
+a:visited {
+    color: var(--color-link--visited);
+}
+a[target="_blank"]::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: -8px;
+    border: 4px solid transparent;
+    border-top-color: hsl(280deg, 50%, 75%);
+    transform: translate(6px, -12px) rotate(-135deg);
+}
+img {
+    max-width: 100%;
+}
+code {
+    font-family: var(--font-face--code), monospace;
+    font-size: var(--font-size--code);
+    color: var(--color-code);
+    background: var(--color-code--bg);
+    padding: 1px 4px;
+    border-radius: 2px;
+}
+pre {
+    position: relative;
+    line-height: 1em;
+    border-radius: 2px;
+}
+pre::after {
+    left:100%
+}
+.centered {
+    text-align: center;
+}
+.subtle, .caption {
+    font-size: var(--font-size--small);
+    color: var(--color-subtle);
+}
+.subtitle {
+    margin: -1em 0 2em 0;
+    color: var(--color-subtle);
+    font-style: italic;
+}
+.kicker {
+    font-size: 1.25em;
+}
+:target {
+    background: var(--color-target);
+}
+.shadow img {
+    box-shadow: 0 5px 17px rgba(0,0,0,.25);
+}
+/*
+
+Atom One Dark by Daniel Gamage
+Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
+
+base:    #282c34
+mono-1:  #abb2bf
+mono-2:  #818896
+mono-3:  #5c6370
+hue-1:   #56b6c2
+hue-2:   #61aeee
+hue-3:   #c678dd
+hue-4:   #98c379
+hue-5:   #e06c75
+hue-5-2: #be5046
+hue-6:   #d19a66
+hue-6-2: #e6c07b
+
+*/
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #abb2bf;
+  background: #282c34;
+}
+.hljs-comment,
+.hljs-quote {
+  color: #5c6370;
+  font-style: italic;
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #c678dd;
+}
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e06c75;
+}
+.hljs-literal {
+  color: #56b6c2;
+}
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+  color: #98c379;
+}
+.hljs-built_in,
+.hljs-class .hljs-title {
+  color: #e6c07b;
+}
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #d19a66;
+}
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #61aeee;
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-strong {
+  font-weight: bold;
+}
+.hljs-link {
+  text-decoration: underline;
+}
+html, body, img, form {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+html {
+    font: var(--font-size)/1.5 var(--font-face), Palatino Linotype, serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}

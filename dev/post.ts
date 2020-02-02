@@ -3,11 +3,8 @@ import { promises as fs } from 'fs';
 import Json5 from 'json5';
 import { rho } from 'rho';
 import moment from 'moment';
-import glob from 'glob';
-import { promisify } from 'util';
 import { renderTemplate } from './templates';
-
-const globAsync = promisify(glob);
+import { postsSrcDir, postsDstDir } from './config';
 
 export interface Post {
     id: string,
@@ -19,9 +16,6 @@ export interface Post {
     text: string;
     html: string;
 }
-
-export const postsSrcDir = path.join(process.cwd(), 'posts');
-export const postsDstDir = path.join(process.cwd(), 'static', 'posts');
 
 export function getPostSrcFile(id: string) {
     return path.join(postsSrcDir, getPostId(id) + '.rho');
@@ -38,6 +32,7 @@ export function getPostId(file: string) {
 }
 
 export async function readPost(id: string): Promise<Post> {
+    id = getPostId(id);
     const srcFile = getPostSrcFile(id);
     const dstFile = getPostDstFile(id);
     const txt = await fs.readFile(srcFile, 'utf-8');
@@ -63,17 +58,4 @@ export async function writePost(post: Post) {
     const dir = path.dirname(post.dstFile);
     await fs.mkdir(dir, { recursive: true });
     await fs.writeFile(post.dstFile, out, 'utf-8');
-}
-
-export async function buildPost(file: string) {
-    console.log('building', file);
-    const post = await readPost(file);
-    await writePost(post);
-}
-
-export async function buildAllPosts() {
-    const files = await globAsync('**/*.rho', {
-        cwd: postsSrcDir,
-    });
-    await Promise.all(files.map(f => buildPost(f)));
 }
