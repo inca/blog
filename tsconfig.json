@@ -2,6 +2,5 @@
     "files": [],
     "references": [
         { "path": "./build" },
-        { "path": "./src" }
     ]
 }

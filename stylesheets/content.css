@@ -44,6 +44,10 @@ pre::after {
     font-style: italic;
 }
 
+.kicker {
+    font-size: 1.25em;
+}
+
 :target {
     background: var(--color-target);
 }

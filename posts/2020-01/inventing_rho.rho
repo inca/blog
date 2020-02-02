@@ -43,7 +43,7 @@ Back then we decided to go for it for a number of reasons. Here are the ones I m
 
     The project was initially conceived for a relatively big e-learning platform featuring its own content management system. Part of making such platform successful was to make sure that non-technical people like professors, tutors, teachers, coaches of many different domains could easily create visually and structurally appealing content which would also be accessible for all sorts of devices and search engines, renderable into PDF and ePub, and friendly to revision control systems (you know, for situations when one person writes a lecture and the other one proof reads it — so you'd typically want to avoid data loss if the author later decides to rephrase that ugly sentence).
 
-    In practice, we found authors to be confused by some of the rules, especially the ones which involved nested lists with sub-blocks and magical 4 space indentation which turned everything into "ugly looking text" (of course I'm referring to the indented code block rule). People were creating cheatsheets and have developed some weird 4 space calculation techniques in an effort to keep that semantic markup beast tamed (I bet they also hated us for having them to get used to Markdown and, after a while, abandon their hard earned habits).
+    In practice, we found authors to be confused by some of the rules, especially the ones which involved nested lists with sub-blocks and magical 4 space indentation which turned everything into "ugly looking text" (of course I'm referring to the indented code block rule). People were creating cheatsheets and have developed some weird 4 space calculation techniques in an effort to keep that semantic markup beast tamed. I bet they also hated us for having them to get used to Markdown and, after a while, abandon their hard earned habits.
 
     In addition to that, people were producing a lot of content, so it was beneficial for us to reasonably limit the number of ways to achieve a specific semantic construct. Standard Markdown featuring multiple ways of spelling headings, lists, em/strong elements and multiple flavours of code blocks (with magical 4 indentation) wasn't doing much good for people who tried to pick up somebody else's work.
 
@@ -68,12 +68,12 @@ Back then we decided to go for it for a number of reasons. Here are the ones I m
 
     If you're like me, you'd want to sniff around the existing implementations and see if they can be "convinced" to do what I want. Chances are you'd expect to see some proper compiler pipelines with lexers, parsers, ASTs and renderers where you can elegantly add more logic.
 
-    Unfortunately, I was in for a surprise. Most implementations happen to contain pretty much the entire lexing/pasing logic [in a single gazillion-line method](https://github.com/markedjs/marked/blob/master/src/Lexer.js#L55-L401) which is virtually impossible to comprehend, let alone modify or extend. The same is true with a [reference implementation](https://daringfireball.net/projects/markdown/), which is just a myriad of regular expressions salted with ifs.
+    Unfortunately, I was in for a surprise. Most implementations happen to contain pretty much the entire lexing/pasing logic [in a single gazillion-line method](https://github.com/markedjs/marked/blob/master/src/Lexer.js#L55-L401) which is virtually impossible to comprehend, let alone modify or extend. The same is true with a [reference implementation](https://daringfireball.net/projects/markdown/), which is just a myriad of regular expressions executed in a particular order.
 
-    I'm sorry, but working with code like this is not an option for me. Designing a better solution is. For what it's worth, I could spend a lot more time in debugging some complicated edge cases than it would take me to design a more appropriate solutions whereby each rule is implemented in a bit more modular way and predictable way.
+    {.subtle}
+    "Why so complicated?" you'd ask. Well, despite [perceived simplicity](https://stackoverflow.com/questions/55127847/parsing-subset-of-markdown-with-regex), Markdown rules are actually quite complicated. Blocks can be arranged in hierarchies and should be processed recursively; same goes for inline markup which can be nested in each other. In order to tackle all this with regular expressions they need to be executed in a particular order, in a well-established scope and most of the time they also need to contain knowledge of other regular expressions (i.e. other nested markup rules which could interfere with a current lexical scope). Assemble all this into a single lexer — and you'll get a [perfect spaghetti](/img/misc/statemachinespaghetti.png). 🍝
 
-    "Why so complicated?" you'd ask. >>>>>>>>>>
-    [like this guy did](https://stackoverflow.com/questions/55127847/parsing-subset-of-markdown-with-regex)
+    Working with code like this is not an option for me. Designing a better solution is. For what it's worth, I could spend a lot more time in debugging some complicated edge cases than it would take me to design a more appropriate solutions whereby each rule is implemented in a bit more modular way and predictable way.
 
 4. Ok now this one is tricky. It did not occur to me up until I've implemented my own semantic text markup language. As it turns out, when you have a markup language you can tinker with, you start to get some pretty cool ideas out of nowhere. Suddenly you realize you can do a whole lot more.
 
@@ -95,7 +95,7 @@ Back then we decided to go for it for a number of reasons. Here are the ones I m
 
     We tend to forget that software can be a bit more than just means to an end. I'm pretty sure everyone is familiar with this delightful feeling of accomplishment when carefully designed non-trivial program starts to produce the results you expect for the first time.
 
-
+>>>>>>>>>>>>>>>>
 
 
 As far as the open source goes, I've never had an ambition for Rho to take over the world. Markdown is crazy popular and even inertia aside, it has its own use cases and, therefore, its users. Not everyone necessarily cares about the parser being extensible, not every product needs to provide its users with more stylistic diversity (sometimes it's the other way around!), and sometimes it's just a matter of existing content being incompatible. That's right, full Markdown compatibility was never among the Rho design goals.

@@ -10,7 +10,7 @@ html, body, img, form {
 }
 
 html {
-    font: var(--font-size)/1.5 var(--font-face), serif;
+    font: var(--font-size)/1.5 var(--font-face), Palatino Linotype, serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }

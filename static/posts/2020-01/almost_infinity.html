@@ -1,0 +1,108 @@
+<!DOCTYPE html><html><head><title></title><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,700,700i&amp;display=optional&amp;subset=cyrillic"><link rel="stylesheet" href="/build/index.css"><link rel="shortcut icon" href="/favicon.ico"></head><body><div class="header"><div class="header__container container"></div></div><div class="content"><div class="content__container container"><article class="post"><div class="post__cal cal" title="January 31, 2020 12:00 AM"><div class="cal__day">31</div><div class="cal__sub"><div class="cal__month">Jan</div><div class="cal__year">20</div></div></div><header class="post__title"><h1>Almost infinity</h1></header><div class="post__content"><p class="subtitle">Is this something stupid to say? Or does that actually make some sense?</p>
+<p>Disclaimer: I'm not a mathematician. Not even close. Not even <em>almost</em> mathematician.</p>
+<p>So I once used the "almost infinitely" phrase in some random non-scientific context, but somehow it immediately felt awkward. Like one of those moments when you say something smart, only to realize next second that you actually know shit about what you've just said.</p>
+<p>As most of us do in this kind of situation, I felt an urge to google it. You know, just to confirm that I'm not the only person in the World who would say such a (potentially stupid) thing. This time around I got lucky, so a quick googling has revealed that I'm not the only one who is curious on the subject.</p>
+<p>[l1]: https://www.quora.com/What-is-the-symbol-letter-or-code-for-almost-infinity-What-does-almost-infinity-symbolize
+[l2]: https://www.quora.com/If-a-number-is-almost-infinity-then-is-it-also-infinity
+[l3]: https://www.quora.com/Is-%E2%80%9Calmost-infinity%E2%80%9D-infinity
+[l4]: https://math.stackexchange.com/questions/443099/when-does-it-make-sense-to-say-that-something-is-almost-infinite
+[l5]: https://www.physicsforums.com/threads/almost-infinity.59753/
+[surreal]: https://en.wikipedia.org/wiki/Surreal_number</p>
+<p>But honestly, none of the quora answers were fully satisfactory to me. What I wanted to know is simply:</p>
+<p class="kicker centered">Is it appropriate to say "almost infinitely"?<br/>
+If so, what would that actually mean?</p>
+<p>In my attempts to find out The Truth, I've certainly learned a lot. I decided to take my shot at answering these question, which are obviously very important for day-to-day life and for the Universe itself.</p>
+<h2>What is "infinity"?</h2>
+<p>To avoid reciting the entire internet, here's just a few relevant facts about %%\infty%%.</p>
+<p class="sidenote">For the sake of sanity we only focus on a "really really big" infinity here and skip all other kinds of infinities.</p>
+<ol><li id="inf-1"><p>It's <em>much</em> bigger than any real number.</p>
+<p>$$+ \infty &gt; r, r \in \Bbb R$$</p></li>
+<li id="inf-2"><p>It's like a Black Hole. If you add any real number to infinity, you'll get exactly infinity.</p>
+<p>$$r + \infty = \infty, r \in \Bbb R$$</p>
+<p>So you can pretty much add a gazillion to it, as long as the gazillion is quantifiable (i.e. a real number) the result stays the same.</p></li>
+<li id="inf-3"><p>Why stop at gazillions if we can add two infinities together?</p>
+<p>$$\infty + \infty = \infty$$</p></li>
+<li id="inf-4"><p>Where's one, there's two, right?                              
+    So you can go further and multiply infinity by a real number.
+    Guess what you'll end up with?</p>
+<p>$$r \cdot \infty = \infty, r \in \Bbb R$$</p></li>
+<li id="inf-5"><p>But... Just as you become happy with all above, this happens:</p>
+<p>$$\infty - \infty = undefined$$</p>
+<p class="subtle">Which, honestly, makes some kind of sense (esp. considering all the <s>nonsense</s> above).</p></li></ol>
+<p>Ok, that's about enough to keep our brain at reasonable temperature levels.</p>
+<div class="subtle"><p>Wanna know which fact is the most important for answering our original question?</p>
+<p>Of course, the one with %%undefined%%. Let's elaborate on that.</p>
+<p>When you say %%5 - 5%% you know that the result is %%0%%. You might also know that if you add %%0%% to %%5%%, you'll get %%5%%. So when you see an equation like %%5 + 5 - 5%% it is kind of obvious that two of those three fives cancel out (the ones with the opposite signs) and you'll get just %%5%% in the end.</p>
+<p>Now you've already noticed that real number arithmetics doesn't quite work with infinities black-hole-like arithmetics.
+Specifically, in equations like %%\infty + \infty - \infty%% infinities don't simply cancel out — instead you get %%undefined%%.</p>
+<p>This %%undefined%% isn't really a special number or value or some other mathematical phenomena. It's just another way of saying "I don't know". Or more specifically: "I can't possibly know". The above equation may resolve into %%0%%, %%1%%, %%1000000%%, %%gazillion%%, %%\infty%%, %%2 \infty%% or even %%gazillion \cdot \infty%%.</p></div>
+<h2>What is "almost"?</h2>
+<p>I'm guessing the very reason mathematicians are reluctant to accept that "almost infinity" might have a definitive answer is the fact that "almost" doesn't have any mathematical definition and, quite frankly, doesn't even sound scientific-y.</p>
+<p>But we can do better! Let's try to define this "almost" thing, and let's try and be scholars about it.</p>
+<p>Say you have %%foo%% and you have %%foo_{almost}%% which is defined as "almost foo". Then there must be a small-ish difference between %%foo%% and %%foo_{almost}%%. Mathematicians love to use an uppercase Greek letter "delta" to indicate differences, so we'll do the same:</p>
+<p>$$
+\begin{eqnarray}
+\Delta_{foo} &amp; = &amp; foo - foo_{almost} \\
+foo_{almost} &amp; = &amp; foo - \Delta_{foo} \\
+\end{eqnarray}
+$$</p>
+<p>Obviously.</p>
+<p>It is also implied (much rather from the dictionaries than from any kind of math definitions) that the magnitude of "almost foo" is comparable to %%foo%% itself. This makes our %%\Delta_{foo}%% insignificant enough, which means it's smaller than both %%foo%% and %%foo_{almost}%%.</p>
+<p class="sidenote">I could've tossed absolute value into the magnitude, but it doesn't make much difference for the argument — only makes things a little more annoying than they should be.</p>
+<p id="almost-criteria">$$
+\begin{eqnarray}
+\Delta_{foo} &amp; &lt; &amp; foo              \\
+\Delta_{foo} &amp; &lt; &amp; foo_{almost}     \\
+\end{eqnarray}
+$$</p>
+<p>So you can choose any %%\Delta_{foo}%% that satisfies both inqualities and you're all good.</p>
+<h2>What is "almost infinity"?</h2>
+<p>Now to find %%\infty_{almost}%%. Let's substitute our %%foo%% with %%\infty%%:</p>
+<p>$$
+\begin{eqnarray}
+\infty_{almost} &amp; = &amp; \infty - \Delta_\infty \\
+\Delta_\infty &amp; &lt; &amp; \infty \\
+\Delta_\infty &amp; &lt; &amp; \infty_{almost} \\
+\end{eqnarray}
+$$</p>
+<p>So we need to pick such %%\Delta_\infty%% that is smaller than %%\infty%%, then evaluate %%\infty_{almost}%% with it and make sure that %%\Delta_\infty%% is also smaller than %%\infty_{almost}%%. Sounds easy.</p>
+<ol><li><p>Let's first assume %%\Delta_\infty \in \Bbb R%%, a real number, say a gazillion (a real gazillion).</p>
+<p>Let's call it %%r%% now, for simplicity.</p>
+<ul><li><p>It <a href="#inf-1">definitely</a> satisfies the %%\Delta_\infty &lt; \infty%% part...</p></li>
+<li><p>...but it <a href="#inf-2">also</a> means that:</p>
+<p>$$\infty_{almost} = \infty - \Delta_\infty = \infty - r = \infty$$</p></li>
+<li><p>...which leads us to suggest that:</p>
+<p>$$\Delta_\infty = \infty - \infty_{almost} = \infty - \infty$$</p></li>
+<li><p>...which we <a href="#inf-5">know</a> to be %%undefined%%...</p></li>
+<li><p>...which is a contradiction to our original assumption (because we initially assumed %%\Delta_\infty%% to be well-defined).</p></li></ul>
+<p>Math guys hate contradictions, so it's an end of story. %%\Delta_\infty%% is not a real number.</p></li>
+<li><p>If none of the real numbers fit the bill, what else can?</p>
+<p>Instead of keeping on with our guessing, let's instead juggle some equation terms.</p>
+<p>$$
+    \begin{eqnarray}
+    \Delta_\infty &amp; = &amp; \infty - \infty_{almost} \\
+    \Delta_\infty &amp; = &amp; \infty - (\infty - \Delta_\infty) \\
+    \Delta_\infty &amp; = &amp; (\infty - \infty) - \Delta_\infty \\
+    \Delta_\infty &amp; = &amp; undefined - \Delta_\infty \\
+    \Delta_\infty &amp; = &amp; undefined \\
+    \end{eqnarray}
+    $$</p>
+<p class="sidenote">One can certainly question the validity of such evaluation. Believe me, it's <em>almost infinitely</em> legit.</p>
+<p>So <strong>this</strong> is why we got %%undefined%% then!</p></li>
+<li><p>From here all that's left to do is to compute %%\infty_{almost}%% and check if it satisfies <a href="#almost-criteria">the criteria</a>.</p>
+<ol><li>%%\infty_{almost} = \infty - undefined = undefined%%, but we already saw this coming, right?</li>
+<li>%%undefined &lt; \infty_{almost}%%, which sounds pretty %%undefined%% to me. But %%undefined%% is not %%false%%, so we're all good! 😁</li>
+<li>%%undefined &lt; \infty%%, same as above.</li></ol></li></ol>
+<p><img src="/img/emoji/feelslikesir.jpg" width="64"/></p>
+<h2>The Answer</h2>
+<p>As I've most scientifically shown above, it happens that "almost infinity" is %%undefined%% no matter how accurately you define the "almost" part of it. All thanks to a very specific nature of our friend %%\infty%%.</p>
+<p>What does %%undefined%% means in mathematical context? As we've shown above, it designates the answer that can't be contained to a certain range, i.e. %%\infty - \infty%% might be <em>anything</em> from %%0%%, to %%gazillion%%, to %%\infty%% and more.</p>
+<p>So, to transcribe it back into normal people's language:</p>
+<p class="kicker centered">"Almost infinitely" means "to some unknown extent".</p>
+<p>How cool is that? Now I can make all sorts of bald claims sounding like absolute truths. Like watch this: "my article is almost infinitely correct".</p>
+</div></article></div></div><div class="footer"><div class="footer__container container"></div></div><script src="/lib/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><script src="/build/index.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script>MathJax = {
+    extensions: ["TeX/AMSmath.js", "TeX/AMSsymbol.js"],
+    tex: {
+        inlineMath: [['%%', '%%']],
+    },
+}</script><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></body></html>
