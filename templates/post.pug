@@ -1,5 +1,8 @@
 extends layout.pug
 
+block prepend title
+    = post.title
+
 block content
     article.post(data-post-id=post.id)
         .post__cal.cal(title=post.date.format('LLL'))

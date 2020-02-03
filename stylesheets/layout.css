@@ -45,7 +45,7 @@
     background: var(--color-red);
     padding: 2px;
     float: left;
-    margin-right: 32px;
+    margin-right: 16px;
     border-radius: 2px;
 }
 
@@ -67,4 +67,8 @@
 
 .cal__year::before {
     content: '\'';
+}
+
+.post header h1, .post .subtitle {
+    margin-left: 96px;
 }

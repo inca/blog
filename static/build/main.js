@@ -94,7 +94,19 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ \"./src/util.ts\");\n\nObject(_util__WEBPACK_IMPORTED_MODULE_0__[\"onReady\"])(function () { return Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"initContent\"])(); });\n\n\n//# sourceURL=webpack:///./src/main.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ \"./src/util.ts\");\n/* harmony import */ var _math__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./math */ \"./src/math.ts\");\n\n\nObject(_util__WEBPACK_IMPORTED_MODULE_0__[\"onReady\"])(function () {\n    Object(_math__WEBPACK_IMPORTED_MODULE_1__[\"initMath\"])();\n    Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"initContent\"])();\n});\n\n\n//# sourceURL=webpack:///./src/main.ts?");
+
+/***/ }),
+
+/***/ "./src/math.ts":
+/*!*********************!*\
+  !*** ./src/math.ts ***!
+  \*********************/
+/*! exports provided: initMath */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"initMath\", function() { return initMath; });\n/**\n * Optionally adds MathJax on pages that have $$ or %% markers.\n * Must be called only once (not in initContent).\n */\nfunction initMath() {\n    var _a;\n    var body = (_a = document.body.textContent, (_a !== null && _a !== void 0 ? _a : ''));\n    if (!/\\$\\$|\\%\\%/.test(body)) {\n        return;\n    }\n    window.MathJax = {\n        extensions: [\"TeX/AMSmath.js\", \"TeX/AMSsymbol.js\"],\n        tex: {\n            inlineMath: [['%%', '%%']],\n            displayMath: [['$$', '$$']],\n        },\n    };\n    var script = document.createElement('script');\n    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';\n    document.body.appendChild(script);\n}\n\n\n//# sourceURL=webpack:///./src/math.ts?");
 
 /***/ }),
 
@@ -106,7 +118,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _uti
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"onReady\", function() { return onReady; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"externalizeLinks\", function() { return externalizeLinks; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"highlightCode\", function() { return highlightCode; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"initContent\", function() { return initContent; });\nfunction onReady(fn) {\n    if (document.readyState === 'interactive' || document.readyState === \"complete\") {\n        setTimeout(fn, 0);\n    }\n    else {\n        document.addEventListener('DOMContentLoaded', fn);\n    }\n}\nfunction externalizeLinks(scope) {\n    var links = [].slice.call(scope.querySelectorAll('article a'));\n    for (var _i = 0, links_1 = links; _i < links_1.length; _i++) {\n        var link = links_1[_i];\n        if (link.origin !== location.origin) {\n            link.setAttribute('target', '_blank');\n        }\n    }\n}\nfunction highlightCode(scope) {\n    var blocks = [].slice.call(scope.querySelectorAll('pre code'));\n    for (var _i = 0, blocks_1 = blocks; _i < blocks_1.length; _i++) {\n        var block = blocks_1[_i];\n        window.hljs.highlightBlock(block);\n    }\n}\nfunction initContent(el) {\n    if (el === void 0) { el = document.documentElement; }\n    externalizeLinks(el);\n    highlightCode(el);\n}\n\n\n//# sourceURL=webpack:///./src/util.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"onReady\", function() { return onReady; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"externalizeLinks\", function() { return externalizeLinks; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"highlightCode\", function() { return highlightCode; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"initContent\", function() { return initContent; });\nfunction onReady(fn) {\n    if (document.readyState === 'interactive' || document.readyState === \"complete\") {\n        setTimeout(fn, 0);\n    }\n    else {\n        document.addEventListener('DOMContentLoaded', fn);\n    }\n}\nfunction externalizeLinks(scope) {\n    var links = [].slice.call(scope.querySelectorAll('article a'));\n    for (var _i = 0, links_1 = links; _i < links_1.length; _i++) {\n        var link = links_1[_i];\n        if (link.origin !== location.origin) {\n            link.setAttribute('target', '_blank');\n            link.setAttribute('rel', 'noopener');\n        }\n    }\n}\nfunction highlightCode(scope) {\n    var blocks = [].slice.call(scope.querySelectorAll('pre code'));\n    for (var _i = 0, blocks_1 = blocks; _i < blocks_1.length; _i++) {\n        var block = blocks_1[_i];\n        window.hljs.highlightBlock(block);\n    }\n}\nfunction initContent(el) {\n    if (el === void 0) { el = document.documentElement; }\n    externalizeLinks(el);\n    highlightCode(el);\n    if (window.MathJax && window.MathJax.typeset) {\n        window.MathJax.typeset();\n    }\n}\n\n\n//# sourceURL=webpack:///./src/util.ts?");
 
 /***/ })
 

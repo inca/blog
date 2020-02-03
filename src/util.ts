@@ -11,6 +11,7 @@ export function externalizeLinks(scope: HTMLElement) {
     for (const link of links) {
         if (link.origin !== location.origin) {
             link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener');
         }
     }
 }
@@ -25,4 +26,7 @@ export function highlightCode(scope: HTMLElement) {
 export function initContent(el: HTMLElement = document.documentElement) {
     externalizeLinks(el);
     highlightCode(el);
+    if (window.MathJax && window.MathJax.typeset) {
+        window.MathJax.typeset();
+    }
 }
