@@ -30,51 +30,49 @@ In my attempts to find out The Truth, I've certainly learned [a lot][surreal]. 
 
 ## What is "infinity"?
 
-To avoid reciting the entire internet, here's just a few relevant facts about %%\infty%%.
+You probably know how to google, so we'll skip the trivia. Here we'll focus on just a few relevant facts about %%\infty%%.
 
 {.sidenote}
-For the sake of sanity we only focus on a "really really big" infinity here and skip all other kinds of infinities.
+For the sake of sanity we only focus only on a "really really big" positive infinity %%(+\infty)%% here.
 
-1. It's _much_ bigger than any real number.                 {}{#inf-1}
+#. It's _much_ bigger than any real number.
 
     $$+ \infty > r, r \in \Bbb R$$
 
-2. It's like a Black Hole. If you add any real number to infinity, you'll get exactly infinity. {#inf-2}
+#. It's like a Black Hole. If you add any real number to infinity, you'll get exactly infinity.
 
     $$r + \infty = \infty, r \in \Bbb R$$
 
     So you can pretty much add a gazillion to it, as long as the gazillion is quantifiable (i.e. a real number) the result stays the same.
 
-3. Why stop at gazillions if we can add two infinities together?        {#inf-3}
+#. Why stop at gazillions if we can add two infinities together?
 
     $$\infty + \infty = \infty$$
 
-4. Where's one, there's two, right?                              {#inf-4}
+#. Where's one, there's two, right?                                         {#inf-times-number}
     So you can go further and multiply infinity by a real number.
     Guess what you'll end up with?
 
     $$r \cdot \infty = \infty, r \in \Bbb R$$
 
-5. But... Just as you become happy with all above, this happens:        {#inf-5}
+#. But... Just as you become happy with all above, this happens:
 
     $$\infty - \infty = undefined$$
 
     {.subtle}
     Which, honestly, makes some kind of sense (esp. considering all the ~nonsense~ above).
 
-Ok, that's about enough to keep our brain at reasonable temperature levels.
+Ok, that's about enough to keep our brain at reasonable temperature levels. Remember, you can always get [some more of this](https://en.wikipedia.org/wiki/Extended_real_number_line#Arithmetic_operations).
 
-~~~ {.subtle}
-Wanna know which fact is the most important for answering our original question?
-
-Of course, the one with %%undefined%%. Let's elaborate on that.
+~~~ {.hide}
+Feels like it's important to elaborate on the %%undefined%% thing.
 
 When you say %%5 - 5%% you know that the result is %%0%%. You might also know that if you add %%0%% to %%5%%, you'll get %%5%%. So when you see an equation like %%5 + 5 - 5%% it is kind of obvious that two of those three fives cancel out (the ones with the opposite signs) and you'll get just %%5%% in the end.
 
-Now you've already noticed that real number arithmetics doesn't quite work with infinities black-hole-like arithmetics.
+Now you've already noticed that real number arithmetics doesn't quite work with black-hole-like arithmetics.
 Specifically, in equations like %%\infty + \infty - \infty%% infinities don't simply cancel out — instead you get %%undefined%%.
 
-This %%undefined%% isn't really a special number or value or some other mathematical phenomena. It's just another way of saying "I don't know". Or more specifically: "I can't possibly know". The above equation may resolve into %%0%%, %%1%%, %%1000000%%, %%gazillion%%, %%\infty%%, %%2 \infty%% or even %%gazillion \cdot \infty%%.
+This %%undefined%% isn't really a special number or value or some other mathematical phenomena. It's just another way of saying "I don't know". Or more specifically: "I can't possibly know". The above equation may resolve into %%0%%, %%1%%, %%1000000%%, %%-1000000%%, %%\infty%%, %%42 \cdot \infty%%, [ad infinitum](https://en.wikipedia.org/wiki/Ad_infinitum).
 ~~~
 
 ## What is "almost"?
@@ -92,22 +90,31 @@ foo_{almost} & = & foo - \Delta_{foo} \\
 \end{eqnarray}
 $$
 
-Obviously.
-
-It is also implied (much rather from the dictionaries than from any kind of math definitions) that the magnitude of "almost foo" is comparable to %%foo%% itself. This makes our %%\Delta_{foo}%% insignificant enough, which means it's smaller than both %%foo%% and %%foo_{almost}%%.
-
 {.sidenote}
-I could've tossed absolute value into the magnitude, but it doesn't make much difference for the argument — only makes things a little more annoying than they should be.
+Taking the absolute value for the magnitude of difference would have been more correct, but it doesn't make much difference for the argument — only makes things a little more annoying than they should be.
+
+It is also implied (much rather from the dictionaries than from any kind of math definitions) that the magnitude of "almost foo" is comparable to %%foo%% itself. So %%\Delta_{foo}%% must be smaller than both %%foo%% and %%foo_{almost}%%.
 
 {#almost-criteria}
 $$
 \begin{eqnarray}
-\Delta_{foo} & < & foo              \\
-\Delta_{foo} & < & foo_{almost}     \\
+\Delta_{foo} & < & foo              & (1)\\
+\Delta_{foo} & < & foo_{almost}     & (2)\\
 \end{eqnarray}
 $$
 
-So you can choose any %%\Delta_{foo}%% that satisfies both inqualities and you're all good.
+Let's also juggle some terms in that last inequality:
+
+$$
+\begin{eqnarray}
+\Delta_{foo} & < & foo_{almost} \\
+\Delta_{foo} & < & foo - \Delta_{foo} \\
+2\Delta_{foo} & < & foo \\
+\Delta_{foo} & < & {1 \over 2} foo    & (3)\\
+\end{eqnarray}
+$$
+
+Assuming that %%foo%% is positive, we can throw %%(1)%% away. Any %%\Delta_{foo}%% that satisfies %%(3)%% will allow us to calculate %%foo_{almost}%%.
 
 ## What is "almost infinity"?
 
@@ -115,70 +122,32 @@ Now to find %%\infty_{almost}%%. Let's substitute our %%foo%% with %%\infty%%:
 
 $$
 \begin{eqnarray}
-\infty_{almost} & = & \infty - \Delta_\infty \\
-\Delta_\infty & < & \infty \\
-\Delta_\infty & < & \infty_{almost} \\
+\infty_{almost} & = & \infty - \Delta_\infty    & (4) \\
+\Delta_\infty & < & {1 \over 2 } \infty         & (5) \\
 \end{eqnarray}
 $$
 
-So we need to pick such %%\Delta_\infty%% that is smaller than %%\infty%%, then evaluate %%\infty_{almost}%% with it and make sure that %%\Delta_\infty%% is also smaller than %%\infty_{almost}%%. Sounds easy.
+Since any number multiplied by infinity [is](#inf-times-number) infinity, %%(5)%% can be reduced to just:
 
-1. Let's first assume %%\Delta_\infty \in \Bbb R%%, a real number, say a gazillion (a real gazillion).
+$$
+\Delta_\infty < \infty
+$$
 
-    Let's call it %%r%% now, for simplicity.
+It's easy to see that the only thing that *does not* satisfy our condition is %%\infty%% itself. All real numbers %%r \in \Bbb R%% and negative infinity %%-\infty%% fit the bill.
 
-    - It [definitely](#inf-1) satisfies the %%\Delta_\infty < \infty%% part...
+Let's then evaluate %%\infty_{almost}%% for both real numbers and negative infinity:
 
-    - ...but it [also](#inf-2) means that:
+$$
+\begin{eqnarray}
+\infty_{almost} & = & \infty - r = \infty                               \\
+\infty_{almost} & = & \infty - (-\infty) = \infty + \infty = \infty     \\
+\end{eqnarray}
+$$
 
-        $$\infty_{almost} = \infty - \Delta_\infty = \infty - r = \infty$$
-
-    - ...which leads us to suggest that:
-
-        $$\Delta_\infty = \infty - \infty_{almost} = \infty - \infty$$
-
-    - ...which we [know](#inf-5) to be %%undefined%%...
-
-    - ...which is a contradiction to our original assumption (because we initially assumed %%\Delta_\infty%% to be well-defined).
-
-    Math guys hate contradictions, so it's an end of story. %%\Delta_\infty%% is not a real number.
-
-2. If none of the real numbers fit the bill, what else can?
-
-    Instead of keeping on with our guessing, let's instead juggle some equation terms.
-
-    $$
-    \begin{eqnarray}
-    \Delta_\infty & = & \infty - \infty_{almost} \\
-    \Delta_\infty & = & \infty - (\infty - \Delta_\infty) \\
-    \Delta_\infty & = & (\infty - \infty) - \Delta_\infty \\
-    \Delta_\infty & = & undefined - \Delta_\infty \\
-    \Delta_\infty & = & undefined \\
-    \end{eqnarray}
-    $$
-
-    {.sidenote}
-    One can certainly question the validity of such evaluation. Believe me, it's _almost infinitely_ legit.
-
-    So *this* is why we got %%undefined%% then!
-
-3. From here all that's left to do is to compute %%\infty_{almost}%% and check if it satisfies [the criteria](#almost-criteria).
-
-    1. %%\infty_{almost} = \infty - undefined = undefined%%, but we already saw this coming, right?
-    2. %%undefined < \infty_{almost}%%, which sounds pretty %%undefined%% to me. But %%undefined%% is not %%false%%, so we're all good! 😁
-    3. %%undefined < \infty%%, same as above.
-
-![](/img/emoji/feelslikesir.jpg|64)
-
-## The Answer
-
-As I've most scientifically shown above, it happens that "almost infinity" is %%undefined%% no matter how accurately you define the "almost" part of it. All thanks to a very specific nature of our friend %%\infty%%.
-
-What does %%undefined%% means in mathematical context? As we've shown above, it designates the answer that can't be contained to a certain range, i.e. %%\infty - \infty%% might be _anything_ from %%0%%, to %%gazillion%%, to %%\infty%% and more.
-
-So, to transcribe it back into normal people's language:
+Nice. Let's summarize this with a victorious kicker.
 
 {.kicker.centered}
-"Almost infinitely" means "to some unknown extent".
-
-How cool is that? Now I can make all sorts of bald claims sounding like absolute truths. Like watch this: "my article is almost infinitely correct".
+Almost infinity *is* infinity, <br/>
+no matter how coarsely you define its "almost" part.<br/>
+<br/>
+![](/img/emoji/feelslikesir.jpg|64)

@@ -39,7 +39,7 @@ It may not sound like it, but back in 2013 it was about the same kind of crazy t
 
 Back then we decided to go for it for a number of reasons. Here are the ones I managed to derive from a hindsight (not necessarily sorted by importance).
 
-1. We needed a stricter, more predictable rules for core features, which are more easily understood by non-technical people.
+#. We needed a stricter, more predictable rules for core features, which are more easily understood by non-technical people.
 
     The project was initially conceived for a relatively big e-learning platform featuring its own content management system. Part of making such platform successful was to make sure that non-technical people like professors, tutors, teachers, coaches of many different domains could easily create visually and structurally appealing content which would also be accessible for all sorts of devices and search engines, renderable into PDF and ePub, and friendly to revision control systems (you know, for situations when one person writes a lecture and the other one proof reads it — so you'd typically want to avoid data loss if the author later decides to rephrase that ugly sentence).
 
@@ -47,9 +47,9 @@ Back then we decided to go for it for a number of reasons. Here are the ones I m
 
     In addition to that, people were producing a lot of content, so it was beneficial for us to reasonably limit the number of ways to achieve a specific semantic construct. Standard Markdown featuring multiple ways of spelling headings, lists, em/strong elements and multiple flavours of code blocks (with magical 4 indentation) wasn't doing much good for people who tried to pick up somebody else's work.
 
-2. We needed more!
+#. We needed more!
 
-    Less is more, I agree. 💯 You don't typically need too much from semantic texts when you write READMEs, or quickly put together some comments, or even when you write some technical articles and even certain kinds of blog posts.
+    You don't typically need too much from semantic texts when you write READMEs, or quickly put together some comments, or even when you write some technical articles and even certain kinds of blog posts.
 
     However, sometimes you need _just a tiny bit more_ than Markdown has to offer.
 
@@ -64,7 +64,35 @@ Back then we decided to go for it for a number of reasons. Here are the ones I m
 
     And of course lots of smaller features (like being able to programmatically resolve media references like `![Alt text][some-id-from-database]` or, say, to support reusable markup fragments) definitely helped with engineering a better end product.
 
-3. Existing solutions work. But how?
+#. But we also needed less!
+
+    Wait, what?
+
+    [GitHub Flavoured Markdown Spec](https://github.github.com/gfm/#why-is-a-spec-needed-) makes a good case about how canonical Markdown rules leave many questions unanswered and numerous edge cases unresolved.
+
+    Since we've worked with the authors who were not previously exposed to any kinds of technical-looking language (yes, Markdown still looked very technical to them!) we were able to receive and process the feedback about Markdown usability from them.
+
+    We didn't even need to do any feedback processing to realize that only a handful of rules takes the most heat. Namely:
+
+    - indented code blocks
+    - blockquotes
+
+    Apparently, people hated to put extra stuff in front of every line, which they most likely just pasted from their clipboard!
+    And the indented code blocks "feature" was a massive point of frustration for those who worked extensively with nested lists.
+
+    My reasoning back then was rougly as follows:
+
+    - Markdown's overarching goal is to make the source readable and understandable, whilst producing a predictable outcome...
+    - ... which can be summarized as "usability"...
+    - ... but I don't see how counting spaces improves any of that...
+    - ... neither do I see how prepending each line with `>` to make it "stand out" makes things better.
+
+    Removing those and a couple more led to a drastically improved authorship experience due to reduced ambiguity and complexity.
+
+    {.subtle}
+    Of course I've no fancy charts or metrics to back up my words — just people being genuinely grateful. So give or take.
+
+#. Existing solutions work. But how?
 
     If you're like me, you'd want to sniff around the existing implementations and see if they can be "convinced" to do what I want. Chances are you'd expect to see some proper compiler pipelines with lexers, parsers, ASTs and renderers where you can elegantly add more logic.
 
@@ -76,7 +104,7 @@ Back then we decided to go for it for a number of reasons. Here are the ones I m
 
     Working with code like this is not an option for me. Designing a better solution is. Fwiw I could spend a lot more time in debugging some complicated edge cases than it would take me to design a more appropriate solution whereby each rule is implemented in a modular way with minimal impact on other rules.
 
-4. Ok now this one is tricky. It did not occur to me up until I've implemented my own semantic text markup language. As it turns out, when you have a markup language you can tinker with, you start getting some pretty cool ideas out of nowhere. Suddenly you realize you can do a lot more.
+#. Ok now this one is tricky. It did not occur to me up until I've implemented my own semantic text markup language. As it turns out, when you have a markup language you can tinker with, you start getting some pretty cool ideas out of nowhere. Suddenly you realize you can do a lot more.
 
     As an example, this is how I've implemented a superset of semantic markup rules for creating quizzes. You, as an author, would write things like:
 
@@ -92,17 +120,17 @@ Back then we decided to go for it for a number of reasons. Here are the ones I m
 
     The library would render a form with radio buttons, without leaking any information about the correct answer, and on server side would have ways to validate the submitted answer. We've implemented the same for other types of tasks such as multiple choice, drag-to-order and even type text with diff-based answer assessment. _So freaking cool!_
 
-5. Last but not least, it was fun!
+#. Last but not least, it was fun!
 
     We tend to forget that software can be a bit more than just means to an end. I'm pretty sure everyone is familiar with this delightful feeling of accomplishment when carefully designed non-trivial program starts to produce the results you expect for the first time.
 
-That's right, Markdown needed a hero 7 years ago, and definitely needs one now.
+Bottom line is: Markdown needed a hero 7 years ago, and it still needs one now.
 
 ## 2020 re-design objectives
 
-Truth to be told, it is this blog which prompted me to start renovating my poor old library covered with a thick layer of dust. Sure I could just sugar-coat it with type definitions and that would probably be sufficient, but... Ugh. It was 2013, no modern ECMAScript features, just plain `Foo.prototype.bar =` assignments, loads of `var`.
+Truth to be told, it is this blog which prompted me to start renovating my poor old library covered with a thick layer of dust. Sure I could just sugar-coat it with type definitions and that would probably be sufficient, but... Ugh. It was published in 2013, but conceived even earlier than that, which means: no modern ECMAScript features, lots of `Foo.prototype.bar = ` assignments, loads of ` var`, etc. Horrible, horrible times.
 
-Despite what [big cats say](https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/) I maintain that rewriting software from scratch is still valid and could actually be the one and only measure that can save the project from certain death. All depends, of course.
+Despite what [big cats say](https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/) I maintain that rewriting software from scratch is still valid and under certain circumstances can actually be the one and only measure that can save the project from a certain death.
 
 But what to do exactly?
 
