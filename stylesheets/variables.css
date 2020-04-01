@@ -1,8 +1,9 @@
 :root {
-    --font-face: 'EB Garamond';
+    --font-face: 'PT Serif';
     --font-size: 18px;
     --font-face--code: 'Monaco';
-    --font-size--code: .75em;
+    --font-size--code: .85em;
+    --font-size--code-block: 12px;
 
     --font-size--small: 16px;
 

@@ -7,6 +7,7 @@
 .sidenote {
     width: 200px;
     font-size: var(--font-size--small);
+    color: var(--color-subtle);
 }
 
 @media (min-width: 640px) {
