@@ -9,28 +9,20 @@ A simple recipe for making all kinds of hexy games. Enjoy!
 
 In this article I'd like to share a very simple hex grid system I've used in my [Hex Laser Puzzle](https://play.google.com/store/apps/details?id=com.alphamagenta.HexLaser) game.
 
-~~~ {.centered}
-![](/img/hex/hlp-01.gif)
-~~~
+~figure
+    ![](/img/hex/hlp-01.gif)
 
 I've used this approach in few other games as well, and even though none of them have seen the light just yet, I've enjoyed the approach so much that it feels a crime not to share it with a general public.
 
-~~~ {.subtle}
 As is the case with all the common concepts, there's a lot of readily available information on the Internet. I highly recommend [Red Blob Games article](https://www.redblobgames.com/grids/hexagons/) — to quote from one of the comments, this is indeed a "gold mine" of information on hexagonal grids. I'll also be referring to it a lot.
-~~~
 
 ## The Idea
 
-The hex grid system we'll be looking at revolves around two basic concepts:
+The hex grid system we'll be looking at revolves around a single basic concept — *hex coordinate system*.
 
-- coordinate system
-- snapping objects in 2D and 3D space to grid
+Everything else is mounted on top of the basics. Here's a non-exhaustive list of what you will be able to do:
 
-Everything else is mounted on top of the basics.
-
-Here's a non-exhaustive list of what you will be able to do:
-
-- snapping game objects onto logical hexagonal grid in 3d space (you decide which plane to choose as "floor", but typically it's the XZ plane),
+- snapping game objects onto logical hexagonal grid in 3d space,
 - converting between `transform.position` and logical grid coordinates (in both directions),
 - performing a variety of general purpose computations and traversals, such as:
     - finding neighbouring cells,
@@ -40,36 +32,31 @@ Here's a non-exhaustive list of what you will be able to do:
 - combining it with other components: colliders, rigidbodies, navmeshes and others,
 - drawing things programmatically, if you're into that kind of stuff.
 
-~~~ {.centered}
-![](/img/hex/sphere-snap.gif)
+~figure
+    ![](/img/hex/hlp-02.gif)
 
-{.caption}
-Spheres snapped to hexagonal grid on XZ floor.
-~~~
+    ~figcaption Objects snapped to hex grid in Unity Editor.
 
-In fact, the "system" is probably an overstatement. At its core it's just a single class I refer to as `Hex` which encapsulates logical grid coordinates and corresponding conversions. It is just a plain serializable class, does not inherit from `MonoBehaviour` and can be used for computations detached from the actual game objects.
+In fact, "system" is probably an overstatement. At its core it's just a single class I refer to as `Hex` which encapsulates logical grid coordinates and corresponding conversions. It is just a plain serializable class, does not inherit from `MonoBehaviour` and can be used for computations detached from the actual game objects.
 
     {.subtle}
     You can think of it as a sort of `Vector2`, but for hex grids.
 
-## Hex Coordinates
+## Axial Coordinate System
 
 The very first thing to do is to set up some conventions. As explained in [The Article](https://www.redblobgames.com/grids/hexagons/) there are multiple choices to be made.
 
-### Axial Coordinate System
-
 I chose axial (or skewed) coordinates which makes most traversal algorithms a breeze. The best way to explain it is to see it.
 
-~~~ {.centered}
-![](/img/hex/hex-coordinates.png)
-~~~
+~figure
+    ![](/img/hex/hex-coordinates.png|320)
 
 In this picture you see a number of spheres snapped to a hex grid along with their hex coordinates represented as a pair of integers `(q; r)`.
 
 The Q axis goes from left to right, and is aligned with world X.
 The R axis goes from bottom left to top right, with angle between Q and R being 60 degrees in a counter-clockwise direction.
 
-As you can see from the picture, you can reach any point on the grid by using these coordinates. As an example, to reach point `(-2;2)` you need to go two times in negative Q direction (i.e. to the left), then two times in positive R direction.
+As you can see from the picture, you can reach any point on the grid by using these coordinates. As an example, to reach point `(-2; 2)` you need to go two times in negative Q direction (i.e. to the left), then two times in positive R direction.
 
 ## Cell Radius
 
@@ -82,43 +69,30 @@ Hexagons have two radiuses:
 
 This brings an interesting choice: which radius to take as a "unit".
 
-~~~ {.centered}
-![](/img/hex/cell-radius.gif)
+~figure
+    ![](/img/hex/cell-radius.gif)
 
-{.caption}
-Various choices of hex cell size, compared to a unit sphere.
-~~~
+    ~figcaption Various choices of hex cell size, compared to a unit sphere.
 
-Intuitively, you'd think that taking circumradius %%R = 1%% or %%R = 0.5%% is better (equal to side, so potentially less math with irrational numbers is involved). That's also what I was thinking initially. However, after some experimenting I found one important drawback: if you make a game that require colliders (e.g. a sliding puzzle, or using Physics Raycast to drag pieces), then all colliders must be scaled by %%{\sqrt 3 \over 2} R%% — which becomes quite annoying over time.
+Intuitively, you'd think that taking circumradius <span style="color:hsl(40,75%,50%)">%%R = 1%%</span> or <span style="color:hsl(200,75%,50%)">%%R = 0.5%%</span> is better (reasoning: circumradius equals to side, so potentially less math with irrational numbers is involved). That's also what I was thinking initially. However, after some experimenting I found one important drawback: if you make a game that requires colliders (e.g. a sliding puzzle, or using Physics Raycast to drag pieces), then all colliders must be scaled by %%{\sqrt 3 \over 2}%% — which becomes quite annoying over time.
 
 {.sidenote}
 Incidentally, calculating collider radiuses turned out to be the *only* place where manual calculation was required!
 
-So I changed my mind and took an inscribe radius %%r = 0.5%% for my cell dimensions (corresponds to the green hex in the GIF above). Now sphere and capsule colliders would have radius %%0.5%% which is the standard size of colliders for Unity primitives.
+So I changed my mind and took an <span style="color:hsl(150,60%,45%)">inradius %%r = 0.5%%</span> for my cell dimensions. Now sphere and capsule colliders would have radius %%0.5%% which is the standard size of colliders for Unity primitives.
 
-~~~ {.centered}
-![](/img/hex/capsule-collider.png)
+~figure
+    ![](/img/hex/capsule-collider.png)
 
-{.caption}
-A capsule collider with radius %%0.5%% around mirror piece,<br/>
-used for Physics Raycaster to handle touch events.
-~~~
+    ~figcaption A capsule collider with radius %%0.5%% around mirror piece,<br/>
+                used for Physics Raycaster to handle touch events.
 
-As a bonus, here's how to quickly create a 3D hexagon piece in Blender.
+## Put Together
 
-~~~ {.centered}
-![](/img/hex/blender-hex.png)
-
-{.caption}
-Blender cylinders use circumradius;<br/>
-type `sqrt(3) / 3` to get the cylinder with inradius %%0.5%%
-~~~
-
-### Put Together
-
-Let's put all the above together and create our `Hex` class which can convert logical coordinates into world coordinates.
+With all the above in mind let's create our `Hex` class stores axial coordinates and converts them into world coordinates.
 
 ``` {.cs}
+// Hex.cs
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -177,16 +151,21 @@ public struct Hex {
 }
 ```
 
+Here we have static methods `Hex.FromPlanar` and `Hex.FromWorld` — these allow obtainining `Hex` from `Vector2` and `Vector3` respectively. Instance methods `hex.ToPlanar` and `hex.ToWorld` do the reverse.
+
 ## Snapping Objects
 
 With these bare essentials in place we can now implement a component for snapping objects to hex grid roughly as follows:
 
-- convert `transform.position` to `hex` using `Hex.FromWorld(transform.position)`
-- convert `hex` back to `Vector3` using `hex.ToWorld()`
+1. convert `transform.position` to `hex` using `Hex.FromWorld(transform.position)`;
+2. convert `hex` back to `Vector3` using `hex.ToWorld()`.
 
-Let's call it `HexSnap`.
+Hex coordinates are integers, so rounding will provide us with that snap we were looking for.
+
+Let's call our component `HexSnap`.
 
 ``` {.cs}
+// HexSnap.cs
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -226,3 +205,192 @@ public class HexSnap : MonoBehaviour {
 
 }
 ```
+
+Now attach it to your game object and observe how it snaps onto hex grid floor on XZ plane.
+
+~figure
+    ![](/img/hex/sphere-snap.gif)
+
+    ~figcaption Unit spheres snapped to hexagonal grid on XZ floor.
+
+## Neighbours
+
+Each hex cell has 6 neighbouring cells.
+
+~figure
+    ![](/img/hex/neighbours.png|240)
+
+Let's list the neighbours of "cell zero" starting with the rightmost one, in counter clockwise direction.
+
+``` {.cs}
+// Hex.cs
+// ...
+    public static Hex[] AXIAL_DIRECTIONS = new Hex[] {
+        new Hex(1, 0),
+        new Hex(0, 1),
+        new Hex(-1, 1),
+        new Hex(-1, 0),
+        new Hex(0, -1),
+        new Hex(1, -1),
+    };
+```
+
+So to find all neighbours of any given `hex` all we need to do is to loop through these axial directions and add corresponding `q` and `r` components.
+
+The only thing missing is component-wise arithmetics of `Hex` instances, so let's add them.
+
+``` {.cs}
+// Hex.cs
+// ...
+    public static Hex zero = new Hex(0, 0);
+
+    public static Hex operator +(Hex a, Hex b) {
+        return new Hex(a.q + b.q, a.r + b.r);
+    }
+
+    public static Hex operator -(Hex a, Hex b) {
+        return new Hex(a.q - b.q, a.r - b.r);
+    }
+```
+
+Awesome! Now let's add few methods to our `Hex`:
+
+- `Hex GetNeighbour(int dir)` to get the neighbouring cell in specified direction,
+- `IEnumerable<Hex> Neighbours()` to get all cell neighbours.
+
+``` {.cs}
+// Hex.cs
+// ...
+    public Hex GetNeighbour(int dir) {
+        Hex incr = AXIAL_DIRECTIONS[dir % AXIAL_DIRECTIONS.Length];
+        return this + incr;
+    }
+
+    public IEnumerable<Hex> Neighbours() {
+        foreach (Hex dir in AXIAL_DIRECTIONS) {
+            yield return this + dir;
+        }
+    }
+```
+
+Finally, let's visualize the neighbours. Let's create a `HexNeighbours` which would draw gizmos on all neighbouring hex cells:
+
+```
+// HexNeighbours.cs
+using UnityEngine;
+
+[ExecuteInEditMode]
+public class HexNeighbours : MonoBehaviour {
+
+    public Hex hex {
+        get {
+            return Hex.FromWorld(transform.position);
+        }
+    }
+
+    void OnDrawGizmosSelected() {
+        Gizmos.color = Color.yellow;
+        foreach (Hex neighbour in hex.Neighbours()) {
+            Gizmos.DrawSphere(neighbour.ToWorld(), .25f);
+        }
+    }
+
+}
+```
+
+~figure
+    ![Yellow gizmos showing neighbouring hex cells of currently selected object.](/img/hex/neighbours-gizmos.gif)
+
+    ~figcaption Yellow gizmos showing neighbouring hex cells of currently selected object.
+
+{.sidenote}
+It is very convenient to visualize stuff with gizmos — highly recommended.
+
+## Other Algorithms
+
+If you're still with me, then by now you should be getting the feel of it.
+
+Once again I'd like to point you to [the most awesome hex grid guides ever created](https://www.redblobgames.com/grids/hexagons) — from here you can choose an algorithm that is relevant to the game you're making and port it to our hex grid system without much problem.
+
+As an exercise, let's implement the hex rings traversal.
+
+``` {.cs}
+// Hex.cs
+// ...
+
+    public static IEnumerable<Hex> Ring(Hex center, int radius) {
+        Hex current = center + new Hex(0, -radius);
+        foreach (Hex dir in AXIAL_DIRECTIONS) {
+            for (int i = 0; i < radius; i++) {
+                yield return current;
+                current = current + dir;
+            }
+        }
+    }
+
+    public static IEnumerable<Hex> Spiral(Hex center, int minRadius, int maxRadius) {
+        if (minRadius == 0) {
+            yield return center;
+            minRadius += 1;
+        }
+        for (int r = minRadius; r <= maxRadius; r++) {
+            var ring = Ring(center, r);
+            foreach (Hex hex in ring) {
+                yield return hex;
+            }
+        }
+    }
+```
+
+As before, let's visualize it by creating a dummy component and drawing some gizmos.
+
+``` {.cs}
+// HexRings.cs
+using UnityEngine;
+
+[ExecuteInEditMode]
+public class HexRings : MonoBehaviour {
+
+    [Range(1, 10)]
+    public int minRadius;
+    [Range(1, 10)]
+    public int maxRadius;
+
+    public Hex hex {
+        get {
+            return transform.position.ToHex();
+        }
+    }
+
+    void OnDrawGizmosSelected() {
+        Gizmos.color = Color.magenta;
+        foreach (Hex hex in Hex.Spiral(this.hex, minRadius, maxRadius)) {
+            Gizmos.DrawSphere(hex.ToWorld(), .25f);
+        }
+    }
+
+}
+```
+
+~figure
+    ![](/img/hex/rings.gif)
+
+    ~figcaption Generated hex rings.
+
+## Conclusion
+
+That's about enough to get started — the rest is up to your imagination. Time to say goodbye 👋
+
+Since I really love all of you, I've shared this tiny [demo project on GitHub](https://github.com/inca/UnityHexGrid) that covers everything we've done in this article. Enjoy!
+
+Please don't forget to share with me all the awesome things you create with this hex grid system.
+
+## Addenda
+
+Here's how to quickly create a 3D hexagon piece in Blender.
+
+~figure
+    ![](/img/hex/blender-hex.png)
+
+    ~figcaption Blender cylinders use circumradius;<br/>
+                type `sqrt(3) / 3` to get the cylinder with inradius %%0.5%%

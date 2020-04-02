@@ -44,11 +44,11 @@ pre::after {
     left:100%
 }
 
-.centered {
+.centered, figure {
     text-align: center;
 }
 
-.subtle, .caption {
+.subtle, .caption, figcaption {
     font-size: var(--font-size--small);
     color: var(--color-subtle);
 }

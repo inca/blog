@@ -23,7 +23,9 @@
   ],
   "author": "Boris Okunskiy",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "rho": "^1.0.0-beta.1"
+  },
   "devDependencies": {
     "@types/debounce": "^1.2.0",
     "@types/glob": "^7.1.1",
@@ -50,7 +52,7 @@
     "pug": "^2.0.4",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.5",
-    "webpack": "^4.41.5",
+    "webpack": "^4.42.1",
     "webpack-cli": "^3.3.10",
     "ws": "^7.2.1"
   }
