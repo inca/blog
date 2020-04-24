@@ -8,7 +8,7 @@
     "dev": "run-p dev:*",
     "dev:server": "tsc -p ./dev && run-p dev:server:*",
     "dev:server:tscw": "tsc -w -p ./dev",
-    "dev:server:nodemon": "nodemon --delay 0.5 out/dev/index.js",
+    "dev:server:nodemon": "nodemon out/dev/index.js",
     "dev:css": "postcss stylesheets/index.css -w -o static/build/index.css",
     "dev:js": "webpack -w",
     "build:js": "NODE_ENV=production webpack",
@@ -21,10 +21,18 @@
   "keywords": [
     "blog"
   ],
+  "nodemonConfig": {
+    "delay": 500,
+    "ignore": [
+      "static/*",
+      "src/*"
+    ]
+  },
   "author": "Boris Okunskiy",
   "license": "ISC",
   "dependencies": {
-    "rho": "^1.0.0-beta.1"
+    "rho": "^1.0.0-beta.1",
+    "simplex-noise": "^2.4.0"
   },
   "devDependencies": {
     "@types/debounce": "^1.2.0",
