@@ -4,11 +4,11 @@ block prepend title
     | Leaf generator
 
 block content
-    canvas#leafgen(width="1024", height="1024", style="width:100%")
+    canvas#lsystem(width="1024", height="1024", style="width:100%")
 
     .form-line
         label(for="iterations") Iterations
-        input#iterations(type="range", min="0", max="10", value="5")
+        input#iterations(type="range", min="1", max="7", value="5")
     .form-line
         label(for="angle") Angle
         input#angle(type="range", min="0", max="90", value="15")
@@ -16,6 +16,6 @@ block content
         label(for="variance") Variance
         input#variance(type="range", min="0", max="1", step="0.01", value=".25")
     .form-line
-        label(for="variance") Noise Scale
+        label(for="noiseScale") Noise Scale
         input#noiseScale(type="range", min="0", max="64", value="32")
-    script(src="/build/leafgen.js")
+    script(src="/build/lsystem.js")

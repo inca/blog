@@ -1,4 +1,4 @@
-import { initContent } from './util';
+import { initContent } from '../util';
 
 connectDev();
 

@@ -21,7 +21,7 @@ module.exports = {
     entry: {
         main: './src/main/index.ts',
         dev: './src/main/dev.ts',
-        leafgen: './src/leafgen/index.ts',
+        lsystem: './src/lsystem/index.ts',
     },
     output: {
         filename: '[name].js',

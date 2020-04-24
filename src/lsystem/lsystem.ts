@@ -1,5 +1,5 @@
 import SimplexNoise from 'simplex-noise';
-import { Vector4, Vector2 } from './util';
+import { Vector4, Vector2 } from '../util';
 
 const axiom = 'X';
 const rules = {
@@ -40,25 +40,20 @@ export class LSystemGenerator {
         this.imageData = this.ctx.getImageData(0, 0, this.width, this.height);
     }
 
-    generate() {
-        this.clear();
+    draw() {
         this.initPath();
+        this.redraw();
+    }
+
+    redraw() {
+        this.clear();
         const iter = this.drawSteps();
         while (true) {
             const { done } = iter.next();
-                if (done) {
-                console.log('done');
+            if (done) {
                 return;
             }
         }
-        // const timer = setInterval(() => {
-        //     const { done } = iter.next();
-        //     if (done) {
-        //         console.log('done');
-        //         clearInterval(timer);
-        //         return;
-        //     }
-        // }, 10);
     }
 
     initPath() {
@@ -74,7 +69,7 @@ export class LSystemGenerator {
                 case 'F': {
                     const nextU = u - Math.sin(a * Math.PI / 180) * this.stepSize;
                     const nextV = v + Math.cos(a * Math.PI / 180) * this.stepSize;
-                    state = [nextU, nextV, a, r * 0.95];
+                    state = [nextU, nextV, a, r * .95];
                     this.drawLine([u, v], [nextU, nextV], r);
                     yield;
                     break;
@@ -109,12 +104,12 @@ export class LSystemGenerator {
 
     drawLine(uv0: Vector2, uv1: Vector2, w: number) {
         this.ctx.lineWidth = this.lineWidth * w;
-        this.ctx.strokeStyle = 'rgba(255,255,255,.5)';
+        this.ctx.strokeStyle = `rgba(255,255,255,.8)`;
         this.ctx.beginPath();
         const [x0, y0] = this.uv2xy(uv0);
         const [x1, y1] = this.uv2xy(uv1);
-        this.ctx.moveTo(x0 + 10, y0);
-        this.ctx.lineTo(x1 + 10, y1);
+        this.ctx.moveTo(x0, y0);
+        this.ctx.lineTo(x1, y1);
         this.ctx.stroke();
     }
 

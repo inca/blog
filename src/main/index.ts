@@ -1,4 +1,4 @@
-import { onReady, initContent } from './util';
+import { onReady, initContent } from '../util';
 import { initMath } from './math';
 
 onReady(() => {
