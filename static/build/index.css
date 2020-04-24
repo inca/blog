@@ -226,6 +226,14 @@ hue-6-2: #e6c07b
 .hljs-link {
   text-decoration: underline;
 }
+.form-line {
+    margin: 1em 0;
+    display: flex;
+    align-items: center;
+}
+.form-line label {
+    flex: 0 0 160px;
+}
 html, body, img, form {
     margin: 0;
     padding: 0;

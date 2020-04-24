@@ -2,6 +2,7 @@
 @import './layout.css';
 @import './content.css';
 @import './hljs.css';
+@import './_inbox.css';
 
 html, body, img, form {
     margin: 0;
