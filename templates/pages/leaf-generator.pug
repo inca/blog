@@ -1,0 +1,8 @@
+extends ../layout.pug
+
+block prepend title
+    | Leaf generator
+
+block content
+    canvas(width="1024", height="1024")
+    script(src="/build/leafgen.js")

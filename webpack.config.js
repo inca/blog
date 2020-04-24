@@ -19,8 +19,9 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.js'],
     },
     entry: {
-        main: './src/main.ts',
-        dev: './src/dev.ts',
+        main: './src/main/index.ts',
+        dev: './src/main/dev.ts',
+        leafgen: './src/leafgen/index.ts',
     },
     output: {
         filename: '[name].js',
