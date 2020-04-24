@@ -17,9 +17,9 @@ export class LeafGenerator {
             initialNodes: Node[],
         } = {
                 seed: 'seed',
-                noiseScale: 10,
-                iterations: 100,
-                initialNodes: [{ u: 0, v: 0, r: 1 }],
+                noiseScale: 20,
+                iterations: 20,
+                initialNodes: [{ u: 0, v: 0, r: 1, parents: [] }],
             },
     ) {
         this.noise = new SimplexNoise(settings.seed);
@@ -35,50 +35,75 @@ export class LeafGenerator {
         const timer = setInterval(() => {
             const { done } = iter.next();
             if (done) {
+                console.log('done');
                 clearInterval(timer);
                 return;
             }
-        }, 50);
+        }, 10);
     }
 
     *drawSteps() {
         for (const node of this.traverse()) {
-            const parent = node.parent;
-            if (!parent) {
-                continue;
+            for (const parent of node.parents) {
+                const [x1, y1] = this.uv2xy([parent.u, parent.v]);
+                const [x2, y2] = this.uv2xy([node.u, node.v]);
+                this.ctx.lineWidth = node.r * 20;
+                this.ctx.strokeStyle = 'rgba(255,255,255,.5)';
+                this.ctx.beginPath();
+                this.ctx.moveTo(x1 + 20, y1);
+                this.ctx.lineTo(x2 + 20, y2);
+                this.ctx.stroke();
+                yield;
             }
-            const [x1, y1] = this.uv2xy([parent.u, parent.v]);
-            const [x2, y2] = this.uv2xy([node.u, node.v]);
-            this.ctx.lineWidth = node.r * 10;
-            this.ctx.strokeStyle = 'rgba(255,255,255,.5)';
-            this.ctx.beginPath();
-            this.ctx.moveTo(x1, y1);
-            this.ctx.lineTo(x2, y2);
-            this.ctx.stroke();
-            yield;
         }
     }
 
     *traverse(): IterableIterator<Node> {
-        const queue: Node[] = this.settings.initialNodes;
+        let queue: Node[] = this.settings.initialNodes;
         const n = this.settings.iterations;
-        for (let i = 0; i < n; i++) {
-            if (queue.length === 0) {
+        for (let i = 1; i <= n; i++) {
+            const t = i / n;
+            if (!queue.length) {
                 return;
             }
-            const node = queue.pop()!;
-            const noise = this.sampleNoiseUV(node.u, node.v);
-            const childCount = chance(noise, 1, [.5, 2], [.75, 3]);
-            const maxR = Math.sqrt(node.r * childCount);
-            const radiuses = this.partition(maxR, childCount, .56);
-            for (let ci = 0; ci < childCount; ci++) {
-                const u = node.u + .01;
-                const v = node.v + .05;
-                const r = radiuses[ci];
-                const child: Node = { u, v, r, parent: node };
-                yield child;
-                queue.unshift(child);
+            let offsprings: Node[] = [];
+            for (const node of queue) {
+                const noise = this.sampleNoiseUV(node.u, node.v);
+                const childCount = chance(noise, 1, [.5, 2]);
+                const decay = Math.pow(1 - ((i - 1) / n), .25);
+                const maxR = node.r * Math.sqrt(childCount) * decay;
+                const radiuses = this.partition(maxR, childCount, noise);
+                for (const r of radiuses) {
+                    if (r < 0.025) {
+                        continue;
+                    }
+                    offsprings.push({ u: 0, v: 0, r, parents: [node] });
+                }
             }
+            // REDUCE
+            for (let c = 0; c < offsprings.length - 1; c++) {
+                const curr = offsprings[c];
+                const next = offsprings[c + 1];
+                if (next.r > curr.r * 2) {
+                    // Merge current into next
+                    next.r += curr.r / 2;
+                    next.parents.push(...curr.parents);
+                    offsprings.splice(c, 1);
+                    console.log('merged');
+                }
+            }
+            // Compute coords
+            let u = 0;
+            let v = t;
+            for (const node of offsprings) {
+                node.u = u;
+                node.v = v;
+                yield node;
+                // const noise = this.sampleNoiseUV(node.u, node.v) * 0.03;
+                u += 0.1 * Math.pow(node.r, .5);
+                v -= 0.05 * Math.pow(node.r, .5);
+            }
+            queue = offsprings;
         }
     }
 
@@ -165,17 +190,9 @@ function chance<T>(rnd: number, from: T, ...thresholds: [number, T][]): T {
     return from;
 }
 
-function range(from: number, to: number) {
-    const res = [];
-    for (let i = from; i <= to; i++) {
-        res.push(i);
-    }
-    return res;
-}
-
 export interface Node {
     u: number;
     v: number;
     r: number;
-    parent?: Node;
+    parents: Node[];
 }
