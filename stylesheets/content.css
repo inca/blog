@@ -17,8 +17,12 @@ a[target="_blank"]::after {
     transform: translate(6px, -12px) rotate(-135deg);
 }
 
-img {
+img, svg {
     max-width: 100%;
+}
+
+figure {
+    margin: 0;
 }
 
 code {
@@ -57,6 +61,11 @@ pre::after {
     margin: -1em 0 2em 0;
     color: var(--color-subtle);
     font-style: italic;
+}
+
+.sidenote {
+    font-size: var(--font-size--small);
+    color: var(--color-subtle);
 }
 
 .kicker {

@@ -1,13 +1,18 @@
 @import './variables.css';
 @import './layout.css';
 @import './content.css';
+@import './post.css';
 @import './hljs.css';
+@import './hexgrid.css';
+@import './cal.css';
 @import './_inbox.css';
 
 html, body, img, form {
     margin: 0;
     padding: 0;
     border: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
 }
 
 html {

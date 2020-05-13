@@ -9,31 +9,25 @@
 
     --color-red: hsl(355deg, 65%, 50%);
 
-    --color-subtle: #654;
+    --color-bg: #fff;
+    --color-bg--alt: hsl(320deg, 20%, 95%);
+    /* --color-bg--alt: hsl(320deg, 8%, 12%); */
+    --color-fg: #000;
     --color-link: hsl(355deg, 65%, 50%);
     --color-link--visited: hsl(355deg, 50%, 45%);
     --color-code: hsl(320deg, 50%, 40%);
-    --color-code--bg: hsl(320deg, 20%, 97%);
+    --color-code--bg: var(--color-bg--alt);
     --color-target: hsl(320deg, 25%, 95%);
+    --color-subtle: #654;
 }
 .container {
     box-sizing: border-box;
     padding: 0 1em;
     position: relative;
 }
-.sidenote {
-    width: 200px;
-    font-size: var(--font-size--small);
-    color: var(--color-subtle);
-}
 @media (min-width: 640px) {
     .container {
         width: 640px;
-    }
-}
-@media (max-width: 960px) {
-    .sidenote {
-        margin: 0 0 0 auto;
     }
 }
 @media (min-width: 960px) {
@@ -42,6 +36,7 @@
     }
 
     .sidenote {
+        width: 200px;
         position: absolute;
         left: 100%;
         margin-top: -60px;
@@ -52,33 +47,6 @@
     .container {
         margin: 0 auto;
     }
-}
-.cal {
-    text-align: center;
-    background: var(--color-red);
-    padding: 2px;
-    float: left;
-    margin-right: 16px;
-    border-radius: 2px;
-}
-.cal__day {
-    font-size: 32px;
-    width: 64px;
-    height: 64px;
-    line-height: 64px;
-    background: #fff;
-}
-.cal__sub {
-    color: #fff;
-}
-.cal__month, .cal__year {
-    display: inline-block;
-}
-.cal__year::before {
-    content: '\'';
-}
-.post header h1, .post .subtitle {
-    margin-left: 96px;
 }
 a {
     color: var(--color-link);
@@ -96,8 +64,11 @@ a[target="_blank"]::after {
     border-top-color: hsl(280deg, 50%, 75%);
     transform: translate(6px, -12px) rotate(-135deg);
 }
-img {
+img, svg {
     max-width: 100%;
+}
+figure {
+    margin: 0;
 }
 code {
     font-family: var(--font-face--code), monospace;
@@ -130,6 +101,10 @@ pre::after {
     color: var(--color-subtle);
     font-style: italic;
 }
+.sidenote {
+    font-size: var(--font-size--small);
+    color: var(--color-subtle);
+}
 .kicker {
     font-size: 1.25em;
 }
@@ -142,6 +117,51 @@ pre::after {
 .hide {
     display: none;
 }
+.post__header {
+    padding-left: 96px;
+    margin: 4em 0;
+}
+.post__cal {
+    float: left;
+}
+.post__content {
+    clear: both;
+}
+.post-tag {
+    white-space: nowrap;
+    display:inline-block;
+    font-size: var(--font-size--small);
+    text-decoration: none;
+    opacity: .5;
+    transition: opacity .3s;
+}
+.post-tag:hover {
+        opacity: 1;
+    }
+.post-tag::before {
+        content: '#';
+        color: var(--color-subtle);
+    }
+.post-tag + .post-tag {
+        margin-left:.5em;
+    }
+.post-item {
+    margin: 1em 0;
+    display: flex;
+    flex-flow: row nowrap;
+}
+.post-item__cal {
+    flex: 0 0 auto;
+}
+.post-item__title {
+    text-decoration: none;
+}
+.post-item__title:hover {
+        text-decoration: underline;
+    }
+.post-item__title, .post-item__title:visited {
+        color: var(--color-fg);
+    }
 /*
 
 Atom One Dark by Daniel Gamage
@@ -226,6 +246,43 @@ hue-6-2: #e6c07b
 .hljs-link {
   text-decoration: underline;
 }
+.hexgrid__grid path:hover {
+    stroke-width: 2;
+}
+.cal {
+    --cal-size: 64px;
+    --cal-text-size-main: 32px;
+    --cal-text-size-sub: 1em;
+
+    display: inline-block;
+    text-align: center;
+    background: var(--color-red);
+    padding: 2px;
+    margin-right: 16px;
+    border-radius: 2px;
+}
+.cal__day {
+    font-size: var(--cal-text-size-main);
+    width: var(--cal-size);
+    height: var(--cal-size);
+    line-height: var(--cal-size);
+    background: #fff;
+}
+.cal__sub {
+    color: #fff;
+    font-size: var(--cal-text-size-sub);
+}
+.cal__month, .cal__year {
+    display: inline-block;
+}
+.cal__year::before {
+    content: '\'';
+}
+.cal--small {
+    --cal-size: 48px;
+    --cal-text-size-main: 24px;
+    --cal-text-size-sub: .75em;
+}
 .form-line {
     margin: 1em 0;
     display: flex;
@@ -238,6 +295,8 @@ html, body, img, form {
     margin: 0;
     padding: 0;
     border: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
 }
 html {
     font: var(--font-size)/1.5 var(--font-face), Palatino Linotype, serif;

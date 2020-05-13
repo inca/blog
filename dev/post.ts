@@ -4,12 +4,17 @@ import Json5 from 'json5';
 import { rho } from 'rho';
 import moment from 'moment';
 import { renderTemplate } from './templates';
-import { postsSrcDir, postsDstDir } from './config';
+import { postsSrcDir, postsDstDir, isProduction, origin } from './config';
+import { promisify } from 'util';
+import glob from 'glob';
+
+const globAsync = promisify(glob);
 
 export interface Post {
     id: string,
     srcFile: string,
     dstFile: string,
+    url: string;
     title: string;
     tags: string[];
     date: moment.Moment;
@@ -31,8 +36,26 @@ export function getPostId(file: string) {
     return rel.replace(/\.(?:html|rho)$/, '');
 }
 
+export function getPostUrl(id: string) {
+    return `${isProduction ? origin : ''}/${id}`;
+}
+
+export async function postExists(id: string) {
+    const srcFile = getPostSrcFile(id);
+    try {
+        const stat = await fs.stat(srcFile);
+        return stat.isFile();
+    } catch (err) {
+        if (err.code === 'ENOENT') {
+            return false;
+        }
+        throw err;
+    }
+}
+
 export async function readPost(id: string): Promise<Post> {
     id = getPostId(id);
+    const url = getPostUrl(id);
     const srcFile = getPostSrcFile(id);
     const dstFile = getPostDstFile(id);
     const txt = await fs.readFile(srcFile, 'utf-8');
@@ -43,6 +66,7 @@ export async function readPost(id: string): Promise<Post> {
     const html = rho.toHtml(text);
     return {
         id,
+        url,
         srcFile,
         dstFile,
         title: json.title,
@@ -51,6 +75,13 @@ export async function readPost(id: string): Promise<Post> {
         text,
         html,
     };
+}
+
+export async function readdAllPosts(): Promise<Post[]> {
+    const files = await globAsync('**/*.rho', {
+        cwd: postsSrcDir,
+    });
+    return Promise.all(files.map(f => readPost(f)));
 }
 
 export async function writePost(post: Post) {

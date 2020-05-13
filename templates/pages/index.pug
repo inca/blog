@@ -1,0 +1,19 @@
+extends ../layout.pug
+
+block title
+    | AlphaMagenta
+
+block content
+    .posts
+        each post in allPosts
+            .post-item
+                // .post-item__cal.cal.cal--small(title=post.date.format('LLL'))
+                    .cal__day= post.date.format('DD')
+                    .cal__sub
+                        .cal__month= post.date.format('MMM')
+                        .cal__year= post.date.format('YY')
+                .post-item__main
+                    a.post-item__title(href=post.url)= post.title
+                    .post-item__tags
+                        each tag in post.tags
+                            a.post-tag(href=`/?tag=` + tag)= tag

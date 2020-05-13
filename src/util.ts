@@ -56,3 +56,38 @@ export function smoothstep(min: number, max: number, x: number) {
 export function step(y: number, x: number) {
     return x > y ? 1 : 0;
 }
+
+export function dot<V extends Vector>(a: V, b: V): number {
+    let res = 0;
+    for (let i = 0; i < a.length; i++) {
+        res += a[i] * b[i];
+    }
+    return res;
+}
+
+export function add<V extends Vector>(a: V, b: V | number): V {
+    let res = [];
+    for (let i = 0; i < a.length; i++) {
+        const p = typeof b === 'number' ? b : b[i];
+        res[i] = a[i] + p;
+    }
+    return res as V;
+}
+
+export function mul<V extends Vector>(a: V, b: V | number): V {
+    let res = [];
+    for (let i = 0; i < a.length; i++) {
+        const p = typeof b === 'number' ? b : b[i];
+        res[i] = a[i] * p;
+    }
+    return res as V;
+}
+
+export function div<V extends Vector>(a: V, b: V | number): V {
+    let res = [];
+    for (let i = 0; i < a.length; i++) {
+        const p = typeof b === 'number' ? b : b[i];
+        res[i] = a[i] / p;
+    }
+    return res as V;
+}

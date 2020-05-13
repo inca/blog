@@ -10,6 +10,10 @@ block content
             .cal__sub
                 .cal__month= post.date.format('MMM')
                 .cal__year= post.date.format('YY')
-        header.post__title
-            h1= post.title
+        header.post__header
+            h1.post__title= post.title
+            .post__tagline
+                each tag in post.tags
+                    a.post-tag(href=`/?tag=` + tag)= tag
+
         .post__content!= post.html

@@ -4,21 +4,9 @@
     position: relative;
 }
 
-.sidenote {
-    width: 200px;
-    font-size: var(--font-size--small);
-    color: var(--color-subtle);
-}
-
 @media (min-width: 640px) {
     .container {
         width: 640px;
-    }
-}
-
-@media (max-width: 960px) {
-    .sidenote {
-        margin: 0 0 0 auto;
     }
 }
 
@@ -28,6 +16,7 @@
     }
 
     .sidenote {
+        width: 200px;
         position: absolute;
         left: 100%;
         margin-top: -60px;
@@ -39,37 +28,4 @@
     .container {
         margin: 0 auto;
     }
-}
-
-.cal {
-    text-align: center;
-    background: var(--color-red);
-    padding: 2px;
-    float: left;
-    margin-right: 16px;
-    border-radius: 2px;
-}
-
-.cal__day {
-    font-size: 32px;
-    width: 64px;
-    height: 64px;
-    line-height: 64px;
-    background: #fff;
-}
-
-.cal__sub {
-    color: #fff;
-}
-
-.cal__month, .cal__year {
-    display: inline-block;
-}
-
-.cal__year::before {
-    content: '\'';
-}
-
-.post header h1, .post .subtitle {
-    margin-left: 96px;
 }

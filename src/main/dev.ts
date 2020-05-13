@@ -48,6 +48,10 @@ function onPostChanged(post: Post) {
     if (content instanceof HTMLElement) {
         content.innerHTML = post.html;
         initContent(content);
+        if (content.querySelectorAll('script').length) {
+            // needs reload to load the script
+            location.reload();
+        }
     }
 }
 

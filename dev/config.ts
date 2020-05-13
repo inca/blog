@@ -1,6 +1,7 @@
 import path from 'path';
 
 export const isProduction = process.env.NODE_ENV === 'production';
+export const origin = 'https://alphamagenta.com';
 export const templatesDir = path.resolve(process.cwd(), 'templates');
 export const staticDir = path.resolve(process.cwd(), 'static');
 export const postsSrcDir = path.join(process.cwd(), 'posts');

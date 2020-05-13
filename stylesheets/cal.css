@@ -1,0 +1,39 @@
+.cal {
+    --cal-size: 64px;
+    --cal-text-size-main: 32px;
+    --cal-text-size-sub: 1em;
+
+    display: inline-block;
+    text-align: center;
+    background: var(--color-red);
+    padding: 2px;
+    margin-right: 16px;
+    border-radius: 2px;
+}
+
+.cal__day {
+    font-size: var(--cal-text-size-main);
+    width: var(--cal-size);
+    height: var(--cal-size);
+    line-height: var(--cal-size);
+    background: #fff;
+}
+
+.cal__sub {
+    color: #fff;
+    font-size: var(--cal-text-size-sub);
+}
+
+.cal__month, .cal__year {
+    display: inline-block;
+}
+
+.cal__year::before {
+    content: '\'';
+}
+
+.cal--small {
+    --cal-size: 48px;
+    --cal-text-size-main: 24px;
+    --cal-text-size-sub: .75em;
+}

@@ -1,0 +1,7 @@
+{
+    title: 'Shader DIY: mix textures with vertex colors and normals',
+    date: '2020-05-12',
+    tags: ['Unity', 'Shader', 'DIY'],
+}
+
+https://en.wikipedia.org/wiki/Texture_splatting

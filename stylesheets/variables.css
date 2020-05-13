@@ -9,10 +9,14 @@
 
     --color-red: hsl(355deg, 65%, 50%);
 
-    --color-subtle: #654;
+    --color-bg: #fff;
+    --color-bg--alt: hsl(320deg, 20%, 95%);
+    /* --color-bg--alt: hsl(320deg, 8%, 12%); */
+    --color-fg: #000;
     --color-link: hsl(355deg, 65%, 50%);
     --color-link--visited: hsl(355deg, 50%, 45%);
     --color-code: hsl(320deg, 50%, 40%);
-    --color-code--bg: hsl(320deg, 20%, 97%);
+    --color-code--bg: var(--color-bg--alt);
     --color-target: hsl(320deg, 25%, 95%);
+    --color-subtle: #654;
 }

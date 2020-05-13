@@ -1,91 +1,127 @@
 {
     title: 'Unity Hex Grid System',
     date: '2020-03-26',
-    tags: ['unity', 'gamedev', 'hex', '3d'],
+    tags: ['Unity', 'Hex', 'Grid', 'DIY'],
 }
 
-{.subtitle}
-A simple recipe for making all kinds of hexy games. Enjoy!
+<script src="/build/hexgrid.js">
+</script>
 
 In this article I'd like to share a very simple hex grid system I've used in my [Hex Laser Puzzle](https://play.google.com/store/apps/details?id=com.alphamagenta.HexLaser) game.
 
 ~figure
     ![](/img/hex/hlp-01.gif)
 
-I've used this approach in few other games as well, and even though none of them have seen the light just yet, I've enjoyed the approach so much that it feels a crime not to share it with a general public.
+Of course, I only call it "system" because it sounds cooler this way. The core concept is incredibly simple — which makes it immensely powerful, since you can combine it with other components to achieve the functionality needed for your particular needs.
 
-As is the case with all the common concepts, there's a lot of readily available information on the Internet. I highly recommend [Red Blob Games article](https://www.redblobgames.com/grids/hexagons/) — to quote from one of the comments, this is indeed a "gold mine" of information on hexagonal grids. I'll also be referring to it a lot.
+I highly recommend [Red Blob Games article](https://www.redblobgames.com/grids/hexagons/) — to quote from one of the comments, this is indeed a "gold mine" of information on hexagonal grids. I'll also be referring to it a lot.
 
-## The Idea
+{.sidenote}
+Also check out the [demo project on GitHub](https://github.com/inca/UnityHexGrid) which contains all the code from this article.
 
-The hex grid system we'll be looking at revolves around a single basic concept — *hex coordinate system*.
+## Introduction: Coordinate Systems
 
-Everything else is mounted on top of the basics. Here's a non-exhaustive list of what you will be able to do:
+First, let's ask ourselves: what should a "grid system" do?
 
-- snapping game objects onto logical hexagonal grid in 3d space,
-- converting between `transform.position` and logical grid coordinates (in both directions),
-- performing a variety of general purpose computations and traversals, such as:
-    - finding neighbouring cells,
-    - calculating distance between two cells,
-    - generating rings, spirals, flood fills,
-    - and many, many more,
-- combining it with other components: colliders, rigidbodies, navmeshes and others,
-- drawing things programmatically, if you're into that kind of stuff.
+Forget about hex for a moment. Say, you want a square grid system for your game (you know, the good ol' orthogonal Cartesian system that all our games use already). Would you go around wondering how to create a "square grid system"? Probably not, because you sort of have everything you need already, specifically:
+
+- you can place the objects on your "grid"; for example, if your grid is on the XZ "floor", then you can just set the Y to zero;
+- you know how to obtain the coordinates of the objects on your grid, e.g. by plucking some components of `Vector3` into `Vector2`;
+- if you want objects to snap to grid cells: at runtime all you need to do is to `Mathf.Round` the coordinates, whilst in the editor you can simply drag with Control/Command key pressed;
+- finally, you may want to actually draw the grid lines on your board/floor — these are usually drawn with either a tileable texture applied on something like a primitive plane, or a shader (or any combination of those).
+
+So there's little point in actually implementing a "square grid system", chiefly because you already have `Vector2` that makes all the above possible.
+
+Why is hex a different story, then?
+
+~figure
+    <svg id="baseGrid"
+         class="hexgrid"
+         viewBox="-300 -120 600 240">
+    </svg>
+
+When presented with a hex grid, we (humans) tend to immediately recognize rows and columns. We're so used to orthogonal systems in our lives that it's natural to apply the paradigm we're so familiar with to all the cases.
+
+Let's try and put our orthogonal axes onto a hex grid.
+
+~figure
+    <svg id="gridOrthoAxes"
+         class="hexgrid"
+         viewBox="-300 -120 600 240">
+    </svg>
+
+Now you can see two obvious problems with this approach:
+
+- the width of a regular hexagon doesn't match its height; depending on which of the two dimensions is chosen as "unit", the other one will be irrational to this unit;
+
+- the Y axis doesn't reach the "middle dot" of every other row (one other way to look at this problem is: every other row have horizontal offset)
+
+Trying to derive a decent logic to address hex cells with orthogonal coordinates is just plain painful. It's time to admit that orthogonal system is just not fit for purpose — and to look for some other, more suitable system.
+
+Luckily, there is just one that works perfectly with hexagons. Behold, the *oblique cartesian system* (also known as "axial" or "skewed"):
+
+~figure
+    <svg id="gridObliqueAxes"
+         class="hexgrid"
+         viewBox="-300 -120 600 240">
+    </svg>
+
+Yes, it's pretty much like the orthogonal one, except that the axes are at 60˚ to each other.
+
+{.sidenote}
+The names of the axes Q and R are chosen to conform to [Amit's hex guide](https://www.redblobgames.com/grids/hexagons/).
+
+And this makes the whole difference. Notice how both axes go through the middle dots of each "column" and "row". Essentially, linear combinations of <span style="color: hsl(190, 80%, 50%)">%%\vec q%%</span> and <span style="color: hsl(290, 80%, 60%)">%%\vec r%%</span> unit vectors cover the entire hex space.
+
+~figure
+    <svg id="gridCoordinates"
+         class="hexgrid"
+         viewBox="-300 -120 600 240">
+    </svg>
+
+So implementing a "hex grid system" boils down to creating a `Vector2` equivalent for oblique coordinates (I'll refer to them as "hex coordinates") with conversions to and from our standard orthogonal coordinates.
+
+Everything else would be implemented on top of it. For example, snapping objects to hex grid would be just a matter of getting the rounded hex coordinates and coverting them back to the World coordinates.
 
 ~figure
     ![](/img/hex/hlp-02.gif)
 
     ~figcaption Objects snapped to hex grid in Unity Editor.
 
-In fact, "system" is probably an overstatement. At its core it's just a single class I refer to as `Hex` which encapsulates logical grid coordinates and corresponding conversions. It is just a plain serializable class, does not inherit from `MonoBehaviour` and can be used for computations detached from the actual game objects.
+## Implementation
 
-    {.subtle}
-    You can think of it as a sort of `Vector2`, but for hex grids.
+Before jumping to the code, we have some choices to make.
 
-## Axial Coordinate System
+1. *Orientation*: should each axis go through the vertex of a hexagon or through its side?
 
-The very first thing to do is to set up some conventions. As explained in [The Article](https://www.redblobgames.com/grids/hexagons/) there are multiple choices to be made.
+2. *Scale*: how much space should a single cell occupy?
 
-I chose axial (or skewed) coordinates which makes most traversal algorithms a breeze. The best way to explain it is to see it.
-
-~figure
-    ![](/img/hex/hex-coordinates.png|320)
-
-In this picture you see a number of spheres snapped to a hex grid along with their hex coordinates represented as a pair of integers `(q; r)`.
-
-The Q axis goes from left to right, and is aligned with world X.
-The R axis goes from bottom left to top right, with angle between Q and R being 60 degrees in a counter-clockwise direction.
-
-As you can see from the picture, you can reach any point on the grid by using these coordinates. As an example, to reach point `(-2; 2)` you need to go two times in negative Q direction (i.e. to the left), then two times in positive R direction.
-
-## Cell Radius
-
-Next choice: how much world space should a single hex cell occupy?
-
-Hexagons have two radiuses:
+So. Hexagons have two radiuses:
 
 - [circumradius](https://en.wikipedia.org/wiki/Circumscribed_circle) %%R%% — the distance from center to vertex, which is also equal to the side of hexagon,
 - [inradius](https://en.wikipedia.org/wiki/Incircle_and_excircles_of_a_triangle) %%r%% — the distance from center to side, which is %%{\sqrt 3 \over 2} R%%.
-
-This brings an interesting choice: which radius to take as a "unit".
 
 ~figure
     ![](/img/hex/cell-radius.gif)
 
     ~figcaption Various choices of hex cell size, compared to a unit sphere.
 
-Intuitively, you'd think that taking circumradius <span style="color:hsl(40,75%,50%)">%%R = 1%%</span> or <span style="color:hsl(200,75%,50%)">%%R = 0.5%%</span> is better (reasoning: circumradius equals to side, so potentially less math with irrational numbers is involved). That's also what I was thinking initially. However, after some experimenting I found one important drawback: if you make a game that requires colliders (e.g. a sliding puzzle, or using Physics Raycast to drag pieces), then all colliders must be scaled by %%{\sqrt 3 \over 2}%% — which becomes quite annoying over time.
+In the GIF above:
 
-{.sidenote}
-Incidentally, calculating collider radiuses turned out to be the *only* place where manual calculation was required!
+- <span style="color:hsl(40,75%,50%)">orange hexagon</span> has circumradius %%R = 1%%
+- <span style="color:hsl(200,75%,50%)">blue hexagon</span> has circumradius %%R = 0.5%%
+- <span style="color:hsl(150,60%,45%)">green hexagon</span> has inradius %%r = 0.5%%
 
-So I changed my mind and took an <span style="color:hsl(150,60%,45%)">inradius %%r = 0.5%%</span> for my cell dimensions. Now sphere and capsule colliders would have radius %%0.5%% which is the standard size of colliders for Unity primitives.
+I went for the last option (the one with <span style="color:hsl(150,60%,45%)">inradius %%r = 0.5%%</span>), because this way a primitive unit sphere fits perfectly into a single hex grid and nothing overlaps.
 
 ~figure
-    ![](/img/hex/capsule-collider.png)
+    ![](/img/hex/capsule-collider.jpg)
 
-    ~figcaption A capsule collider with radius %%0.5%% around mirror piece,<br/>
-                used for Physics Raycaster to handle touch events.
+    ~figcaption A capsule collider with radius %%0.5%% around mirror piece.
+
+This also means that both axes go through the side of the hexagons, and not though their vertices.
+
+As for the orientation, I went with aligning Q axis with World X. This one is quite arbitrary, but if it helps: Blender creates cylinders (which you can turn into perfect hexagonal prisms) in this same orientation by default, so you don't have to rotate anything.
 
 ## Put Together
 
@@ -100,8 +136,8 @@ using UnityEngine;
 public struct Hex {
 
     public static float RADIUS = 0.5f;
-    public static Vector2 Q_BASIS = new Vector2(2f, 0) * RADIUS;
-    public static Vector2 R_BASIS = new Vector2(1f, Mathf.Sqrt(3)) * RADIUS;
+    public static Vector2 Q_BASIS = new Vector2(2f, 0);
+    public static Vector2 R_BASIS = new Vector2(1f, Mathf.Sqrt(3));
     public static Vector2 Q_INV = new Vector2(1f / 2, - Mathf.Sqrt(3) / 6);
     public static Vector2 R_INV = new Vector2(0, Mathf.Sqrt(3) / 3);
 
@@ -127,7 +163,7 @@ public struct Hex {
     }
 
     public Vector2 ToPlanar() {
-        return Q_BASIS * q + R_BASIS * r;
+        return (Q_BASIS * q + R_BASIS * r) * RADIUS;
     }
 
     public Vector3 ToWorld(float y = 0f) {
@@ -151,11 +187,16 @@ public struct Hex {
 }
 ```
 
-Here we have static methods `Hex.FromPlanar` and `Hex.FromWorld` — these allow obtainining `Hex` from `Vector2` and `Vector3` respectively. Instance methods `hex.ToPlanar` and `hex.ToWorld` do the reverse.
+{.sidenote}
+With `Equals` and `GetHashCode` implemented you can use your hexes as `Dictionary` keys, or put them into `HashSet`s — very handy for things like breadth-first search. (Also, sorry if it's obvious)
+
+Here we have static methods `Hex.FromPlanar` and `Hex.FromWorld` — these allow obtainining `Hex` from World coordinates (`Vector2` and `Vector3` respectively). Instance methods `hex.ToPlanar` and `hex.ToWorld` do the reverse and convert hex coordinates to World coordinates.
+
+I won't go into any detail with regards to the actual conversion — this stuff is brilliantly explained in the [Amit's hex guide](https://www.redblobgames.com/grids/hexagons/). Just note how the orientation and scaling decisions are encapsulated in a bunch of static variables at the top (`Q_BASIS`, `R_BASIS`, `Q_INV`, `R_INV`) — so if you need to change the orientation, these are the things you'd need to tweak.
 
 ## Snapping Objects
 
-With these bare essentials in place we can now implement a component for snapping objects to hex grid roughly as follows:
+With the essentials in place we can now implement a component for snapping objects to hex grid roughly as follows:
 
 1. convert `transform.position` to `hex` using `Hex.FromWorld(transform.position)`;
 2. convert `hex` back to `Vector3` using `hex.ToWorld()`.
@@ -218,7 +259,7 @@ Now attach it to your game object and observe how it snaps onto hex grid floor o
 Each hex cell has 6 neighbouring cells.
 
 ~figure
-    ![](/img/hex/neighbours.png|240)
+    ![](/img/hex/neighbours.jpg|240)
 
 Let's list the neighbours of "cell zero" starting with the rightmost one, in counter clockwise direction.
 
@@ -379,18 +420,18 @@ public class HexRings : MonoBehaviour {
 
 ## Conclusion
 
-That's about enough to get started — the rest is up to your imagination. Time to say goodbye 👋
+Thanks for sticking with me till the end. Time to say goodbye 👋
 
-Since I really love all of you, I've shared this tiny [demo project on GitHub](https://github.com/inca/UnityHexGrid) that covers everything we've done in this article. Enjoy!
+Hope this was useful, and looking forward to seeing you build something hexy with these ideas.
 
-Please don't forget to share with me all the awesome things you create with this hex grid system.
+Also, don't forget to check the [demo project on GitHub](https://github.com/inca/UnityHexGrid).
 
 ## Addenda
 
 Here's how to quickly create a 3D hexagon piece in Blender.
 
 ~figure
-    ![](/img/hex/blender-hex.png)
+    ![](/img/hex/blender-hex.jpg)
 
     ~figcaption Blender cylinders use circumradius;<br/>
-                type `sqrt(3) / 3` to get the cylinder with inradius %%0.5%%
+        type `sqrt(3) / 3` to get the cylinder with inradius %%0.5%%

@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 
 module.exports = {
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -21,6 +22,7 @@ module.exports = {
     entry: {
         main: './src/main/index.ts',
         dev: './src/main/dev.ts',
+        hexgrid: './src/hexgrid/index.ts',
         lsystem: './src/lsystem/index.ts',
         leafgen: './src/leafgen/index.ts',
     },
