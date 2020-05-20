@@ -83,3 +83,25 @@ pre::after {
 .hide {
     display: none;
 }
+
+.tldr {
+    position: relative;
+    border-left: 2px solid var(--color-tldr);
+    background: var(--color-tldr--bg);
+    padding: 2em;
+    border-radius: 1px;
+
+    &::before {
+        content: 'TL;DR';
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: var(--color-tldr);
+        color: #fff;
+        padding: 0 4px;
+        margin-left: -2px;
+        border-radius: 1px;
+
+        font-size: var(--font-size--smaller);
+    }
+}

@@ -1,3 +1,7 @@
 .hexgrid__grid path:hover {
     stroke-width: 2;
 }
+
+.hexgrid__coords {
+    pointer-events: none;
+}

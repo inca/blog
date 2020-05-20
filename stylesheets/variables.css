@@ -6,6 +6,7 @@
     --font-size--code-block: 12px;
 
     --font-size--small: 16px;
+    --font-size--smaller: 12px;
 
     --color-red: hsl(355deg, 65%, 50%);
 
@@ -18,5 +19,8 @@
     --color-code: hsl(320deg, 50%, 40%);
     --color-code--bg: var(--color-bg--alt);
     --color-target: hsl(320deg, 25%, 95%);
-    --color-subtle: #654;
+    --color-subtle: hsl(320deg, 10%, 55%);
+
+    --color-tldr: hsl(320deg, 50%, 80%);
+    --color-tldr--bg: hsl(320deg, 50%, 96%);
 }

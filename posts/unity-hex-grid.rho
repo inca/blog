@@ -1,7 +1,7 @@
 {
     title: 'Unity Hex Grid System',
-    date: '2020-03-26',
-    tags: ['Unity', 'Hex', 'Grid', 'DIY'],
+    date: '2020-05-14',
+    tags: ['Unity', 'Hex Grid', 'DIY', 'GameDev'],
 }
 
 <script src="/build/hexgrid.js">
@@ -10,11 +10,11 @@
 In this article I'd like to share a very simple hex grid system I've used in my [Hex Laser Puzzle](https://play.google.com/store/apps/details?id=com.alphamagenta.HexLaser) game.
 
 ~figure
-    ![](/img/hex/hlp-01.gif)
+    ![](/img/posts/hex/hlp-01.gif)
 
 Of course, I only call it "system" because it sounds cooler this way. The core concept is incredibly simple — which makes it immensely powerful, since you can combine it with other components to achieve the functionality needed for your particular needs.
 
-I highly recommend [Red Blob Games article](https://www.redblobgames.com/grids/hexagons/) — to quote from one of the comments, this is indeed a "gold mine" of information on hexagonal grids. I'll also be referring to it a lot.
+I highly recommend the [Amit's Hex Guide](https://www.redblobgames.com/grids/hexagons/) — to quote from one of the comments, this is indeed a "gold mine" of information on hexagonal grids. I'll also be referring to it a lot.
 
 {.sidenote}
 Also check out the [demo project on GitHub](https://github.com/inca/UnityHexGrid) which contains all the code from this article.
@@ -84,7 +84,7 @@ So implementing a "hex grid system" boils down to creating a `Vector2` equivalen
 Everything else would be implemented on top of it. For example, snapping objects to hex grid would be just a matter of getting the rounded hex coordinates and coverting them back to the World coordinates.
 
 ~figure
-    ![](/img/hex/hlp-02.gif)
+    ![](/img/posts/hex/hlp-02.gif)
 
     ~figcaption Objects snapped to hex grid in Unity Editor.
 
@@ -102,7 +102,7 @@ So. Hexagons have two radiuses:
 - [inradius](https://en.wikipedia.org/wiki/Incircle_and_excircles_of_a_triangle) %%r%% — the distance from center to side, which is %%{\sqrt 3 \over 2} R%%.
 
 ~figure
-    ![](/img/hex/cell-radius.gif)
+    ![](/img/posts/hex/cell-radius.gif)
 
     ~figcaption Various choices of hex cell size, compared to a unit sphere.
 
@@ -115,7 +115,7 @@ In the GIF above:
 I went for the last option (the one with <span style="color:hsl(150,60%,45%)">inradius %%r = 0.5%%</span>), because this way a primitive unit sphere fits perfectly into a single hex grid and nothing overlaps.
 
 ~figure
-    ![](/img/hex/capsule-collider.jpg)
+    ![](/img/posts/hex/capsule-collider.jpg)
 
     ~figcaption A capsule collider with radius %%0.5%% around mirror piece.
 
@@ -250,7 +250,7 @@ public class HexSnap : MonoBehaviour {
 Now attach it to your game object and observe how it snaps onto hex grid floor on XZ plane.
 
 ~figure
-    ![](/img/hex/sphere-snap.gif)
+    ![](/img/posts/hex/sphere-snap.gif)
 
     ~figcaption Unit spheres snapped to hexagonal grid on XZ floor.
 
@@ -259,7 +259,7 @@ Now attach it to your game object and observe how it snaps onto hex grid floor o
 Each hex cell has 6 neighbouring cells.
 
 ~figure
-    ![](/img/hex/neighbours.jpg|240)
+    ![](/img/posts/hex/neighbours.jpg|240)
 
 Let's list the neighbours of "cell zero" starting with the rightmost one, in counter clockwise direction.
 
@@ -340,7 +340,7 @@ public class HexNeighbours : MonoBehaviour {
 ```
 
 ~figure
-    ![Yellow gizmos showing neighbouring hex cells of currently selected object.](/img/hex/neighbours-gizmos.gif)
+    ![Yellow gizmos showing neighbouring hex cells of currently selected object.](/img/posts/hex/neighbours-gizmos.gif)
 
     ~figcaption Yellow gizmos showing neighbouring hex cells of currently selected object.
 
@@ -349,7 +349,7 @@ It is very convenient to visualize stuff with gizmos — highly recommended.
 
 ## Other Algorithms
 
-If you're still with me, then by now you should be getting the feel of it.
+If you're still with me, then by now you should be getting the feel for it.
 
 Once again I'd like to point you to [the most awesome hex grid guides ever created](https://www.redblobgames.com/grids/hexagons) — from here you can choose an algorithm that is relevant to the game you're making and port it to our hex grid system without much problem.
 
@@ -414,7 +414,7 @@ public class HexRings : MonoBehaviour {
 ```
 
 ~figure
-    ![](/img/hex/rings.gif)
+    ![](/img/posts/hex/rings.gif)
 
     ~figcaption Generated hex rings.
 
@@ -424,14 +424,14 @@ Thanks for sticking with me till the end. Time to say goodbye 👋
 
 Hope this was useful, and looking forward to seeing you build something hexy with these ideas.
 
-Also, don't forget to check the [demo project on GitHub](https://github.com/inca/UnityHexGrid).
+Also, don't forget to check out the [demo project on GitHub](https://github.com/inca/UnityHexGrid).
 
 ## Addenda
 
 Here's how to quickly create a 3D hexagon piece in Blender.
 
 ~figure
-    ![](/img/hex/blender-hex.jpg)
+    ![](/img/posts/hex/blender-hex.jpg)
 
     ~figcaption Blender cylinders use circumradius;<br/>
         type `sqrt(3) / 3` to get the cylinder with inradius %%0.5%%

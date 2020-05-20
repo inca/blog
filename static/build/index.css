@@ -6,6 +6,7 @@
     --font-size--code-block: 12px;
 
     --font-size--small: 16px;
+    --font-size--smaller: 12px;
 
     --color-red: hsl(355deg, 65%, 50%);
 
@@ -18,7 +19,10 @@
     --color-code: hsl(320deg, 50%, 40%);
     --color-code--bg: var(--color-bg--alt);
     --color-target: hsl(320deg, 25%, 95%);
-    --color-subtle: #654;
+    --color-subtle: hsl(320deg, 10%, 55%);
+
+    --color-tldr: hsl(320deg, 50%, 80%);
+    --color-tldr--bg: hsl(320deg, 50%, 96%);
 }
 .container {
     box-sizing: border-box;
@@ -117,6 +121,26 @@ pre::after {
 .hide {
     display: none;
 }
+.tldr {
+    position: relative;
+    border-left: 2px solid var(--color-tldr);
+    background: var(--color-tldr--bg);
+    padding: 2em;
+    border-radius: 1px;
+}
+.tldr::before {
+        content: 'TL;DR';
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: var(--color-tldr);
+        color: #fff;
+        padding: 0 4px;
+        margin-left: -2px;
+        border-radius: 1px;
+
+        font-size: var(--font-size--smaller);
+    }
 .post__header {
     padding-left: 96px;
     margin: 4em 0;
@@ -248,6 +272,9 @@ hue-6-2: #e6c07b
 }
 .hexgrid__grid path:hover {
     stroke-width: 2;
+}
+.hexgrid__coords {
+    pointer-events: none;
 }
 .cal {
     --cal-size: 64px;

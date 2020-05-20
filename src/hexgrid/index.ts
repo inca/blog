@@ -242,13 +242,13 @@ function drawCoords(svg: SVGElement, hex: Hex) {
     const ql = createElement(lbl, 'text');
     ql.setAttribute('fill', colorQ);
     ql.setAttribute('transform', 'scale(1, -1)');
-    ql.setAttribute('text-anchor', 'start');
+    ql.setAttribute('text-anchor', 'end');
     ql.setAttribute('alignment-baseline', 'middle');
     ql.textContent = ' ' + hex.q + ' ';
     const rl = createElement(lbl, 'text');
     rl.setAttribute('fill', colorR);
     rl.setAttribute('transform', 'scale(1, -1)');
-    rl.setAttribute('text-anchor', 'end');
+    rl.setAttribute('text-anchor', 'start');
     rl.setAttribute('alignment-baseline', 'middle');
     rl.textContent = ' ' + hex.r + ' ';
 }
