@@ -1,0 +1,82 @@
+.topnav {
+    --gap: 8px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 calc(-1 * var(--gap));
+}
+
+.topnav__main {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: var(--gap) 0;
+}
+
+.topnav__badge {
+    --spacing: -2px;
+    background: linear-gradient(120deg, var(--color-red), var(--color-magenta));
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    text-align: center;
+}
+
+.topnav__initials {
+    font: 300 18px/32px sans-serif;
+    letter-spacing: var(--spacing);
+    margin-left: var(--spacing);
+}
+
+.topnav__sym {
+    color: var(--color-subtle);
+}
+
+.topnav__dot {
+    position: relative;
+    bottom: -4px;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 6px;
+    background: linear-gradient(120deg, var(--color-red), var(--color-magenta));
+    border: 2px solid var(--color-bg);
+}
+
+.topnav__item, .topnav__link, .topnav__title, .topnav__icon {
+    padding: 0 8px;
+}
+
+.topnav__link {
+    text-decoration: none;
+    font-size: .85em;
+    color: var(--color-fg);
+    transition: color .3s;
+
+    &:hover, &:active {
+        color: var(--color-link);
+    }
+}
+
+.topnav__icon {
+    display: block;
+}
+
+.topnav__icon svg {
+    display: block;
+    width: 32px;
+    height: 32px;
+    fill: var(--color-fg);
+    transition: fill .3s;
+
+    &:hover, &:active {
+        fill: var(--color-link);
+    }
+}
+
+.topnav__aside {
+    display: flex;
+    flex-flow: row nowrap;
+}

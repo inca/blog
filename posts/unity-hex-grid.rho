@@ -1,7 +1,7 @@
 {
     title: 'Unity Hex Grid System',
     date: '2020-05-14',
-    tags: ['Unity', 'Hex Grid', 'DIY', 'GameDev'],
+    tags: ['Unity', 'GameDev', 'Tutorial', 'Hex Grid', 'Basics'],
 }
 
 <script src="/build/hexgrid.js">
@@ -23,7 +23,9 @@ Also check out the [demo project on GitHub](https://github.com/inca/UnityHexGrid
 
 First, let's ask ourselves: what should a "grid system" do?
 
-Forget about hex for a moment. Say, you want a square grid system for your game (you know, the good ol' orthogonal Cartesian system that all our games use already). Would you go around wondering how to create a "square grid system"? Probably not, because you sort of have everything you need already, specifically:
+Forget about hex for a moment. Say, you want a square grid system for your game (you know, the good ol' orthogonal Cartesian system that all our games use already). Would you go around wondering how to create a "square grid system"?
+
+Probably not, because you sort of have everything you need already, specifically:
 
 - you can place the objects on your "grid"; for example, if your grid is on the XZ "floor", then you can just set the Y to zero;
 - you know how to obtain the coordinates of the objects on your grid, e.g. by plucking some components of `Vector3` into `Vector2`;

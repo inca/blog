@@ -1,22 +1,13 @@
 @import './variables.css';
 @import './layout.css';
+@import './topnav.css';
 @import './content.css';
 @import './post.css';
-@import './hljs.css';
+@import './hljs-light.css';
+@import './hljs-dark.css';
 @import './hexgrid.css';
 @import './cal.css';
+@import './util.css';
 @import './_inbox.css';
 
-html, body, img, form {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    background: var(--color-bg);
-    color: var(--color-fg);
-}
-
-html {
-    font: var(--font-size)/1.5 var(--font-face), Palatino Linotype, serif;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-}
+@import './components/theme-switch';

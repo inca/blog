@@ -101,7 +101,7 @@ export class LeafGenerator {
                     this.maskMap.fillRect(0, 0, this.width, this.height);
 
                     // Show mask
-                    this.ctx.putImageData(this.maskMap.getImageData(0, 0, this.width, this.height), 0, 0);
+                    //this.ctx.putImageData(this.maskMap.getImageData(0, 0, this.width, this.height), 0, 0);
 
                     yield node;
                     newFrontier.push(node);

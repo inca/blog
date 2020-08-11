@@ -3,9 +3,7 @@ html(lang="en")
     head
         title
             block title
-                |  · AlphaMagenta
-        // link(rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,700,700i&display=optional&subset=cyrillic")
+                |  · Boris Okunskiy
         link(rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i&display=optional")
         link(rel="stylesheet"
@@ -17,8 +15,10 @@ html(lang="en")
         meta(
             name="viewport"
             content="width=device-width, initial-scale=1")
+        meta(name="theme-color" content="#dd3c49")
+        meta(name="apple-mobile-web-app-status-bar-style" content="#dd3c49")
         block meta
-    body
+    body.code-theme--light
         block body
         script(defer src="https://polyfill.io/v3/polyfill.min.js?features=es6")
         script(defer src="/lib/highlight.pack.js")

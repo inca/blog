@@ -61,6 +61,7 @@ export class LSystemGenerator {
             }
         }
 
+        /*
         this.ctx.strokeStyle = 'rgba(255,255,255,.05)';
         this.ctx.lineWidth = 10;
         const [cx, cy] = this.uv2xy(this.median);
@@ -71,6 +72,7 @@ export class LSystemGenerator {
             this.ctx.lineTo(x, y);
             this.ctx.stroke();
         }
+        */
 
         /*
         this.ctx.fillStyle = 'rgba(0,255,0,.5)';

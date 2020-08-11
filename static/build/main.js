@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util */ \"./src/util.ts\");\n/* harmony import */ var _math__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./math */ \"./src/main/math.ts\");\n\n\nObject(_util__WEBPACK_IMPORTED_MODULE_0__[\"onReady\"])(() => {\n    Object(_math__WEBPACK_IMPORTED_MODULE_1__[\"initMath\"])();\n    Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"initContent\"])();\n});\n\n\n//# sourceURL=webpack:///./src/main/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util */ \"./src/util.ts\");\n/* harmony import */ var _math__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./math */ \"./src/main/math.ts\");\n/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./theme */ \"./src/main/theme.ts\");\n\n\n\nObject(_util__WEBPACK_IMPORTED_MODULE_0__[\"onReady\"])(() => {\n    Object(_math__WEBPACK_IMPORTED_MODULE_1__[\"initMath\"])();\n    Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"initContent\"])();\n    Object(_theme__WEBPACK_IMPORTED_MODULE_2__[\"initTheme\"])();\n});\n\n\n//# sourceURL=webpack:///./src/main/index.ts?");
 
 /***/ }),
 
@@ -107,6 +107,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _uti
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"initMath\", function() { return initMath; });\n/**\n * Optionally adds MathJax on pages that have $$ or %% markers.\n * Must be called only once (not in initContent).\n */\nfunction initMath() {\n    var _a;\n    const body = (_a = document.body.textContent, (_a !== null && _a !== void 0 ? _a : ''));\n    if (!/\\$\\$|\\%\\%/.test(body)) {\n        return;\n    }\n    window.MathJax = {\n        extensions: [\"TeX/AMSmath.js\", \"TeX/AMSsymbol.js\"],\n        tex: {\n            inlineMath: [['%%', '%%']],\n            displayMath: [['$$', '$$']],\n        },\n    };\n    const script = document.createElement('script');\n    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';\n    document.body.appendChild(script);\n}\n\n\n//# sourceURL=webpack:///./src/main/math.ts?");
+
+/***/ }),
+
+/***/ "./src/main/theme.ts":
+/*!***************************!*\
+  !*** ./src/main/theme.ts ***!
+  \***************************/
+/*! exports provided: initTheme, getTheme, readThemeFromLocalStorage, updateTheme, setTheme */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"initTheme\", function() { return initTheme; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getTheme\", function() { return getTheme; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"readThemeFromLocalStorage\", function() { return readThemeFromLocalStorage; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"updateTheme\", function() { return updateTheme; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"setTheme\", function() { return setTheme; });\nconst prefersDarkTheme = window.matchMedia ?\n    window.matchMedia('(prefers-color-scheme: dark)').matches : false;\nconst autoDetectedTheme = prefersDarkTheme ? 'dark' : 'light';\n/**\n * Theme set by user.\n */\nlet userTheme = null;\nfunction initTheme() {\n    userTheme = readThemeFromLocalStorage();\n    updateTheme(getTheme());\n}\nfunction getTheme() {\n    return (userTheme !== null && userTheme !== void 0 ? userTheme : autoDetectedTheme);\n}\nfunction readThemeFromLocalStorage() {\n    const val = localStorage.getItem('theme') || '';\n    if (val === 'light' || val === 'dark') {\n        return val;\n    }\n    return null;\n}\nfunction updateTheme(theme) {\n    const html = document.documentElement;\n    html.classList.remove('theme--light', 'theme--dark');\n    html.classList.add('theme--' + theme);\n}\nfunction setTheme(theme) {\n    userTheme = theme;\n    localStorage.setItem('theme', (theme !== null && theme !== void 0 ? theme : ''));\n    updateTheme(getTheme());\n}\n\n\n//# sourceURL=webpack:///./src/main/theme.ts?");
 
 /***/ }),
 

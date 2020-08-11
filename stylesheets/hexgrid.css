@@ -2,6 +2,8 @@
     stroke-width: 2;
 }
 
-.hexgrid__coords {
+.hexgrid__coords,
+.hexgrid__axis,
+.hexgrid__label {
     pointer-events: none;
 }

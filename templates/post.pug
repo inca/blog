@@ -5,7 +5,7 @@ block prepend title
 
 block content
     article.post(data-post-id=post.id)
-        .post__cal.cal(title=post.date.format('LLL'))
+        // .post__cal.cal(title=post.date.format('LLL'))
             .cal__day= post.date.format('DD')
             .cal__sub
                 .cal__month= post.date.format('MMM')

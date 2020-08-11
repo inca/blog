@@ -1,0 +1,7 @@
+.theme-switch {
+    width: 48px;
+    height: 24px;
+    background: red;
+
+    justify-self: flex-end;
+}

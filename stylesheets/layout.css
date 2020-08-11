@@ -1,3 +1,33 @@
+html, body, img, form {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html {
+    font: var(--font-size)/1.5 var(--font-face);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+
+    &::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(to bottom, var(--color-red), var(--color-magenta));
+        background-color: var(--color-red);
+        background-attachment: fixed;
+    }
+    &::before { left: 0 }
+}
+
+body {
+    overscroll-behavior-y: none;
+    background: var(--color-bg);
+    color: var(--color-fg);
+}
+
 .container {
     box-sizing: border-box;
     padding: 0 1em;
@@ -28,4 +58,8 @@
     .container {
         margin: 0 auto;
     }
+}
+
+.header {
+    font: var(--font-weight--alt) 18px/32px var(--font-face--alt);
 }
