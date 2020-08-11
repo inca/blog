@@ -20,12 +20,15 @@
     display:inline-block;
     font-size: var(--font-size--small);
     text-decoration: none;
+
+    /*
     opacity: .75;
     transition: opacity .3s;
 
     &:hover {
         opacity: 1;
     }
+    */
 
     &::before {
         content: '#';

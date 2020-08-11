@@ -11,7 +11,7 @@
     --font-size--code: .9em;
     --font-size--code-block: 12px;
 
-    --font-size--small: 16px;
+    --font-size--small: 14px;
     --font-size--smaller: 12px;
 
     --color-red: hsl(355deg, 70%, 55%);
@@ -23,10 +23,10 @@
     --color-fg: #235;
     --color-link: hsl(355deg, 65%, 50%);
     --color-link--visited: hsl(355deg, 50%, 45%);
-    --color-code: hsl(320deg, 50%, 40%);
+    --color-code:  var(--color-magenta);
     --color-code--bg: var(--color-bg--alt);
     --color-target: hsl(320deg, 25%, 95%);
-    --color-subtle: hsl(320deg, 10%, 45%);
+    --color-subtle: hsl(320deg, 10%, 50%);
 
     --color-tldr: hsl(320deg, 50%, 80%);
     --color-tldr--bg: hsl(320deg, 50%, 96%);

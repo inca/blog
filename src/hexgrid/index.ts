@@ -134,7 +134,7 @@ function drawGrid(svg: SVGSVGElement, spec: HexGridSpec) {
     g.setAttribute('class', 'hexgrid__grid')
     for (const hex of Hex.spiral(Hex.zero, 0, maxRing)) {
         const alpha = opacity - opacityFade * hex.distanceTo(Hex.zero);
-        drawHexCell(g, hex, `rgba(0,0,0,${alpha})`, lines, dots);
+        drawHexCell(g, hex, alpha, lines, dots);
     }
 }
 
@@ -171,7 +171,7 @@ function drawAxis(svg: SVGSVGElement, spec: AxisSpec) {
 function drawHexCell(
     svg: SVGElement,
     hex: Hex,
-    color: string,
+    opacity: number,
     lines: boolean = true,
     dot: boolean = false,
 ) {
@@ -192,19 +192,19 @@ function drawHexCell(
             ).join(' ') +
             'z';
         const path = createElement(svg, 'path');
+        path.setAttribute('class', 'hexgrid__cell');
         path.setAttribute('d', d);
-        path.setAttribute('fill', 'transparent');
-        path.setAttribute('stroke', color);
-        path.setAttribute('stroke-width', '.4');
         path.setAttribute('data-q', String(hex.q));
         path.setAttribute('data-r', String(hex.r));
+        path.setAttribute('opacity', opacity);
     }
     if (dot) {
         const circle = createElement(svg, 'circle');
-        circle.setAttribute('fill', color);
+        circle.setAttribute('class', 'hexgrid__dot');
         circle.setAttribute('cx', String(o[0]));
         circle.setAttribute('cy', String(o[1]));
         circle.setAttribute('r', '1');
+        circle.setAttribute('opacity', opacity);
     }
 }
 
@@ -234,7 +234,7 @@ function drawCoords(svg: SVGElement, hex: Hex) {
     const p = h.toOrthogonal(cellRadius);
     lbl.setAttribute('transform', `translate(${p[0] + 48}, ${p[1] - 16})`);
     const c = createElement(lbl, 'circle');
-    c.setAttribute('fill', '#fff');
+    c.setAttribute('class', 'hexgrid__coords');
     c.setAttribute('cx', '0');
     c.setAttribute('cy', '0');
     c.setAttribute('r', '1');

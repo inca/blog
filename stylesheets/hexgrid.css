@@ -7,3 +7,18 @@
 .hexgrid__label {
     pointer-events: none;
 }
+
+.hexgrid__cell {
+    fill: transparent;
+    stroke: var(--color-fg);
+    stroke-width: .4;
+}
+
+.hexgrid__dot {
+    fill: var(--color-fg);
+    stroke-width: 0;
+}
+
+.hexgrid__coords {
+    fill: var(--color-bg);
+}

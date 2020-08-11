@@ -3,11 +3,13 @@
 @import './topnav.css';
 @import './content.css';
 @import './post.css';
-@import './hljs-light.css';
-@import './hljs-dark.css';
 @import './hexgrid.css';
 @import './cal.css';
 @import './util.css';
 @import './_inbox.css';
+
+@import './theme-dark.css';
+@import './hljs-dark.css';
+@import './hljs-light.css';
 
 @import './components/theme-switch';

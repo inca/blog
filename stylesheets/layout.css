@@ -59,7 +59,3 @@ body {
         margin: 0 auto;
     }
 }
-
-.header {
-    font: var(--font-weight--alt) 18px/32px var(--font-face--alt);
-}

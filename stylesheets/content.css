@@ -17,6 +17,11 @@ a[target="_blank"]::after {
     transform: translate(6px, -12px) rotate(-135deg);
 }
 
+a:focus {
+    outline: 2px auto var(--color-magenta);
+    outline-offset: 2px;
+}
+
 img, svg {
     max-width: 100%;
     border-radius: 2px;
@@ -29,6 +34,7 @@ figure {
 code {
     font-family: var(--font-face--code), monospace;
     font-size: var(--font-size--code);
+    line-height: 1.4;
     color: var(--color-code);
     /* background: var(--color-code--bg); */
     /* padding: 1px 4px; */
