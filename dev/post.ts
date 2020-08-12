@@ -20,6 +20,7 @@ export interface Post {
     date: moment.Moment;
     text: string;
     html: string;
+    draft: boolean;
 }
 
 export function getPostSrcFile(id: string) {
@@ -74,6 +75,7 @@ export async function readPost(id: string): Promise<Post> {
         date: moment(json.date),
         text,
         html,
+        draft: id.startsWith('drafts/'),
     };
 }
 

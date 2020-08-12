@@ -196,7 +196,7 @@ function drawHexCell(
         path.setAttribute('d', d);
         path.setAttribute('data-q', String(hex.q));
         path.setAttribute('data-r', String(hex.r));
-        path.setAttribute('opacity', opacity);
+        path.setAttribute('opacity', String(opacity));
     }
     if (dot) {
         const circle = createElement(svg, 'circle');
@@ -204,7 +204,7 @@ function drawHexCell(
         circle.setAttribute('cx', String(o[0]));
         circle.setAttribute('cy', String(o[1]));
         circle.setAttribute('r', '1');
-        circle.setAttribute('opacity', opacity);
+        circle.setAttribute('opacity', String(opacity));
     }
 }
 

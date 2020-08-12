@@ -1,33 +1,29 @@
 .topnav {
     --gap: 8px;
+
+    position: relative;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    justify-content: space-between;
+
     margin: 0 calc(-1 * var(--gap));
+    padding: var(--gap) 0;
+
     font: var(--font-weight--alt) 16px/32px var(--font-face--alt);
 }
 
-.topnav__main {
+.topnav__logo, .topnav__links, .topnav__icons {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    padding: var(--gap) 0;
 }
 
-.topnav__dot {
-    position: relative;
-    bottom: -4px;
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 6px;
-    background: linear-gradient(120deg, var(--color-red), var(--color-magenta));
-    border: 2px solid var(--color-bg);
+.topnav__logo {
+    flex: 1;
 }
 
-.topnav__link, .topnav__icon {
-    padding: 0 8px;
+.topnav__link, .topnav__icon, .topnav__item {
+    padding: 0 var(--gap);
 }
 
 .topnav__link {
@@ -62,4 +58,25 @@
 .topnav__aside {
     display: flex;
     flex-flow: row nowrap;
+}
+
+@media (max-width: 640px) {
+    .topnav {
+        flex-flow: row wrap;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -16px;
+            right: -16px;
+            height: 2px;
+            background: linear-gradient(to right, var(--color-red), var(--color-magenta));;
+        }
+    }
+
+    .topnav__links {
+        order: 3;
+        flex: 0 0 100%;
+    }
 }

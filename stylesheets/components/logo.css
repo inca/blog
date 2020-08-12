@@ -1,0 +1,35 @@
+.logo {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.logo .icon-bo {
+    width: 28px;
+    height: 28px;
+    margin-right: 8px;
+}
+
+.logo__particle {
+    display: inline-block;
+    pointer-events: none;
+
+    opacity: 0;
+    transition: opacity .5s, transform .5s;
+    transform: translateX(var(--tx)) translateY(var(--ty)) scale(.25);
+}
+
+.logo:hover .logo__particle {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+}
+
+.logo__dot {
+    position: relative;
+    margin: 2px 4px;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 6px;
+    background: linear-gradient(120deg, var(--color-red), var(--color-magenta));
+}

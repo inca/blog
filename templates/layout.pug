@@ -4,16 +4,17 @@ block body
     .header
         .header__container.container
             .topnav
-                .topnav__main
-                    a.topnav__title.topnav__link(href="/")
-                        span Boris
-                        span Okunskiy
-                        span.topnav__dot
-                        span dev
-                .topnav__aside
+                .topnav__logo
+                    a.logo.topnav__link(href="/" title="Boris Okunskiy")
+                        include ./icons/bo
+                        span.logo__name(data-name="Boris")
+                        span.logo__dot.logo__particle
+                        span.logo__name(data-name="Okunskiy")
+                .topnav__links
                     a.topnav__link(href="/posts") Posts
                     a.topnav__link(href="/projects") Projects
                     a.topnav__link(href="/about") About
+                .topnav__icons
                     a.topnav__icon(
                         href="https://twitter.com/boris_okunskiy"
                         title="Boris on Twitter")

@@ -15,19 +15,20 @@
     --font-size--smaller: 12px;
 
     --color-red: hsl(355deg, 70%, 55%);
+    --color-red--dark: hsl(355deg, 70%, 45%);
     --color-magenta: hsl(320deg, 50%, 55%);
 
     --color-bg: #fff;
     --color-bg--alt: hsl(320deg, 20%, 95%);
     /* --color-bg--alt: hsl(320deg, 8%, 12%); */
     --color-fg: #235;
-    --color-link: hsl(355deg, 65%, 50%);
-    --color-link--visited: hsl(355deg, 50%, 45%);
+    --color-link: var(--color-red);
+    --color-link--visited: var(--color-magenta);
     --color-code:  var(--color-magenta);
     --color-code--bg: var(--color-bg--alt);
     --color-target: hsl(320deg, 25%, 95%);
-    --color-subtle: hsl(320deg, 10%, 50%);
+    --color-subtle: hsl(320deg, 10%, 55%);
 
     --color-tldr: hsl(320deg, 50%, 80%);
-    --color-tldr--bg: hsl(320deg, 50%, 96%);
+    --color-tldr--bg: hsl(320deg, 50%, 98%);
 }

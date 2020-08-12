@@ -1,10 +1,8 @@
 @import './variables.css';
 @import './layout.css';
-@import './topnav.css';
 @import './content.css';
 @import './post.css';
 @import './hexgrid.css';
-@import './cal.css';
 @import './util.css';
 @import './_inbox.css';
 
@@ -12,4 +10,7 @@
 @import './hljs-dark.css';
 @import './hljs-light.css';
 
+@import './components/topnav.css';
+@import './components/cal.css';
+@import './components/logo';
 @import './components/theme-switch';
