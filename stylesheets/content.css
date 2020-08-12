@@ -22,7 +22,7 @@ a:focus {
     outline-offset: 2px;
 }
 
-img, svg {
+img, svg, video {
     max-width: 100%;
     border-radius: 2px;
 }
