@@ -15,6 +15,7 @@ export function initLogo() {
     const particles = [].slice.apply(logoEl.querySelectorAll('.logo__particle')) as Element[];
     randomizeParticles(particles);
     logoEl.addEventListener('mouseout', () => randomizeParticles(particles));
+    logoEl.addEventListener('blur', () => randomizeParticles(particles));
 }
 
 function randomizeParticles(els: Element[]) {

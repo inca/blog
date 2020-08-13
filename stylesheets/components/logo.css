@@ -19,7 +19,7 @@
     transform: translateX(var(--tx)) translateY(var(--ty)) scale(.25);
 }
 
-.logo:hover .logo__particle {
+.logo:hover .logo__particle, .logo:focus .logo__particle {
     opacity: 1;
     transform: translate(0, 0) scale(1);
 }

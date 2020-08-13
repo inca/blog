@@ -31,7 +31,7 @@
   "author": "Boris Okunskiy",
   "license": "ISC",
   "dependencies": {
-    "rho": "^1.0.0-beta.4",
+    "rho": "^1.0.0-beta.5",
     "simplex-noise": "^2.4.0"
   },
   "devDependencies": {

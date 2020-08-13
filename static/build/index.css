@@ -54,6 +54,7 @@ html::before {
     }
 html::before { left: 0 }
 body {
+    scroll-behavior: smooth;
     overscroll-behavior-y: none;
     background: var(--color-bg);
     color: var(--color-fg);
@@ -88,6 +89,11 @@ body {
 }
 a {
     color: var(--color-link);
+    outline-color: rgba(255,255,255,0);
+    transition: outline-color .25s .3s;
+}
+a:focus {
+    outline-color: var(--color-magenta);
 }
 a:visited {
     color: var(--color-link--visited);
@@ -174,7 +180,7 @@ h2 {
     border-left: 2px solid var(--color-tldr);
     background: var(--color-tldr--bg);
     padding: 2em;
-    border-radius: 1px;
+    border-radius: 2px;
 }
 .tldr::before {
         content: 'TL;DR';
@@ -469,7 +475,6 @@ hue-6-2: #e6c07b
 .topnav__link {
     color: var(--color-fg);
     text-decoration: none;
-    transition: color .3s;
 }
 .topnav__link:hover, .topnav__link:active {
         color: var(--color-link);
@@ -565,7 +570,7 @@ hue-6-2: #e6c07b
     transition: opacity .5s, transform .5s;
     transform: translateX(var(--tx)) translateY(var(--ty)) scale(.25);
 }
-.logo:hover .logo__particle {
+.logo:hover .logo__particle, .logo:focus .logo__particle {
     opacity: 1;
     transform: translate(0, 0) scale(1);
 }
@@ -584,4 +589,26 @@ hue-6-2: #e6c07b
     background: red;
 
     justify-self: flex-end;
+}
+.particle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 4px;
+    margin: -2px;
+    background: var(--color-red);
+    pointer-events: none;
+
+    transition: transform .5s, opacity .25s;
+    transition-timing-function: ease-out;
+    opacity: 0;
+}
+.particle:nth-child(2n) {
+    background: var(--color-magenta);
+}
+.particle--flying {
+    transition: transform .5s;
+    opacity: 1;
 }

@@ -1,0 +1,24 @@
+.particle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 4px;
+    margin: -2px;
+    background: var(--color-red);
+    pointer-events: none;
+
+    transition: transform .5s, opacity .25s;
+    transition-timing-function: ease-out;
+    opacity: 0;
+}
+
+.particle:nth-child(2n) {
+    background: var(--color-magenta);
+}
+
+.particle--flying {
+    transition: transform .5s;
+    opacity: 1;
+}

@@ -23,6 +23,7 @@ html {
 }
 
 body {
+    scroll-behavior: smooth;
     overscroll-behavior-y: none;
     background: var(--color-bg);
     color: var(--color-fg);

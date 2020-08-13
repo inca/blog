@@ -29,7 +29,6 @@
 .topnav__link {
     color: var(--color-fg);
     text-decoration: none;
-    transition: color .3s;
 
     &:hover, &:active {
         color: var(--color-link);
