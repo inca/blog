@@ -12,9 +12,11 @@
 [[redirects]]
     from = "/"
     to = "/about"
-    status = 200
 
 [[redirects]]
-    from = ""
+    from = "/index"
     to = "/about"
-    status = 200
+
+[[redirects]]
+    from = "/index.html"
+    to = "/about"
