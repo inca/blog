@@ -4,7 +4,7 @@
     tags: ['Unity', 'GameDev', 'Tutorial', 'Hex Grid', 'Basics'],
 }
 
-<script src="/build/hexgrid.js">
+<script src="/hexgrid.js">
 </script>
 
 In this article I'd like to share a very simple hex grid system I've used in my [Hex Laser Puzzle](https://play.google.com/store/apps/details?id=com.alphamagenta.HexLaser) game.

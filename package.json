@@ -9,14 +9,15 @@
     "dev:server": "tsc -p ./dev && run-p dev:server:*",
     "dev:server:tscw": "tsc -w -p ./dev",
     "dev:server:nodemon": "nodemon out/dev/serve",
-    "dev:css": "postcss stylesheets/index.css -w -o static/build/index.css",
+    "dev:css": "postcss stylesheets/index.css -w -o dist/index.css",
     "dev:js": "webpack -w",
     "netlify-dev": "netlify dev",
     "compile": "tsc -p ./dev",
     "build": "run-s clean compile build:*",
-    "build:css": "postcss stylesheets/index.css -o static/build/index.css",
+    "build:css": "postcss stylesheets/index.css -o dist/index.css",
     "build:js": "NODE_ENV=production webpack",
-    "build:pages": "node out/dev/scripts/build"
+    "build:pages": "node out/dev/scripts/build",
+    "build:static": "cp -r static/* dist/"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "delay": 500,
     "ignore": [
       "static/*",
+      "dist/*",
       "src/*"
     ]
   },

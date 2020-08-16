@@ -9,5 +9,4 @@ yarn.lock
 !.env.test
 
 out/
-./static/build/*
-./static/posts/*
+dist/

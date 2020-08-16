@@ -3,7 +3,7 @@
         "target": "es6",
         "module": "es6",
         "esModuleInterop": true,
-        "outDir": "./static/build",
+        "outDir": "./dist",
         "rootDir": "src",
         "sourceMap": true,
         "strict": true,

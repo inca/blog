@@ -1,12 +1,13 @@
 import path from 'path';
 import chokidar from 'chokidar';
 import { debounce } from 'debounce';
-import { postsSrcDir, templatesDir, staticCssFiles, staticJsFiles, staticDir } from './config';
+import { postsSrcDir, templatesDir, staticCssFiles, staticJsFiles, distDir } from './config';
 import { events } from './events';
 import { readPost } from './post';
 import chalk from 'chalk';
 
 export function startWatch() {
+    console.log(staticCssFiles);
     // Watch blog post changes
     chokidar.watch(postsSrcDir)
         .on('change', (file) => {
@@ -35,7 +36,7 @@ export function startWatch() {
     // Watch css output
     chokidar.watch(staticCssFiles)
         .on('change', debounce(file => {
-            const cssFile = path.relative(staticDir, file);
+            const cssFile = path.relative(distDir, file);
             console.log(chalk.yellow('watch'), 'cssChanged', cssFile);
             events.emit('event', {
                 type: 'cssChanged',
@@ -46,7 +47,7 @@ export function startWatch() {
     // Watch js output
     chokidar.watch(staticJsFiles)
         .on('change', debounce(file => {
-            const jsFile = path.relative(staticDir, file);
+            const jsFile = path.relative(distDir, file);
             console.log(chalk.yellow('watch'), 'jsChanged', jsFile);
             events.emit('event', {
                 type: 'jsChanged',

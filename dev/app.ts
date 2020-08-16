@@ -1,8 +1,8 @@
 import Koa from 'koa';
 import serveStatic from 'koa-static';
 import Router from 'koa-router2';
-import { staticDir } from './config';
-import { readPost, postExists, readdAllPosts } from './post';
+import { staticDir, distDir } from './config';
+import { readPost, postExists } from './post';
 import { renderTemplate, isTemplateExists } from './templates';
 import { readCommonRenderContext } from './util';
 
@@ -34,3 +34,4 @@ router.get('/*', async (ctx, next) => {
 
 app.use(router.routes());
 app.use(serveStatic(staticDir));
+app.use(serveStatic(distDir));
