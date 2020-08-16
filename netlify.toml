@@ -3,13 +3,18 @@
     publish = "./dist"
     command = "npm run build"
 
-[[redirects]]
-    from = "/"
-    to = "/about"
-    status = 200
-
 [dev]
     framework = "#custom"
     command = "npm run dev"
     targetPort = 5000
     port = 8888
+
+[[redirects]]
+    from = "/"
+    to = "/about"
+    status = 200
+
+[[redirects]]
+    from = ""
+    to = "/about"
+    status = 200
