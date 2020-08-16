@@ -40,6 +40,7 @@
 
 .post-item__cal {
     flex: 0 0 auto;
+    margin-right: 1em;
 }
 
 .post-item__title {

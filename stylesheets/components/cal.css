@@ -1,26 +1,36 @@
 .cal {
     --cal-size: 64px;
-    --cal-text-size-main: 32px;
-    --cal-text-size-sub: 1em;
+    --cal-font-size: 32px;
 
     display: inline-block;
-    text-align: center;
-    background: var(--color-red);
     padding: 2px;
     border-radius: 2px;
+    text-align: center;
+    background: var(--color-red);
+}
+
+.cal--small {
+    --cal-size: 40px;
+    --cal-font-size: 18px;
 }
 
 .cal__day {
-    font-size: var(--cal-text-size-main);
+    font-size: var(--cal-font-size);
     width: var(--cal-size);
     height: var(--cal-size);
+
     line-height: var(--cal-size);
     background: #fff;
 }
 
 .cal__sub {
     color: #fff;
-    font-size: var(--cal-text-size-sub);
+    width: var(--cal-size);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: var(--font-size--small);
+    line-height: 24px;
 }
 
 .cal__month, .cal__year {
@@ -29,10 +39,4 @@
 
 .cal__year::before {
     content: '\'';
-}
-
-.cal--small {
-    --cal-size: 48px;
-    --cal-text-size-main: 24px;
-    --cal-text-size-sub: .75em;
 }

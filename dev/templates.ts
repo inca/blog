@@ -1,6 +1,7 @@
 import path from 'path';
 import pug from 'pug';
 import { promises as fs } from 'fs';
+import { rho } from 'rho';
 import {
     templatesDir,
     isProduction,
@@ -18,13 +19,21 @@ export async function isTemplateExists(templateName: string) {
     }
 }
 
-export function renderTemplate(templateName: string, data: any): string {
-    const file = path.join(templatesDir, templateName + '.pug');
-    return pug.renderFile(file, {
+export function renderTemplate(template: string, data: any): string {
+    const filename = template.endsWith('.pug') ? template : template + '.pug';
+    const fullPath = path.join(templatesDir, filename);
+    return pug.renderFile(fullPath, {
         basedir: templatesDir,
         cache: false,
-        filename: templateName + '.pug',
+        filename,
         isProduction,
+        filters: {
+            rho: rhoFilter
+        },
         ...data
     });
+}
+
+function rhoFilter(text: string) {
+    return rho.toHtml(text);
 }

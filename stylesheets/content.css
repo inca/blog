@@ -34,7 +34,7 @@ img, svg, video {
 }
 
 figure {
-    margin: 0;
+    margin: 1em 0;
 }
 
 code {
@@ -92,7 +92,7 @@ h2 {
 }
 
 .kicker {
-    font-size: 1.25em;
+    font-size: 1.2em;
 }
 
 :target {
@@ -127,4 +127,13 @@ h2 {
 
         font-size: var(--font-size--smaller);
     }
+}
+
+hr {
+    position: relative;
+    border: 0;
+    margin: 2em 0;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(to right, var(--color-red), var(--color-magenta));
 }

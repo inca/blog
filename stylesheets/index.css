@@ -13,5 +13,6 @@
 @import './components/topnav.css';
 @import './components/cal.css';
 @import './components/logo';
+@import './components/flex';
 @import './components/theme-switch';
 @import './components/particles';

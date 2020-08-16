@@ -117,7 +117,7 @@ img, svg, video {
     border-radius: 2px;
 }
 figure {
-    margin: 0;
+    margin: 1em 0;
 }
 code {
     font-family: var(--font-face--code), monospace;
@@ -164,7 +164,7 @@ h2 {
     color: var(--color-subtle);
 }
 .kicker {
-    font-size: 1.25em;
+    font-size: 1.2em;
 }
 :target {
     background: var(--color-target);
@@ -195,6 +195,14 @@ h2 {
 
         font-size: var(--font-size--smaller);
     }
+hr {
+    position: relative;
+    border: 0;
+    margin: 2em 0;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(to right, var(--color-red), var(--color-magenta));
+}
 .post__header {
     position: relative;
     padding: 2em 0;
@@ -229,6 +237,7 @@ h2 {
 }
 .post-item__cal {
     flex: 0 0 auto;
+    margin-right: 1em;
 }
 .post-item__title {
     text-decoration: none;
@@ -261,6 +270,12 @@ h2 {
 }
 .color--alpha { color: var(--color-red) }
 .color--magenta { color: var(--color-magenta) }
+.float-left { float: left }
+.float-right { float: right }
+.float-clear { clear: both }
+.block { margin: 1em 0; }
+.mega-block { margin: 2em 0; }
+.monster-block { margin: 4em 0; }
 .form-line {
     margin: 1em 0;
     display: flex;
@@ -511,7 +526,7 @@ hue-6-2: #e6c07b
             left: -16px;
             right: -16px;
             height: 2px;
-            background: linear-gradient(to right, var(--color-red), var(--color-magenta));;
+            background: linear-gradient(to right, var(--color-red), var(--color-magenta));
         }
 
     .topnav__links {
@@ -521,36 +536,40 @@ hue-6-2: #e6c07b
 }
 .cal {
     --cal-size: 64px;
-    --cal-text-size-main: 32px;
-    --cal-text-size-sub: 1em;
+    --cal-font-size: 32px;
 
     display: inline-block;
-    text-align: center;
-    background: var(--color-red);
     padding: 2px;
     border-radius: 2px;
+    text-align: center;
+    background: var(--color-red);
+}
+.cal--small {
+    --cal-size: 40px;
+    --cal-font-size: 18px;
 }
 .cal__day {
-    font-size: var(--cal-text-size-main);
+    font-size: var(--cal-font-size);
     width: var(--cal-size);
     height: var(--cal-size);
+
     line-height: var(--cal-size);
     background: #fff;
 }
 .cal__sub {
     color: #fff;
-    font-size: var(--cal-text-size-sub);
+    width: var(--cal-size);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: var(--font-size--small);
+    line-height: 24px;
 }
 .cal__month, .cal__year {
     display: inline-block;
 }
 .cal__year::before {
     content: '\'';
-}
-.cal--small {
-    --cal-size: 48px;
-    --cal-text-size-main: 24px;
-    --cal-text-size-sub: .75em;
 }
 .logo {
     display: flex;
@@ -582,6 +601,18 @@ hue-6-2: #e6c07b
     height: 6px;
     border-radius: 6px;
     background: linear-gradient(120deg, var(--color-red), var(--color-magenta));
+}
+.flex {
+    display: flex;
+}
+.flex--center {
+    align-items: center;
+}
+.flex--row {
+    flex-flow: row nowrap;
+}
+.flex__main {
+    flex: 1;
 }
 .theme-switch {
     width: 48px;

@@ -87,7 +87,7 @@ export async function readdAllPosts(): Promise<Post[]> {
 }
 
 export async function writePost(post: Post) {
-    const out = renderTemplate('post.pug', { post });
+    const out = renderTemplate('post', { post });
     const dir = path.dirname(post.dstFile);
     await fs.mkdir(dir, { recursive: true });
     await fs.writeFile(post.dstFile, out, 'utf-8');

@@ -70,7 +70,7 @@
             left: -16px;
             right: -16px;
             height: 2px;
-            background: linear-gradient(to right, var(--color-red), var(--color-magenta));;
+            background: linear-gradient(to right, var(--color-red), var(--color-magenta));
         }
     }
 

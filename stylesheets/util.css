@@ -1,2 +1,10 @@
 .color--alpha { color: var(--color-red) }
 .color--magenta { color: var(--color-magenta) }
+
+.float-left { float: left }
+.float-right { float: right }
+.float-clear { clear: both }
+
+.block { margin: 1em 0; }
+.mega-block { margin: 2em 0; }
+.monster-block { margin: 4em 0; }

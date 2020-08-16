@@ -1,0 +1,15 @@
+.flex {
+    display: flex;
+}
+
+.flex--center {
+    align-items: center;
+}
+
+.flex--row {
+    flex-flow: row nowrap;
+}
+
+.flex__main {
+    flex: 1;
+}

@@ -1,32 +1,32 @@
 extends top.pug
 
 block body
-    .header
-        .header__container.container
-            .topnav
-                .topnav__logo
-                    a.logo.topnav__link(href="/" title="Boris Okunskiy")
-                        include ./icons/bo
-                        span.logo__name(data-name="Boris")
-                        span.logo__dot.logo__particle
-                        span.logo__name(data-name="Okunskiy")
-                .topnav__links
-                    a.topnav__link(href="/posts") Posts
-                    a.topnav__link(href="/projects") Projects
-                    a.topnav__link(href="/about") About
-                .topnav__icons
-                    a.topnav__icon(
-                        href="https://twitter.com/boris_okunskiy"
-                        title="Boris on Twitter")
-                        include ./icons/twitter
-                    a.topnav__icon(
-                        href="https://github.com/inca"
-                        title="Boris on GitHub")
-                        include ./icons/gh
+  .header
+    .header__container.container
+      .topnav
+        .topnav__logo
+          a.logo.topnav__link(href="/" title="Boris Okunskiy")
+            include ./icons/bo
+            span.logo__name(data-name="Boris")
+            span.logo__dot.logo__particle
+            span.logo__name(data-name="Okunskiy")
+        //- .topnav__links
+          a.topnav__link(href="/posts") Posts
+          a.topnav__link(href="/projects") Projects
+          a.topnav__link(href="/about") About
+        .topnav__icons
+          a.topnav__icon(
+            href="https://twitter.com/boris_okunskiy"
+            title="Boris on Twitter")
+            include ./icons/twitter
+          a.topnav__icon(
+            href="https://github.com/inca"
+            title="Boris on GitHub")
+            include ./icons/gh
 
-                //- include ./components/theme-switch
-    .content
-        .content__container.container
-            block content
-    .footer
-        .footer__container.container
+        //- include ./components/theme-switch
+  .content
+    .content__container.container
+      block content
+  .footer
+    .footer__container.container
