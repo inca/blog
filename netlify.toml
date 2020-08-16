@@ -12,11 +12,4 @@
 [[redirects]]
     from = "/"
     to = "/about"
-
-[[redirects]]
-    from = "/index"
-    to = "/about"
-
-[[redirects]]
-    from = "/index.html"
-    to = "/about"
+    force = true
