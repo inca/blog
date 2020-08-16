@@ -13,3 +13,8 @@
     from = "/"
     to = "/about"
     force = true
+
+[[redirects]]
+    from = "/index.html"
+    to = "/about"
+    force = true
