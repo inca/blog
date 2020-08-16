@@ -13,11 +13,11 @@
     "dev:js": "webpack -w",
     "netlify-dev": "netlify dev",
     "compile": "tsc -p ./dev",
-    "build": "run-s clean compile build:*",
-    "build:css": "postcss stylesheets/index.css -o dist/index.css",
+    "build": "NODE_ENV=production run-s clean compile build:*",
+    "build:css": "NODE_ENV=production postcss stylesheets/index.css -o dist/index.css",
     "build:js": "NODE_ENV=production webpack",
-    "build:pages": "node out/dev/scripts/build",
-    "build:static": "cp -r static/* dist/"
+    "build:pages": "NODE_ENV=production node out/dev/scripts/build",
+    "build:static": "NODE_ENV=production cp -r static/* dist/"
   },
   "repository": {
     "type": "git",
