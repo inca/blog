@@ -29,7 +29,7 @@ export async function buildPages() {
     });
     const data = await readCommonRenderContext();
     for (const page of pages) {
-        console.log(page);
+        console.log(`Rendered page ${page}`);
         const txt = renderTemplate('pages/' + page, data);
         const targetFile = path.join(staticDir, page.replace(/\.pug$/, '.html'));
         await fs.writeFile(targetFile, txt, 'utf-8');

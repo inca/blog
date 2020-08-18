@@ -13,3 +13,21 @@
     from = "/"
     to = "/about"
     force = true
+
+[[redirects]]
+    from = "https://www.okunskiy.name"
+    to = "https://boris.okunskiy.name"
+    force = true
+    status = 301
+
+[[redirects]]
+    from = "https://okunskiy.name"
+    to = "https://boris.okunskiy.name"
+    force = true
+    status = 301
+
+[[redirects]]
+    from = "https://boris-okunskiy.netlify.app"
+    to = "https://boris.okunskiy.name"
+    force = true
+    status = 301

@@ -7,7 +7,6 @@ import { readPost } from './post';
 import chalk from 'chalk';
 
 export function startWatch() {
-    console.log(staticCssFiles);
     // Watch blog post changes
     chokidar.watch(postsSrcDir)
         .on('change', (file) => {

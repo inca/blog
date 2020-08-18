@@ -2,6 +2,7 @@
     title: 'Unity Hex Grid System',
     date: '2020-05-14',
     tags: ['Unity', 'GameDev', 'Tutorial', 'Hex Grid', 'Basics'],
+    description: 'Tutorial on how to create a hex grid system in Unity, simple and powerful.'
 }
 
 <script src="/hexgrid.js">
@@ -16,25 +17,23 @@ In this article I'd like to share a very simple hex grid system I've used in my 
 
 Of course, I only call it "system" because it sounds cooler this way. The core concept is incredibly simple — which makes it immensely powerful, since you can combine it with other components to achieve the functionality needed for your particular needs.
 
-I highly recommend the [Amit's Hex Guide](https://www.redblobgames.com/grids/hexagons/) — to quote from one of the comments, this is indeed a "gold mine" of information on hexagonal grids. I'll also be referring to it a lot.
+I highly recommend the [Amit's Hex Guide](https://www.redblobgames.com/grids/hexagons/) — to quote from one of the comments, this is indeed a gold mine of information on hexagonal grids. I'll also be referring to it a lot.
 
 {.sidenote}
 Also check out the [demo project on GitHub](https://github.com/inca/UnityHexGrid) which contains all the code from this article.
 
 ## Introduction: Coordinate Systems
 
-First, let's ask ourselves: what should a "grid system" do?
+First, let's ask ourselves: what should a _grid system_ do?
 
-Forget about hex for a moment. Say, you want a square grid system for your game (you know, the good ol' orthogonal Cartesian system that all our games use already). Would you go around wondering how to create a "square grid system"?
+Forget about hex for a moment. Say, you want a square grid system for your game. What problems do you expect a grid system to solve?
 
-Probably not, because you sort of have everything you need already, specifically:
+- You can place the objects on your grid; for example, if the grid is on the XZ floor, then you can just set the Y to zero.
+- You know how to obtain the coordinates of the objects on your grid, e.g. by plucking some components of `Vector3` into `Vector2`.
+- If you want objects to snap to grid cells: at runtime all you need to do is to `Mathf.Round` the coordinates, whilst in the editor you can simply drag with Control/Command key pressed.
+- You may want to actually draw the grid lines on your board/floor — these are usually drawn with either a tileable texture applied on something like a primitive plane, or a shader (or any combination of those).
 
-- you can place the objects on your "grid"; for example, if your grid is on the XZ "floor", then you can just set the Y to zero;
-- you know how to obtain the coordinates of the objects on your grid, e.g. by plucking some components of `Vector3` into `Vector2`;
-- if you want objects to snap to grid cells: at runtime all you need to do is to `Mathf.Round` the coordinates, whilst in the editor you can simply drag with Control/Command key pressed;
-- finally, you may want to actually draw the grid lines on your board/floor — these are usually drawn with either a tileable texture applied on something like a primitive plane, or a shader (or any combination of those).
-
-So there's little point in actually implementing a "square grid system", chiefly because you already have `Vector2` that makes all the above possible.
+So there's little point in actually implementing a "square grid system", chiefly because you already have `Vector2` that makes most of the above possible.
 
 Why is hex a different story, then?
 
@@ -54,11 +53,11 @@ Let's try and put our orthogonal axes onto a hex grid.
          viewBox="-300 -120 600 240">
     </svg>
 
-Now you can see two obvious problems with this approach:
+There are two noteworthy problems with this approach.
 
-- the width of a regular hexagon doesn't match its height; depending on which of the two dimensions is chosen as "unit", the other one will be irrational to this unit;
+- The width of a regular hexagon doesn't match its height; depending on which of the two dimensions is chosen as "unit", the other one will be irrational to this unit.
 
-- the Y axis doesn't reach the "middle dot" of every other row (one other way to look at this problem is: every other row have horizontal offset)
+- The Y axis doesn't reach the "middle dot" of every row. We can also say that every other row have horizontal offset.
 
 Trying to derive a decent logic to address hex cells with orthogonal coordinates is just plain painful. It's time to admit that orthogonal system is just not fit for purpose — and to look for some other, more suitable system.
 
@@ -75,13 +74,15 @@ Yes, it's pretty much like the orthogonal one, except that the axes are at 60˚ 
 {.sidenote}
 The names of the axes Q and R are chosen to conform to [Amit's hex guide](https://www.redblobgames.com/grids/hexagons/).
 
-And this makes the whole difference. Notice how both axes go through the middle dots of each "column" and "row". Essentially, linear combinations of <span style="color: hsl(190, 80%, 50%)">%%\vec q%%</span> and <span style="color: hsl(290, 80%, 60%)">%%\vec r%%</span> unit vectors cover the entire hex space.
+Notice how both axes go through the middle dots of each "column" and "row". Essentially, linear combinations of <span style="color: hsl(190, 80%, 50%)">%%\vec q%%</span> and <span style="color: hsl(290, 80%, 60%)">%%\vec r%%</span> unit vectors cover the entire hex space.
 
 ~figure
     <svg id="gridCoordinates"
          class="hexgrid"
          viewBox="-300 -120 600 240">
     </svg>
+
+    ~figcaption Try hovering over this grid and see how each hex cell is addressable with Q and R coordinates.
 
 So implementing a "hex grid system" boils down to creating a `Vector2` equivalent for oblique coordinates (I'll refer to them as "hex coordinates") with conversions to and from our standard orthogonal coordinates.
 

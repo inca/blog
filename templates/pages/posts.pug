@@ -3,6 +3,10 @@ extends ../layout.pug
 block title
   | Boris Okunskiy
 
+block meta
+  meta(name="description"
+    content="Boris Okunskiy Blog Posts")
+
 block content
   .posts
     each post in allPosts

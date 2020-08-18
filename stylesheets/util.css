@@ -8,3 +8,5 @@
 .block { margin: 1em 0; }
 .mega-block { margin: 2em 0; }
 .monster-block { margin: 4em 0; }
+
+.round { border-radius: 100%; }

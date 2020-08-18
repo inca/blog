@@ -6,7 +6,8 @@
     padding: 2px;
     border-radius: 2px;
     text-align: center;
-    background: var(--color-red);
+    background-color: var(--color-red);
+    background: linear-gradient(60deg, var(--color-red), var(--color-magenta));
 }
 
 .cal--small {

@@ -16,6 +16,7 @@ export interface Post {
     dstFile: string,
     url: string;
     title: string;
+    description: string;
     tags: string[];
     date: moment.Moment;
     text: string;
@@ -71,6 +72,7 @@ export async function readPost(id: string): Promise<Post> {
         srcFile,
         dstFile,
         title: json.title,
+        description: json.description || '',
         tags: json.tags || [],
         date: moment(json.date),
         text,

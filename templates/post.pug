@@ -3,6 +3,9 @@ extends layout.pug
 block prepend title
   = post.title
 
+block append meta
+  meta(name="description" content=post.description)
+
 block content
   article.post(data-post-id=post.id)
     header.post__header

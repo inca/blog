@@ -35,9 +35,47 @@ body {
     position: relative;
 }
 
+.header {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(to right, var(--color-red), var(--color-magenta));
+    }
+}
+
+.footer {
+    padding: 1em 0;
+    background: var(--color-footer);
+}
+
+.footer__grid {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer__icons {
+    margin: 0 -8px;
+}
+
+.footer__icon {
+    margin: 8px;
+}
+
 @media (min-width: 640px) {
     .container {
         width: 640px;
+    }
+
+    .header::after {
+        display: none;
     }
 }
 

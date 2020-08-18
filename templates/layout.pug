@@ -30,3 +30,14 @@ block body
       block content
   .footer
     .footer__container.container
+      .footer__grid
+        include components/h-card
+        .footer__icons
+          a.footer__icon(
+            href="https://twitter.com/boris_okunskiy"
+            title="Boris Okunskiy on Twitter")
+            include ./icons/twitter
+          a.footer__icon(
+            href="https://github.com/inca"
+            title="Boris Okunskiy on GitHub")
+            include ./icons/gh
