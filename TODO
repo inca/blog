@@ -1,5 +1,18 @@
-- icons
-    - GitHub
-    - Twitter
-    - sun
-    - moon
+- [ ] theme switcher
+    - [ ] moon/sun icons
+    - [x] auto-detect
+    - [ ] persist
+    - [ ] actually pick all the colors
+
+- [ ] series
+    - [ ] Programming dos/donts (better name?)
+
+- Inbox
+    - Conditional assignments
+        - https://github.com/microsoft/vscode-extension-samples/blob/8d43af086869d6fd4353d4c65548732da5cd095f/github-authentication-sample/src/credentials.ts#L23-L33
+    - Try/catch/finally patterns
+    - Design by contract
+    - Psychology of blank lines
+    - Private vs Protected
+    - const vs let (the battle of immutable references with immutable data structures)
+    - "The search for Truth" (series motivation)

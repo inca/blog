@@ -4,7 +4,7 @@
     tags: ['Substance Designer', 'Pixel Processor', 'Shaders'],
 }
 
-{.tldr}
+{.section.section--tldr}
 Pixel Processors by default have 8 bit precision. If you're creating a grayscale map, you'd need to override "Output Format" and switch it to 16 bit-per-channel.
 
 Here's a quick SD tip (just in case you didn't know): you can use Pixel Processor to quickly prototype your shaders.

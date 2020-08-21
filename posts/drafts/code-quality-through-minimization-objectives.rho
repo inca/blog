@@ -1,0 +1,28 @@
+{
+    title: 'Code Quality Through Minimization Objectives',
+    date: '2020-08-22',
+    tags: ['Programming', 'Code Quality', 'TypeScript'],
+}
+
+For the last decade I've been preaching TK "some techniques" that make the code a better place, [for everyone](#hint-everyone).
+
+~~~ {#hint-everyone.section.subtle}
+When speaking about _everyone_ it's healthy to understand your priorities. For me, it's as follows: *humans come first, machines comes second*. This seems pretty obvious, but let me elaborate.
+
+When you write the code and you reach the point where it works (i.e. does what's expected under all conditions within your control), your job seems to be done. At least, you've clearly finished the part where the computer might be fine with executing it.
+
+However, if you don't stick with any guidelines, patterns, best practices, principles, philosophies, paradigms, etc — then chances are, your code still looks good to exactly one pair of eyes in the World. And these eyes are very, _very_ biased, you know.
+~~~
+
+I've decided to create a series of focussed posts on some of the programming aspects which, in my opinion, [improve the quality](#hint-quality) of code nfor both producers (writers) and consumers (readers).
+
+~~~ {.section.subtle}
+Now, I obviously don't know who you are, but the "improve the quality" claim should generally raise a red flag in your head, because people talking these buzzwords are generally full of... biomass.
+
+~~~
+
+*Important note: absolutely all of those are contriversial* — otherwise they would already become a part of common wisdom and there wouldn't be much point of preaching about something everyone's already doing.
+
+// Bias, minimization objectives, https://en.wikipedia.org/wiki/Loss_function
+
+Most of the code samples are in [TypeScript](http://typescriptlang.org), but those can be extrapolated to other languages.
