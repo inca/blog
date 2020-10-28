@@ -1,7 +1,8 @@
 import path from 'path';
 import pug from 'pug';
 import { promises as fs } from 'fs';
-import { rho } from 'rho';
+import marked from 'marked';
+import moment from 'moment';
 import {
     templatesDir,
     isProduction,
@@ -28,12 +29,13 @@ export function renderTemplate(template: string, data: any): string {
         filename,
         isProduction,
         filters: {
-            rho: rhoFilter
+            md: mdFilter
         },
+        moment,
         ...data
     });
 }
 
-function rhoFilter(text: string) {
-    return rho.toHtml(text);
+function mdFilter(text: string) {
+    return marked.parseInline(text);
 }

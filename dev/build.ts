@@ -16,7 +16,7 @@ export async function buildPost(file: string) {
 }
 
 export async function buildPosts() {
-    const files = await globAsync('**/*.rho', {
+    const files = await globAsync('**/*.yaml', {
         cwd: postsSrcDir,
     });
     await Promise.all(files.map(f => buildPost(f)));

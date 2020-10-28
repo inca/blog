@@ -1,9 +1,0 @@
-{
-    title: 'Shader DIY: mix (splat) textures with vertex colors and normals',
-    date: '2020-05-20',
-    tags: ['Unity', 'Shaders', 'DIY'],
-}
-
-So I'm working on a 2.5D platformer game, and was wondering on how to approach the terrains.
-
-Mixing textures (also known as [splatting](https://en.wikipedia.org/wiki/Texture_splatting)) is traditionally done for terrain setup.

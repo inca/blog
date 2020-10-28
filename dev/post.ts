@@ -1,12 +1,11 @@
 import path from 'path';
 import { promises as fs } from 'fs';
-import Json5 from 'json5';
-import { rho } from 'rho';
 import moment from 'moment';
 import { renderTemplate } from './templates';
 import { postsSrcDir, postsDstDir, isProduction, origin } from './config';
 import { promisify } from 'util';
 import glob from 'glob';
+import { parsePostContent } from './content';
 
 const globAsync = promisify(glob);
 
@@ -19,13 +18,12 @@ export interface Post {
     description: string;
     tags: string[];
     date: moment.Moment;
-    text: string;
     html: string;
     draft: boolean;
 }
 
 export function getPostSrcFile(id: string) {
-    return path.join(postsSrcDir, getPostId(id) + '.rho');
+    return path.join(postsSrcDir, getPostId(id) + '.yaml');
 }
 
 export function getPostDstFile(id: string) {
@@ -35,7 +33,7 @@ export function getPostDstFile(id: string) {
 export function getPostId(file: string) {
     const rel = file.startsWith(postsSrcDir) ? file.substring(postsSrcDir.length) :
         file.startsWith(postsDstDir) ? file.substring(postsDstDir.length) : file;
-    return rel.replace(/\.(?:html|rho)$/, '');
+    return rel.replace(/\.(?:html|yaml)$/, '');
 }
 
 export function getPostUrl(id: string) {
@@ -61,28 +59,23 @@ export async function readPost(id: string): Promise<Post> {
     const srcFile = getPostSrcFile(id);
     const dstFile = getPostDstFile(id);
     const txt = await fs.readFile(srcFile, 'utf-8');
-    // Dead-simple JSON front matter
-    const i = txt.indexOf('\n}\n') + 3;
-    const json = Json5.parse(txt.substring(0, i));
-    const text = txt.substring(i);
-    const html = rho.toHtml(text);
+    const content = parsePostContent(txt);
     return {
         id,
         url,
         srcFile,
         dstFile,
-        title: json.title,
-        description: json.description || '',
-        tags: json.tags || [],
-        date: moment(json.date),
-        text,
-        html,
+        title: content.title,
+        description: content.description,
+        tags: content.tags,
+        date: moment(content.date),
+        html: content.html,
         draft: id.startsWith('drafts/'),
     };
 }
 
 export async function readdAllPosts(): Promise<Post[]> {
-    const files = await globAsync('**/*.rho', {
+    const files = await globAsync('**/*.yaml', {
         cwd: postsSrcDir,
     });
     return Promise.all(files.map(f => readPost(f)));
