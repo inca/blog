@@ -1,11 +1,11 @@
 import path from 'path';
 import { promises as fs } from 'fs';
 import moment from 'moment';
-import { renderTemplate } from './templates';
+import { mdFilter, renderTemplate } from './templates';
 import { postsSrcDir, postsDstDir, isProduction, origin } from './config';
 import { promisify } from 'util';
 import glob from 'glob';
-import { parsePostContent } from './content';
+import pug from 'pug';
 
 const globAsync = promisify(glob);
 
@@ -23,7 +23,7 @@ export interface Post {
 }
 
 export function getPostSrcFile(id: string) {
-    return path.join(postsSrcDir, getPostId(id) + '.yaml');
+    return path.join(postsSrcDir, getPostId(id) + '.pug');
 }
 
 export function getPostDstFile(id: string) {
@@ -33,7 +33,7 @@ export function getPostDstFile(id: string) {
 export function getPostId(file: string) {
     const rel = file.startsWith(postsSrcDir) ? file.substring(postsSrcDir.length) :
         file.startsWith(postsDstDir) ? file.substring(postsDstDir.length) : file;
-    return rel.replace(/\.(?:html|yaml)$/, '');
+    return rel.replace(/\.(?:html|pug)$/, '');
 }
 
 export function getPostUrl(id: string) {
@@ -58,24 +58,27 @@ export async function readPost(id: string): Promise<Post> {
     const url = getPostUrl(id);
     const srcFile = getPostSrcFile(id);
     const dstFile = getPostDstFile(id);
-    const txt = await fs.readFile(srcFile, 'utf-8');
-    const content = parsePostContent(txt);
+    const post: any = {};
+    const html = renderPost(srcFile, {
+        post,
+        basedir: postsSrcDir
+    });
     return {
         id,
         url,
         srcFile,
         dstFile,
-        title: content.title,
-        description: content.description,
-        tags: content.tags,
-        date: moment(content.date),
-        html: content.html,
+        title: post.title,
+        description: post.description,
+        tags: post.tags,
+        date: moment(post.date),
+        html,
         draft: id.startsWith('drafts/'),
     };
 }
 
 export async function readdAllPosts(): Promise<Post[]> {
-    const files = await globAsync('**/*.yaml', {
+    const files = await globAsync('**/*.pug', {
         cwd: postsSrcDir,
     });
     return Promise.all(files.map(f => readPost(f)));
@@ -86,4 +89,17 @@ export async function writePost(post: Post) {
     const dir = path.dirname(post.dstFile);
     await fs.mkdir(dir, { recursive: true });
     await fs.writeFile(post.dstFile, out, 'utf-8');
+}
+
+function renderPost(file: string, data: any): string {
+    return pug.renderFile(file, {
+        basedir: postsSrcDir,
+        cache: false,
+        filename: path.basename(file),
+        isProduction,
+        filters: {
+            md: mdFilter
+        },
+        ...data
+    });
 }
