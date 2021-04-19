@@ -1,7 +1,7 @@
 import path from 'path';
 import { promises as fs } from 'fs';
 import moment from 'moment';
-import { mdFilter, renderTemplate } from './templates';
+import { filters, renderTemplate } from './templates';
 import { postsSrcDir, postsDstDir, isProduction, origin } from './config';
 import { promisify } from 'util';
 import glob from 'glob';
@@ -97,9 +97,7 @@ function renderPost(file: string, data: any): string {
         cache: false,
         filename: path.basename(file),
         isProduction,
-        filters: {
-            md: mdFilter
-        },
+        filters,
         ...data
     });
 }

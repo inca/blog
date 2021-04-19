@@ -1,6 +1,6 @@
 module.exports = {
-    plugins: {
-        'postcss-import': {},
-        'postcss-nested': {},
-    }
+    plugins: [
+        require('postcss-import'),
+        require('postcss-nested'),
+    ]
 };

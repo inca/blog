@@ -7,6 +7,11 @@ import {
     isProduction,
 } from './config';
 
+export const filters = {
+    md: (text: string) => marked(text),
+    mdi: (text: string) => marked.parseInline(text),
+}
+
 export async function isTemplateExists(templateName: string) {
     const file = path.join(templatesDir, templateName + '.pug');
     try {
@@ -27,13 +32,7 @@ export function renderTemplate(template: string, data: any): string {
         cache: false,
         filename,
         isProduction,
-        filters: {
-            md: mdFilter
-        },
+        filters,
         ...data
     });
-}
-
-export function mdFilter(text: string) {
-    return marked.parseInline(text);
 }
