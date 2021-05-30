@@ -1,24 +1,24 @@
-.hexgrid__grid path:hover {
+.hexgrid-grid path:hover {
     stroke-width: 2;
 }
 
-.hexgrid__coords,
-.hexgrid__axis,
-.hexgrid__label {
+.hexgrid-coords,
+.hexgrid-axis,
+.hexgrid-label {
     pointer-events: none;
 }
 
-.hexgrid__cell {
+.hexgrid-cell {
     fill: transparent;
     stroke: var(--color-fg);
     stroke-width: .4;
 }
 
-.hexgrid__dot {
+.hexgrid-dot {
     fill: var(--color-fg);
     stroke-width: 0;
 }
 
-.hexgrid__coords {
+.hexgrid-coords {
     fill: var(--color-bg);
 }

@@ -13,11 +13,11 @@
     }
 }
 
-.h-card__main {
+.h-card-main {
     margin-left: 1em;
 }
 
-.h-card__pronouns {
+.h-card-pronouns {
     &::before {
         content: ' · ';
         opacity: .5;

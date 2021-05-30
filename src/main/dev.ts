@@ -44,7 +44,7 @@ function onCssChanged(file: string) {
 }
 
 function onPostChanged(post: Post) {
-    const content = document.querySelector(`article[data-post-id="${post.id}"] .post__content`);
+    const content = document.querySelector(`article[data-post-id="${post.id}"] .post-content`);
     if (content instanceof HTMLElement) {
         content.innerHTML = post.html;
         initContent(content);

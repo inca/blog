@@ -7,9 +7,13 @@ import {
     isProduction,
 } from './config';
 
+export const markedOptions = {
+    smartypants: true,
+}
+
 export const filters = {
-    md: (text: string) => marked(text),
-    mdi: (text: string) => marked.parseInline(text),
+    md: (text: string) => marked(text, markedOptions),
+    mdi: (text: string) => marked.parseInline(text, markedOptions),
 }
 
 export async function isTemplateExists(templateName: string) {

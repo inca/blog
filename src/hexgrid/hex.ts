@@ -1,4 +1,4 @@
-import { Vector2, add, mul, dot } from './util';
+import { Vector2, add, mul, dot } from '../util';
 
 export class Hex {
     static zero = new Hex(0, 0);

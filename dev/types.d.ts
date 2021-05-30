@@ -1,7 +1,7 @@
 declare module 'marked' {
     interface Marked {
-        (str: string): string;
-        parseInline(str: string): string;
+        (str: string, options?: object): string;
+        parseInline(str: string, options?: object): string;
     }
     const marked: Marked;
     export = marked;

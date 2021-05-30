@@ -8,15 +8,15 @@ block append meta
 
 block content
   article.post(data-post-id=post.id)
-    header.post__header
-      .post__cal.cal(title=post.date.format('LLL'))
-        .cal__day= post.date.format('DD')
-        .cal__sub
-          .cal__month= post.date.format('MMM')
-          .cal__year= post.date.format('YY')
-      h1.post__title= post.title
-      .post__tagline
+    header.post-header
+      .post-cal.cal(title=post.date.format('LLL'))
+        .cal-day= post.date.format('DD')
+        .cal-sub
+          .cal-month= post.date.format('MMM')
+          .cal-year= post.date.format('YY')
+      h1.post-title= post.title
+      .post-tagline
         each tag in post.tags
           a.post-tag(href=`/posts?tag=` + tag)= tag
 
-    .post__content!= post.html
+    .post-content!= post.html

@@ -1,5 +1,5 @@
 import { onReady, Vector2, add, mul } from '../util';
-import { Hex } from '../hex';
+import { Hex } from './hex';
 
 const cellRadius = 16;
 const colorQ = 'hsl(190, 80%, 50%)'
@@ -110,7 +110,7 @@ function gridCoordinates(svg: SVGSVGElement) {
         dots: false,
     });
     const g = createElement(svg, 'g');
-    g.setAttribute('class', 'hexgrid__coords');
+    g.setAttribute('class', 'hexgrid-coords');
     svg.addEventListener('mousemove', ev => {
         const path = ev.target as SVGElement;
         const q = parseInt(path.getAttribute('data-q')!);
@@ -131,7 +131,7 @@ function drawGrid(svg: SVGSVGElement, spec: HexGridSpec) {
         dots = false,
     } = spec;
     const g = createElement(svg, 'g');
-    g.setAttribute('class', 'hexgrid__grid')
+    g.setAttribute('class', 'hexgrid-grid')
     for (const hex of Hex.spiral(Hex.zero, 0, maxRing)) {
         const alpha = opacity - opacityFade * hex.distanceTo(Hex.zero);
         drawHexCell(g, hex, alpha, lines, dots);
@@ -146,7 +146,7 @@ function drawAxis(svg: SVGSVGElement, spec: AxisSpec) {
     const p1 = mul(unit, minDim / 2);
     const d = `M ` + [p0, p1].map(p => p.join(',')).join(' ');
     const g = createElement(svg, 'g');
-    g.setAttribute('class', 'hexgrid__axis');
+    g.setAttribute('class', 'hexgrid-axis');
     const line = createElement(g, 'path');
     line.setAttribute('d', d);
     line.setAttribute('stroke-width', String(width));
@@ -157,7 +157,7 @@ function drawAxis(svg: SVGSVGElement, spec: AxisSpec) {
     arrow.setAttribute('transform', `translate(${p1[0]}, ${p1[1]}) rotate(${a})`);
 
     const lbl = createElement(svg, 'g');
-    lbl.setAttribute('class', 'hexgrid__label');
+    lbl.setAttribute('class', 'hexgrid-label');
     lbl.setAttribute('transform', `translate(${p1[0] + 8}, ${p1[1] - 16})`);
     const text = createElement(lbl, 'text');
     text.setAttribute('x', '0');
@@ -192,7 +192,7 @@ function drawHexCell(
             ).join(' ') +
             'z';
         const path = createElement(svg, 'path');
-        path.setAttribute('class', 'hexgrid__cell');
+        path.setAttribute('class', 'hexgrid-cell');
         path.setAttribute('d', d);
         path.setAttribute('data-q', String(hex.q));
         path.setAttribute('data-r', String(hex.r));
@@ -200,7 +200,7 @@ function drawHexCell(
     }
     if (dot) {
         const circle = createElement(svg, 'circle');
-        circle.setAttribute('class', 'hexgrid__dot');
+        circle.setAttribute('class', 'hexgrid-dot');
         circle.setAttribute('cx', String(o[0]));
         circle.setAttribute('cy', String(o[1]));
         circle.setAttribute('r', '1');
@@ -234,7 +234,7 @@ function drawCoords(svg: SVGElement, hex: Hex) {
     const p = h.toOrthogonal(cellRadius);
     lbl.setAttribute('transform', `translate(${p[0] + 48}, ${p[1] - 16})`);
     const c = createElement(lbl, 'circle');
-    c.setAttribute('class', 'hexgrid__coords');
+    c.setAttribute('class', 'hexgrid-coords');
     c.setAttribute('cx', '0');
     c.setAttribute('cy', '0');
     c.setAttribute('r', '1');
@@ -268,7 +268,7 @@ function drawArrow(svg: SVGElement, p0: Vector2, p1: Vector2, color: string, wid
 
 function createArrowHead(svg: SVGElement, color: string) {
     const p = createElement(svg, 'path');
-    p.setAttribute('class', 'hexgrid__arrowhead');
+    p.setAttribute('class', 'hexgrid-arrowhead');
     p.setAttribute('d', 'M 4,0 -8,4 -8,-4 z');
     p.setAttribute('fill', color);
     return p;

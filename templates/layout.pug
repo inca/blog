@@ -2,42 +2,43 @@ extends top.pug
 
 block body
   .header
-    .header__container.container
+    .header-container.container
       .topnav
-        .topnav__logo
-          a.logo.topnav__link(href="/" title="Boris Okunskiy")
+        .topnav-logo
+          a.logo.topnav-link(href="/" title="Boris Okunskiy")
             include ./icons/bo
-            span.logo__name(data-name="Boris")
-            span.logo__dot.logo__particle
-            span.logo__name(data-name="Okunskiy")
-        //- .topnav__links
-          a.topnav__link(href="/posts") Posts
-          a.topnav__link(href="/projects") Projects
-          a.topnav__link(href="/about") About
-        .topnav__icons
-          a.topnav__icon(
+            span.logo-name Boris Okunskiy
+            //- span.logo-name(data-name="Boris")
+            //- span.logo-dot.logo-particle
+            //- span.logo-name(data-name="Okunskiy")
+        .topnav-links
+          //- a.topnav-link(href="/posts") Posts
+          //- a.topnav-link(href="/projects") Projects
+          a.topnav-link(href="/about") About
+        .topnav-icons
+          a.topnav-icon(
             href="https://twitter.com/boris_okunskiy"
             title="Boris on Twitter")
             include ./icons/twitter
-          a.topnav__icon(
+          a.topnav-icon(
             href="https://github.com/inca"
             title="Boris on GitHub")
             include ./icons/gh
 
         //- include ./components/theme-switch
   .content
-    .content__container.container
+    .content-container.container
       block content
   .footer
-    .footer__container.container
-      .footer__grid
+    .footer-container.container
+      .footer-grid
         include components/h-card
-        .footer__icons
-          a.footer__icon(
+        .footer-icons
+          a.footer-icon(
             href="https://twitter.com/boris_okunskiy"
             title="Boris Okunskiy on Twitter")
             include ./icons/twitter
-          a.footer__icon(
+          a.footer-icon(
             href="https://github.com/inca"
             title="Boris Okunskiy on GitHub")
             include ./icons/gh

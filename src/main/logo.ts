@@ -2,17 +2,17 @@ import SimplexNoise from 'simplex-noise';
 
 export function initLogo() {
     const logoEl = document.querySelector('.logo')!;
-    const spans = logoEl.querySelectorAll('.logo__name') ?? [];
+    const spans = logoEl.querySelectorAll('[data-name]') ?? [];
     for (const span of spans) {
         const text = span.getAttribute('data-name') ?? '';
         for (const letter of text) {
             const sp = document.createElement('span');
             sp.innerText = letter;
-            sp.setAttribute('class', 'logo__particle');
+            sp.setAttribute('class', 'logo-particle');
             span.appendChild(sp);
         }
     }
-    const particles = [].slice.apply(logoEl.querySelectorAll('.logo__particle')) as Element[];
+    const particles = [].slice.apply(logoEl.querySelectorAll('.logo-particle')) as Element[];
     randomizeParticles(particles);
     logoEl.addEventListener('mouseout', () => randomizeParticles(particles));
     logoEl.addEventListener('blur', () => randomizeParticles(particles));

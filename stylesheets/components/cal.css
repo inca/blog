@@ -15,7 +15,7 @@
     --cal-font-size: 18px;
 }
 
-.cal__day {
+.cal-day {
     font-size: var(--cal-font-size);
     width: var(--cal-size);
     height: var(--cal-size);
@@ -24,7 +24,7 @@
     background: #fff;
 }
 
-.cal__sub {
+.cal-sub {
     color: #fff;
     width: var(--cal-size);
     overflow: hidden;
@@ -34,10 +34,10 @@
     line-height: 24px;
 }
 
-.cal__month, .cal__year {
+.cal-month, .cal-year {
     display: inline-block;
 }
 
-.cal__year::before {
+.cal-year::before {
     content: '\'';
 }

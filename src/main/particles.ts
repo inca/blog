@@ -1,3 +1,4 @@
+let prevFocusedElement = document.activeElement;
 const particles: Element[] = [];
 
 export function initParticles() {
@@ -8,11 +9,12 @@ export function initParticles() {
         document.documentElement.append(el);
         particles.push(el);
     }
-
     window.addEventListener('focusin', onFocusIn);
 }
 
 function onFocusIn(ev: FocusEvent) {
+    const wasFocused = prevFocusedElement !== document.body;
+    prevFocusedElement = document.activeElement;
     const el = ev.target as Element;
     const rects = el.getClientRects();
     for (const el of particles) {
@@ -21,7 +23,10 @@ function onFocusIn(ev: FocusEvent) {
         const x = sx + window.scrollX + rect.left;
         const y = sy + window.scrollY + rect.top;
         const scale = Math.random() * .6 + .5;
-        el.classList.add('particle--flying');
+        // Do not show on first focus
+        if (wasFocused) {
+            el.classList.add('particle--flying');
+        }
         el.setAttribute('style', `
             transform: translate(${x}px, ${y}px) scale(${scale});
         `);

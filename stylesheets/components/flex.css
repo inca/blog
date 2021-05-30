@@ -10,6 +10,6 @@
     flex-flow: row nowrap;
 }
 
-.flex__main {
+.flex-main {
     flex: 1;
 }

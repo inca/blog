@@ -54,18 +54,18 @@ body {
     background: var(--color-footer);
 }
 
-.footer__grid {
+.footer-grid {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
 }
 
-.footer__icons {
+.footer-icons {
     margin: 0 -8px;
 }
 
-.footer__icon {
+.footer-icon {
     margin: 8px;
 }
 
@@ -88,8 +88,8 @@ body {
         width: 200px;
         position: absolute;
         left: 100%;
-        margin-top: -60px;
         padding-left: 32px;
+        transform: translateY(-100%);
     }
 }
 

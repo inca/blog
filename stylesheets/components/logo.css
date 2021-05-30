@@ -10,7 +10,7 @@
     margin-right: 8px;
 }
 
-.logo__particle {
+.logo-particle {
     display: inline-block;
     pointer-events: none;
 
@@ -19,12 +19,12 @@
     transform: translateX(var(--tx)) translateY(var(--ty)) scale(.25);
 }
 
-.logo:hover .logo__particle, .logo:focus .logo__particle {
+.logo:hover .logo-particle, .logo:focus .logo-particle {
     opacity: 1;
     transform: translate(0, 0) scale(1);
 }
 
-.logo__dot {
+.logo-dot {
     position: relative;
     margin: 2px 4px;
     display: inline-block;

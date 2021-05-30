@@ -1,18 +1,18 @@
-.post__header {
+.post-header {
     position: relative;
     padding: 2em 0;
 }
 
-.post__title {
+.post-title {
     margin: 8px 0;
 }
 
-.post__cal {
+.post-cal {
     margin-top: -6px;
     float: right;
 }
 
-.post__content {
+.post-content {
     clear: both;
 }
 
@@ -38,12 +38,12 @@
     flex-flow: row nowrap;
 }
 
-.post-item__cal {
+.post-item-cal {
     flex: 0 0 auto;
     margin-right: 1em;
 }
 
-.post-item__title {
+.post-item-title {
     text-decoration: none;
 
     &:hover {
@@ -53,4 +53,9 @@
     &, &:visited {
         color: var(--color-fg);
     }
+}
+
+.post-empty {
+    text-align: center;
+    margin: 6em 0;
 }
