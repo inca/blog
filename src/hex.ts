@@ -1,12 +1,21 @@
-import { Vector2, add, mul, dot } from '../util';
+import { Vector2, add, mul, dot, sqrt3 } from './math';
 
 export class Hex {
     static zero = new Hex(0, 0);
 
     static Q_BASIS: Vector2 = [2, 0];
-    static R_BASIS: Vector2 = [1, Math.sqrt(3)];
-    static Q_INV: Vector2 = [0.5, -Math.sqrt(3) / 6];
-    static R_INV: Vector2 = [0, Math.sqrt(3) / 3];
+    static R_BASIS: Vector2 = [1, sqrt3];
+    static Q_INV: Vector2 = [0.5, -sqrt3 / 6];
+    static R_INV: Vector2 = [0, sqrt3 / 3];
+
+    static VERTICES: Vector2[] = [
+        [1, sqrt3 / 3],
+        [0, sqrt3 * 2 / 3],
+        [-1, sqrt3 / 3],
+        [-1, -sqrt3 / 3],
+        [0, -sqrt3 * 2 / 3],
+        [1, -sqrt3 / 3],
+    ];
 
     static AXIAL_DIRECTIONS = [
         new Hex(1, 0),
@@ -29,6 +38,14 @@ export class Hex {
         );
     }
 
+    toJSON() {
+        return [this.q, this.r];
+    }
+
+    static fromJSON(json: Vector2) {
+        return new Hex(json[0], json[1]);
+    }
+
     add(hex: Hex): Hex {
         return new Hex(this.q + hex.q, this.r + hex.r);
     }
@@ -41,7 +58,7 @@ export class Hex {
         ) / 2;
     }
 
-    toOrthogonal(radius: number): Vector2 {
+    toOrthogonal(radius: number = 1): Vector2 {
         return mul(
             add(
                 mul(Hex.Q_BASIS, this.q),
@@ -53,6 +70,10 @@ export class Hex {
 
     toString() {
         return `(${this.q}; ${this.r})`;
+    }
+
+    equals(hex: Hex) {
+        return this.q === hex.q && this.r === hex.r;
     }
 
     // Traversal

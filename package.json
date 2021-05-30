@@ -36,6 +36,8 @@
   "author": "Boris Okunskiy",
   "license": "ISC",
   "dependencies": {
+    "@types/d3": "^6.7.0",
+    "d3": "^6.7.0",
     "simplex-noise": "^2.4.0"
   },
   "devDependencies": {

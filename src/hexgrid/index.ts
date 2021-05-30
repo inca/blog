@@ -1,5 +1,6 @@
-import { onReady, Vector2, add, mul } from '../util';
-import { Hex } from './hex';
+import { onReady } from '../util';
+import { Vector2, add, mul } from '../math';
+import { Hex } from '../hex';
 
 const cellRadius = 16;
 const colorQ = 'hsl(190, 80%, 50%)'

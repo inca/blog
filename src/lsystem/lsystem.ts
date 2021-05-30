@@ -1,5 +1,5 @@
 import SimplexNoise from 'simplex-noise';
-import { Vector4, Vector2 } from '../util';
+import { Vector4, Vector2 } from '../math';
 
 const axiom = 'X';
 const rules = [

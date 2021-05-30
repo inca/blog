@@ -25,6 +25,7 @@ module.exports = {
         hexgrid: './src/hexgrid/index.ts',
         lsystem: './src/lsystem/index.ts',
         leafgen: './src/leafgen/index.ts',
+        hexcomb: './src/hexcomb/index.ts',
     },
     output: {
         filename: '[name].js',

@@ -1,5 +1,5 @@
 import { LSystemGenerator } from './lsystem';
-import { clamp } from '../util';
+import { clamp } from '../math';
 
 const canvas = document.querySelector('#lsystem') as HTMLCanvasElement;
 const gen = new LSystemGenerator(canvas);

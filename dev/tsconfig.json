@@ -8,6 +8,7 @@
         "rootDir": ".",
         "sourceMap": true,
         "strict": true,
+        "skipLibCheck": true,
         "lib": ["ES2019"]
     }
 }
