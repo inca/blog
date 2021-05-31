@@ -3,7 +3,7 @@ import { Vector2 } from '../math';
 
 export class HexSet {
     protected map: Map<string, Hex> = new Map();
-    protected cachedSymmetry: number[] | null = null;
+    protected _rotSymmetry: number | null = null;
 
     constructor(cells: Iterable<Hex> = []) {
         for (const hex of cells) {
@@ -33,12 +33,13 @@ export class HexSet {
 
     add(hex: Hex) {
         this.map.set(hex.toString(), hex);
-        this.cachedSymmetry = null;
+        this._rotSymmetry = null;
     }
 
     remove(hex: Hex) {
-        this.map.delete(hex.toString());
-        this.cachedSymmetry = null;
+        const had = this.map.delete(hex.toString());
+        this._rotSymmetry = null;
+        return had;
     }
 
     has(hex: Hex) {
@@ -65,17 +66,33 @@ export class HexSet {
         return true;
     }
 
-    getRadialSymmetry(): number[] {
-        if (!this.cachedSymmetry) {
-            this.cachedSymmetry = [];
-            for (let i = 1; i < 6; i++) {
-                const rotated = this.rotate(i);
-                if (this.equals(rotated)) {
-                    this.cachedSymmetry.push(i);
-                }
-            }
+    rotSymmetry() {
+        if (this._rotSymmetry == null) {
+            this._rotSymmetry = this._calcRotSymmetry();
         }
-        return this.cachedSymmetry;
+        return this._rotSymmetry;
+    }
+
+    uniqRotations() {
+        switch (this.rotSymmetry()) {
+            case 6: return [];
+            case 3: return [1];
+            case 2: return [1, 2];
+            default: return [1, 2, 3, 4, 5];
+        }
+    }
+
+    protected _calcRotSymmetry() {
+        if (this.rotate(1).equals(this)) {
+            return 6;
+        }
+        if (this.rotate(2).equals(this)) {
+            return 3;
+        }
+        if (this.rotate(3).equals(this)) {
+            return 2;
+        }
+        return 1;
     }
 
 }

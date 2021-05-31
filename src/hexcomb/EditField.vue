@@ -12,9 +12,9 @@
     <p>
         This field has <strong>{{ area }}</strong> cells.
         It has
-            <strong v-if="radialSymmetry.length">C{{ radialSymmetry.length + 1}}</strong>
+            <strong v-if="rotSymmetry > 1">C{{ rotSymmetry }}</strong>
             <strong v-else>no</strong>
-            radial symmetry.
+            rotational symmetry.
     </p>
 </template>
 
@@ -38,8 +38,8 @@ export default {
             return this.model.field.size;
         },
 
-        radialSymmetry() {
-            return this.model.field.getRadialSymmetry();
+        rotSymmetry() {
+            return this.model.field.rotSymmetry();
         },
 
     },
