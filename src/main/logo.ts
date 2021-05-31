@@ -19,7 +19,7 @@ export function initLogo() {
 }
 
 function randomizeParticles(els: Element[]) {
-    const noise = new SimplexNoise(Math.random());
+    const noise = new SimplexNoise();
     for (const [i, el] of els.entries()) {
         const tx = noise.noise2D(i * 0.1, 0);
         const ty = noise.noise2D(i * 0.1, 100);

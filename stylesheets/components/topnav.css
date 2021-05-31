@@ -28,7 +28,7 @@
 }
 
 .topnav-link {
-    color: var(--color-fg);
+    color: var(--color);
     text-decoration: none;
 
     &:hover, &:active {
@@ -47,7 +47,7 @@
     display: block;
     width: 28px;
     height: 28px;
-    fill: var(--color-fg);
+    fill: var(--color);
     transition: fill .3s;
 
     &:hover, &:active {

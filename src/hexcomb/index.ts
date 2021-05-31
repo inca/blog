@@ -1,14 +1,6 @@
-import { mul, sqrt3, Vector2 } from '../math';
-import * as d3 from 'd3';
-import { Hex } from '../hex';
-import { State } from './state';
-import { HexInput } from './hex-input';
+import { createApp } from 'vue';
 
-const state = new State().load();
+import Root from './Root.vue';
 
-const container = d3.select('#hexcomb');
-
-const field = new HexInput({
-    rings: 4,
-    radius: 16,
-}).appendTo(container.node()!)
+const app = createApp(Root);
+app.mount('#app');

@@ -18,14 +18,16 @@
     --color-red--dark: hsl(355deg, 70%, 45%);
     --color-magenta: hsl(320deg, 50%, 55%);
 
-    --color-bg: #fff;
-    --color-bg--alt: hsl(320deg, 20%, 95%);
-    /* --color-bg--alt: hsl(320deg, 8%, 12%); */
-    --color-fg: hsl(200deg, 10%, 25%);
+
+    --background: var(--color-white);
+    --background--alt: hsl(320deg, 20%, 95%);
+    --color: hsl(200deg, 10%, 25%);
+    --border-radius: 3px;
+
     --color-link: var(--color-red);
     --color-link--visited: var(--color-magenta);
     --color-code:  var(--color-magenta);
-    --color-code--bg: var(--color-bg--alt);
+    --color-code--bg: var(--background--alt);
     --color-target: hsl(320deg, 25%, 95%);
     --color-subtle: hsl(320deg, 10%, 50%);
 
@@ -35,4 +37,19 @@
     --color-section--bg: hsl(320deg, 25%, 99%);
     --color-tldr: hsl(320deg, 50%, 80%);
     --color-tldr--bg: hsl(320deg, 50%, 98%);
+
+    --color-primary: var(--color-blue--500);
+    --color-primary-text: var(--color-white);
+
+    --link-color: var(--color-blue--500);
+
+    --control-height: var(--sp8);
+    --control-focus-color: var(--color-blue--300);
+
+    --input-color: var(--color-black);
+    --input-background: var(--color-white);
+    --input-border-color: var(--color-gray--200);
+    --input-icon-color: var(--color-gray--300);
+    --input-icon-color--focus: var(--color-blue--300);
+
 }

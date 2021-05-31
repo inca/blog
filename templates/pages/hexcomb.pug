@@ -3,6 +3,9 @@ extends ../layout.pug
 block prepend title
   | Hex Comb
 
+block append links
+  link(rel="stylesheet" src="/hexcomb.css")
+
 block content
-  #hexcomb
+  #app
   script(src="/hexcomb.js")
