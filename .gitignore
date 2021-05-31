@@ -10,3 +10,6 @@ yarn.lock
 
 out/
 dist/
+
+# Local Netlify folder
+.netlify

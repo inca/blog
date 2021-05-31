@@ -17,7 +17,8 @@
     "build:css": "NODE_ENV=production postcss stylesheets/index.css -o dist/index.css",
     "build:js": "NODE_ENV=production webpack",
     "build:pages": "NODE_ENV=production node out/dev/scripts/build",
-    "build:static": "NODE_ENV=production cp -r static/* dist/"
+    "build:static": "NODE_ENV=production cp -r static/* dist/",
+    "deploy": "npm run build && netlify deploy --prod"
   },
   "repository": {
     "type": "git",
