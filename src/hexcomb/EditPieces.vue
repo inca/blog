@@ -1,7 +1,11 @@
 <template>
+    <h2>Pieces</h2>
+    <p>
+        Next we define which pieces are available for placement.
+    </p>
     <div class="PiecesList">
         <div class="PieceItem"
-            v-for="(piece, i) of value"
+            v-for="(piece, i) of state.pieces"
             :key="i">
             <HexInput
                 :radius="8"
@@ -21,11 +25,15 @@
             + Add piece
         </button>
     </div>
+    <p>
+        That's <strong>{{ cellCount }}</strong> cells in total.
+    </p>
 </template>
 
 <script>
 import { schemeTableau10 } from 'd3-scale-chromatic';
 import HexInput from './HexInput.vue';
+import { State } from './state';
 
 export default {
 
@@ -34,7 +42,15 @@ export default {
     },
 
     props: {
-        value: { type: Array, required: true }
+        state: { type: State, required: true }
+    },
+
+    computed: {
+
+        cellCount() {
+            return this.state.pieces.reduce((sum, p) => sum + p.cells.length, 0);
+        },
+
     },
 
     methods: {
@@ -45,17 +61,21 @@ export default {
 
         addPiece() {
             this.value.push({ cells: [] });
-            this.$emit('change');
+            this.save();
         },
 
         removePiece(i) {
             this.value.splice(i, 1);
-            this.$emit('change');
         },
 
         onPieceChanged() {
-            this.$emit('change');
+            this.save();
         },
+
+        save() {
+            this.state.save();
+            this.$emit('change');
+        }
 
     },
 
@@ -64,7 +84,6 @@ export default {
 
 <style scoped>
 .PiecesList {
-    margin: 1em 0;
     display: flex;
     flex-flow: row wrap;
     align-items: center;
