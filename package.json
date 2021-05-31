@@ -4,7 +4,7 @@
   "private": true,
   "description": "Boris' Blog",
   "scripts": {
-    "clean": "rm -rf out",
+    "clean": "rm -rf out dist",
     "dev": "run-p dev:*",
     "dev:server": "tsc -p ./dev && run-p dev:server:*",
     "dev:server:tscw": "tsc -w -p ./dev",
