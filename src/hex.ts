@@ -46,8 +46,23 @@ export class Hex {
         return new Hex(json[0], json[1]);
     }
 
+    cubeCoords() {
+        return [this.q, this.r, 0 - this.q - this.r];
+    }
+
     add(hex: Hex): Hex {
         return new Hex(this.q + hex.q, this.r + hex.r);
+    }
+
+    rotate(dir: number): Hex {
+        // Normalize dir
+        const steps = ((dir % 6) + 6) % 6;
+        let coords = this.cubeCoords();
+        for (let i = 0; i < steps; i++) {
+            const [x, y, z] = coords;
+            coords = [-y, -z, -x];
+        }
+        return new Hex(coords[0], coords[1]);
     }
 
     distanceTo(hex: Hex) {
@@ -69,7 +84,7 @@ export class Hex {
     }
 
     toString() {
-        return `(${this.q}; ${this.r})`;
+        return `(${this.q};${this.r})`;
     }
 
     equals(hex: Hex) {

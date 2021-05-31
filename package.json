@@ -38,8 +38,6 @@
   "author": "Boris Okunskiy",
   "license": "ISC",
   "dependencies": {
-    "@types/d3": "^6.7.0",
-    "d3-scale-chromatic": "^2.0.0",
     "simplex-noise": "^2.4.0",
     "vue": "^3.0.11"
   },

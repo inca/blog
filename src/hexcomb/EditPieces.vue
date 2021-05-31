@@ -1,7 +1,7 @@
 <template>
     <h2>Pieces</h2>
     <p>
-        Next we define which pieces are available for placement.
+        Next, let's define which pieces are available for placement.
     </p>
     <div class="PiecesList">
         <div class="PieceItem"
@@ -10,10 +10,20 @@
             <HexInput
                 :radius="8"
                 :rings="2"
-                :value="piece.cells"
+                :hexset="piece.cells"
                 :fillActive="getColor(i)"
                 @change="onPieceChanged(piece)"/>
-            <button class="PieceRemoveButton"
+            <button class="PieceRotateCw button button--circle"
+                @click="rotate(i, 5)"
+                title="Rotate CW">
+                &orarr;
+            </button>
+            <button class="PieceRotateCcw button button--circle"
+                @click="rotate(i, 1)"
+                title="Rotate CCW">
+                &olarr;
+            </button>
+            <button class="PieceRemoveButton button button--circle"
                 @click="removePiece(i)"
                 title="Remove piece">
                 &times;
@@ -31,9 +41,9 @@
 </template>
 
 <script>
-import { schemeTableau10 } from 'd3-scale-chromatic';
 import HexInput from './HexInput.vue';
 import { State } from './state';
+import { tableau10 } from '../util';
 
 export default {
 
@@ -48,7 +58,7 @@ export default {
     computed: {
 
         cellCount() {
-            return this.state.pieces.reduce((sum, p) => sum + p.cells.length, 0);
+            return this.state.pieces.reduce((sum, p) => sum + p.cells.size, 0);
         },
 
     },
@@ -56,16 +66,23 @@ export default {
     methods: {
 
         getColor(i) {
-            return schemeTableau10[i % 10];
+            return tableau10[i % 10];
         },
 
         addPiece() {
-            this.value.push({ cells: [] });
+            this.state.pieces.push({ cells: [] });
             this.save();
         },
 
         removePiece(i) {
-            this.value.splice(i, 1);
+            this.state.pieces.splice(i, 1);
+            this.save();
+        },
+
+        rotate(i, dir) {
+            const piece = this.state.pieces[i];
+            piece.cells = piece.cells.rotate(dir);
+            this.save();
         },
 
         onPieceChanged() {
@@ -97,12 +114,26 @@ export default {
     position: absolute;
     top: 0;
     right: 0;
-    width: 1.5em;
-    height: 1.5em;
-    text-align: center;
-    padding: 0;
+    opacity: 0;
+}
 
-    border-radius: 32px;
-    border: 1px solid #000;
+.PieceRotateCw {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.PieceRotateCcw {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+}
+
+.PieceItem:hover .PieceRemoveButton,
+.PieceItem:hover .PieceRotateCw,
+.PieceItem:hover .PieceRotateCcw {
+    opacity: 1;
 }
 </style>

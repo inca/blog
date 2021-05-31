@@ -7,10 +7,14 @@
     <HexInput
         :rings="4"
         :radius="16"
-        :value="state.field"
+        :hexset="state.field"
         @change="onChange()"/>
     <p>
-        The walkable area is <strong>{{ area }}</strong>.
+        The field area is <strong>{{ area }}</strong> hex cells.
+        It has
+            <strong v-if="radialSymmetry.length">C{{ radialSymmetry.length + 1}}</strong>
+            <strong v-else>no</strong>
+            radial symmetry.
     </p>
 </template>
 
@@ -31,8 +35,12 @@ export default {
     computed: {
 
         area() {
-            return this.state.field.length;
-        }
+            return this.state.field.size;
+        },
+
+        radialSymmetry() {
+            return this.state.field.getRadialSymmetry();
+        },
 
     },
 

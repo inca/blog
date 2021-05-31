@@ -21,6 +21,7 @@
 <script>
 import { sqrt3 } from '../math';
 import { Hex } from '../hex';
+import { HexSet } from './hexset';
 
 export default {
 
@@ -32,7 +33,7 @@ export default {
         stroke: { type: String, default: 'rgba(0,0,0,.25)' },
         fillActive: { type: String, default: '#fff' },
         fillInactive: { type: String, default: '#ddd' },
-        value: { type: Array },
+        hexset: { type: HexSet, required: true },
     },
 
     data() {
@@ -72,26 +73,21 @@ export default {
         },
 
         getFill(hex) {
-            return this.containsCell(hex) ? this.fillActive : this.fillInactive;
-        },
-
-        containsCell(hex) {
-            return this.value.some(_ => _.equals(hex));
+            return this.hexset.has(hex) ? this.fillActive : this.fillInactive;
         },
 
         setCell(hex, value) {
-            const i = this.value.findIndex(_ => _.equals(hex));
-            if (i === -1 && value) {
-                this.value.push(hex);
-                this.$emit('change', this.value);
-            } else if (i !== -1 && !value) {
-                this.value.splice(i, 1);
-                this.$emit('change', this.value);
+            if (value && !this.hexset.has(hex)) {
+                this.hexset.add(hex);
+                this.$emit('change');
+            } else if (!value && this.hexset.has(hex)) {
+                this.hexset.remove(hex);
+                this.$emit('change');
             }
         },
 
         onMouseDown(hex) {
-            this.dragMode = !this.containsCell(hex);
+            this.dragMode = !this.hexset.has(hex);
             this.setCell(hex, this.dragMode);
         },
 

@@ -18,7 +18,6 @@
     --color-red--dark: hsl(355deg, 70%, 45%);
     --color-magenta: hsl(320deg, 50%, 55%);
 
-
     --background: var(--color-white);
     --background--alt: hsl(320deg, 20%, 95%);
     --color: hsl(200deg, 10%, 25%);
@@ -37,19 +36,5 @@
     --color-section--bg: hsl(320deg, 25%, 99%);
     --color-tldr: hsl(320deg, 50%, 80%);
     --color-tldr--bg: hsl(320deg, 50%, 98%);
-
-    --color-primary: var(--color-blue--500);
-    --color-primary-text: var(--color-white);
-
-    --link-color: var(--color-blue--500);
-
-    --control-height: var(--sp8);
-    --control-focus-color: var(--color-blue--300);
-
-    --input-color: var(--color-black);
-    --input-background: var(--color-white);
-    --input-border-color: var(--color-gray--200);
-    --input-icon-color: var(--color-gray--300);
-    --input-icon-color--focus: var(--color-blue--300);
 
 }
