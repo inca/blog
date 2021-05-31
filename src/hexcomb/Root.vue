@@ -1,12 +1,12 @@
 <template>
-    <EditField :state="state"/>
-    <EditPieces :state="state"/>
+    <EditField :model="model"/>
+    <EditPieces :model="model"/>
 </template>
 
 <script>
 import EditField from './EditField.vue';
 import EditPieces from './EditPieces.vue';
-import { State } from './state';
+import { Model } from './model';
 
 export default {
 
@@ -17,7 +17,7 @@ export default {
 
     data() {
         return {
-            state: new State().load(),
+            model: new Model().load(),
         }
     }
 

@@ -2,15 +2,15 @@
     <h2>Field</h2>
     <p>
         First, let's define the <em>field</em> — a collection of hex cells
-        where player can place the pieces.
+        where the players can place their pieces.
     </p>
     <HexInput
         :rings="4"
         :radius="16"
-        :hexset="state.field"
+        :hexset="model.field"
         @change="onChange()"/>
     <p>
-        The field area is <strong>{{ area }}</strong> hex cells.
+        This field has <strong>{{ area }}</strong> cells.
         It has
             <strong v-if="radialSymmetry.length">C{{ radialSymmetry.length + 1}}</strong>
             <strong v-else>no</strong>
@@ -20,12 +20,12 @@
 
 <script>
 import HexInput from './HexInput.vue';
-import { State } from './state';
+import { Model } from './model';
 
 export default {
 
     props: {
-        state: { type: State, required: true },
+        model: { type: Model, required: true },
     },
 
     components: {
@@ -35,11 +35,11 @@ export default {
     computed: {
 
         area() {
-            return this.state.field.size;
+            return this.model.field.size;
         },
 
         radialSymmetry() {
-            return this.state.field.getRadialSymmetry();
+            return this.model.field.getRadialSymmetry();
         },
 
     },
@@ -47,7 +47,7 @@ export default {
     methods: {
 
         onChange() {
-            this.state.save();
+            this.model.save();
         }
 
     }

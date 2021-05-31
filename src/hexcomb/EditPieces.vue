@@ -5,7 +5,7 @@
     </p>
     <div class="PiecesList">
         <div class="PieceItem"
-            v-for="(piece, i) of state.pieces"
+            v-for="(piece, i) of model.pieces"
             :key="i">
             <HexInput
                 :radius="8"
@@ -36,13 +36,13 @@
         </button>
     </div>
     <p>
-        That's <strong>{{ cellCount }}</strong> cells in total.
+        That's <strong>{{ model.pieces.length }}</strong> pieces containing <strong>{{ cellCount }}</strong> cells in total.
     </p>
 </template>
 
 <script>
 import HexInput from './HexInput.vue';
-import { State } from './state';
+import { Model } from './model';
 import { tableau10 } from '../util';
 
 export default {
@@ -52,13 +52,13 @@ export default {
     },
 
     props: {
-        state: { type: State, required: true }
+        model: { type: Model, required: true }
     },
 
     computed: {
 
         cellCount() {
-            return this.state.pieces.reduce((sum, p) => sum + p.cells.size, 0);
+            return this.model.pieces.reduce((sum, p) => sum + p.cells.size, 0);
         },
 
     },
@@ -70,17 +70,17 @@ export default {
         },
 
         addPiece() {
-            this.state.pieces.push({ cells: [] });
+            this.model.pieces.push({ cells: [] });
             this.save();
         },
 
         removePiece(i) {
-            this.state.pieces.splice(i, 1);
+            this.model.pieces.splice(i, 1);
             this.save();
         },
 
         rotate(i, dir) {
-            const piece = this.state.pieces[i];
+            const piece = this.model.pieces[i];
             piece.cells = piece.cells.rotate(dir);
             this.save();
         },
@@ -90,7 +90,7 @@ export default {
         },
 
         save() {
-            this.state.save();
+            this.model.save();
             this.$emit('change');
         }
 

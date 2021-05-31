@@ -3,6 +3,7 @@ import { Vector2 } from '../math';
 
 export class HexSet {
     protected map: Map<string, Hex> = new Map();
+    protected cachedSymmetry: number[] | null = null;
 
     constructor(cells: Iterable<Hex> = []) {
         for (const hex of cells) {
@@ -32,10 +33,12 @@ export class HexSet {
 
     add(hex: Hex) {
         this.map.set(hex.toString(), hex);
+        this.cachedSymmetry = null;
     }
 
     remove(hex: Hex) {
         this.map.delete(hex.toString());
+        this.cachedSymmetry = null;
     }
 
     has(hex: Hex) {
@@ -63,14 +66,16 @@ export class HexSet {
     }
 
     getRadialSymmetry(): number[] {
-        const result: number[] = [];
-        for (let i = 1; i < 6; i++) {
-            const rotated = this.rotate(i);
-            if (this.equals(rotated)) {
-                result.push(i);
+        if (!this.cachedSymmetry) {
+            this.cachedSymmetry = [];
+            for (let i = 1; i < 6; i++) {
+                const rotated = this.rotate(i);
+                if (this.equals(rotated)) {
+                    this.cachedSymmetry.push(i);
+                }
             }
         }
-        return result;
+        return this.cachedSymmetry;
     }
 
 }

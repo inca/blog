@@ -2,7 +2,11 @@ import { Hex } from '../hex';
 import { Vector2 } from '../math';
 import { HexSet } from './hexset';
 
-export class State {
+export interface Piece {
+    cells: HexSet;
+}
+
+export class Model {
     field: HexSet = new HexSet();
     pieces: Piece[] = [];
 
@@ -28,10 +32,6 @@ export class State {
         return this;
     }
 
-}
-
-export interface Piece {
-    cells: HexSet;
 }
 
 export interface SerializedState {
