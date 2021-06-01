@@ -5,8 +5,7 @@
                 :transform="`translate(${width / 2}, ${height / 2}) scale(1, -1)`">
                 <path v-for="(hex, i) in cells"
                     :key="i"
-                    :d="hexPath"
-                    :transform="getTransform(hex)"
+                    :d="getPath(hex)"
                     :stroke="stroke"
                     :fill="getFill(hex)"
                     :stroke-width="strokeWidth"
@@ -19,13 +18,14 @@
 </template>
 
 <script>
-import { sqrt3 } from '../math';
 import { Hex } from '../hex';
 import { HexSet } from './hexset';
+import { getPlotHeight, getPlotWidth, getSvgPath } from './helpers';
 
 export default {
 
     props: {
+        hexset: { type: HexSet, required: true },
         rings: { type: Number, default: 3 },
         radius: { type: Number, default: 16 },
         margin: { type: Number, default: 16 },
@@ -33,7 +33,6 @@ export default {
         stroke: { type: String, default: 'rgba(0,0,0,.25)' },
         fillActive: { type: String, default: '#fff' },
         fillInactive: { type: String, default: '#ddd' },
-        hexset: { type: HexSet, required: true },
     },
 
     data() {
@@ -45,18 +44,11 @@ export default {
     computed: {
 
         width() {
-            const r = this.rings * 2 + 1;
-            return (r * this.radius + this.margin) * 2;
+            return getPlotWidth(this.rings, this.radius, this.margin);
         },
 
         height() {
-            const r = this.rings * 2 + 1;
-            return (r * this.radius * sqrt3 / 2 + this.margin) * 2;
-        },
-
-        hexPath() {
-            const r = this.radius;
-            return 'M ' + Hex.VERTICES.map(v => `${v[0] * r},${v[1] * r}`).join(' ') + 'z';
+            return getPlotHeight(this.rings, this.radius, this.margin);
         },
 
         cells() {
@@ -67,9 +59,8 @@ export default {
 
     methods: {
 
-        getTransform(hex) {
-            const [x, y] = hex.toOrthogonal(this.radius);
-            return `translate(${x}, ${y})`;
+        getPath(hex) {
+            return getSvgPath(hex, this.radius);
         },
 
         getFill(hex) {
@@ -105,9 +96,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-svg {
-    display: block;
-}
-</style>

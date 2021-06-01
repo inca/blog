@@ -10,9 +10,10 @@
             <HexInput
                 :radius="8"
                 :rings="2"
-                :hexset="piece.cells"
+                :hexset="piece"
                 :fillActive="getColor(i)"
                 @change="onPieceChanged(piece)"/>
+            <span class="PieceSymmetry">C{{ piece.rotSymmetry() }}</span>
             <button class="PieceRotateCw button button--circle"
                 @click="rotate(i, 5)"
                 title="Rotate CW">
@@ -43,7 +44,8 @@
 <script>
 import HexInput from './HexInput.vue';
 import { Model } from './model';
-import { tableau10 } from '../util';
+import { colorScheme } from '../util';
+import { HexSet } from './hexset';
 
 export default {
 
@@ -58,7 +60,7 @@ export default {
     computed: {
 
         cellCount() {
-            return this.model.pieces.reduce((sum, p) => sum + p.cells.size, 0);
+            return this.model.pieces.reduce((sum, p) => sum + p.size, 0);
         },
 
     },
@@ -66,11 +68,11 @@ export default {
     methods: {
 
         getColor(i) {
-            return tableau10[i % 10];
+            return colorScheme[i % 10];
         },
 
         addPiece() {
-            this.model.pieces.push({ cells: [] });
+            this.model.pieces.push(new HexSet());
             this.save();
         },
 
@@ -81,7 +83,7 @@ export default {
 
         rotate(i, dir) {
             const piece = this.model.pieces[i];
-            piece.cells = piece.cells.rotate(dir);
+            this.model.pieces[i] = piece.rotate(dir);
             this.save();
         },
 
@@ -135,5 +137,13 @@ export default {
 .PieceItem:hover .PieceRotateCw,
 .PieceItem:hover .PieceRotateCcw {
     opacity: 1;
+}
+
+.PieceSymmetry {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: var(--font-face--alt);
+    font-size: var(--font-size--smaller);
 }
 </style>

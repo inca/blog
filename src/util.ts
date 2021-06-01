@@ -31,7 +31,7 @@ export function initContent(el: HTMLElement = document.documentElement) {
     }
 }
 
-export const tableau10 = [
+export const colorScheme = [
     "#4e79a7",
     "#f28e2c",
     "#e15759",

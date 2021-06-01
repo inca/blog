@@ -31,11 +31,19 @@ export class Hex {
         public readonly r: number,
     ) {}
 
-    static fromOrthogonal(xy: Vector2, radius: number) {
-        return new Hex(
-            dot(xy, Hex.Q_INV) / radius,
-            dot(xy, Hex.R_INV) / radius,
-        );
+    toString() {
+        return `${this.q},${this.r}`;
+    }
+
+    static fromString(str: string): Hex {
+        const i = str.indexOf(',');
+        const q = Number(str.substring(0, i)) || 0;
+        const r = Number(str.substring(i + 1)) || 0;
+        return new Hex(q, r);
+    }
+
+    equals(hex: Hex) {
+        return this.q === hex.q && this.r === hex.r;
     }
 
     toJSON() {
@@ -46,12 +54,33 @@ export class Hex {
         return new Hex(json[0], json[1]);
     }
 
+    toOrthogonal(radius: number = 1): Vector2 {
+        return mul(
+            add(
+                mul(Hex.Q_BASIS, this.q),
+                mul(Hex.R_BASIS, this.r),
+            ),
+            radius
+        );
+    }
+
+    static fromOrthogonal(xy: Vector2, radius: number) {
+        return new Hex(
+            dot(xy, Hex.Q_INV) / radius,
+            dot(xy, Hex.R_INV) / radius,
+        );
+    }
+
     cubeCoords() {
         return [this.q, this.r, 0 - this.q - this.r];
     }
 
     add(hex: Hex): Hex {
         return new Hex(this.q + hex.q, this.r + hex.r);
+    }
+
+    subtract(hex: Hex): Hex {
+        return new Hex(this.q - hex.q, this.r - hex.r);
     }
 
     rotate(dir: number): Hex {
@@ -71,24 +100,6 @@ export class Hex {
             Math.abs(this.q + this.r - hex.q - hex.r) +
             Math.abs(this.r - hex.r)
         ) / 2;
-    }
-
-    toOrthogonal(radius: number = 1): Vector2 {
-        return mul(
-            add(
-                mul(Hex.Q_BASIS, this.q),
-                mul(Hex.R_BASIS, this.r),
-            ),
-            radius
-        );
-    }
-
-    toString() {
-        return `(${this.q};${this.r})`;
-    }
-
-    equals(hex: Hex) {
-        return this.q === hex.q && this.r === hex.r;
     }
 
     // Traversal

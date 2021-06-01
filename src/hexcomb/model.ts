@@ -1,14 +1,9 @@
-import { Hex } from '../hex';
 import { Vector2 } from '../math';
 import { HexSet } from './hexset';
 
-export interface Piece {
-    cells: HexSet;
-}
-
 export class Model {
     field: HexSet = new HexSet();
-    pieces: Piece[] = [];
+    pieces: HexSet[] = [];
 
     load(): this {
         const {
@@ -16,11 +11,7 @@ export class Model {
             pieces = [],
         } = JSON.parse(localStorage.getItem('hexCombState') ?? '{}') as SerializedState;
         this.field = HexSet.fromJSON(field);
-        this.pieces = pieces.map(_ => {
-            return {
-                cells: HexSet.fromJSON(_.cells),
-            };
-        });
+        this.pieces = pieces.map(_ => HexSet.fromJSON(_));
         return this;
     }
 
@@ -36,7 +27,5 @@ export class Model {
 
 export interface SerializedState {
     field?: Vector2[];
-    pieces?: Array<{
-        cells: Vector2[];
-    }>;
+    pieces?: Array<Vector2[]>;
 }
