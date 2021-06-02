@@ -73,7 +73,7 @@ export default {
 
         next() {
             if (!this.iterator) {
-                this.iterator = this.step.generatePerfectFits();
+                this.iterator = this.step.generateSteps();
             }
             const { value, done } = this.iterator.next();
             if (done) {
@@ -85,7 +85,7 @@ export default {
                 // Stop on perfect fit
                 if (this.step.field.size === 0) {
                     this.savedSteps.push(this.step);
-                    // this.playing = false;
+                    this.playing = false;
                 }
             }
         },

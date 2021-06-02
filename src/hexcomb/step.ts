@@ -10,12 +10,10 @@ export class Step {
         readonly model: Model,
         readonly parent: Step | null,
         readonly index: number,
-        readonly offset: Hex,
-        readonly rotation: number,
+        readonly piece: HexSet,
     ) {
         this.field = parent ? new HexSet(parent.field) : model.field;
         this.isValid = true;
-        const piece = this.getTransformedCells();
         for (const cell of piece) {
             const had = this.field.remove(cell);
             if (!had) {
@@ -26,17 +24,12 @@ export class Step {
     }
 
     static init(model: Model) {
-        return new Step(model, null, -1, Hex.zero, 0);
-    }
-
-    getTransformedCells(): HexSet {
-        const piece = this.model.pieces[this.index] ?? new HexSet();
-        return piece.rotate(this.rotation).normalize().offset(this.offset);
+        return new Step(model, null, -1, new HexSet());
     }
 
     *iteratePieces(): IterableIterator<{ index: number, cells: HexSet }> {
         if (this.index > -1) {
-            yield { index: this.index, cells: this.getTransformedCells() };
+            yield { index: this.index, cells: this.piece };
         }
         if (this.parent) {
             yield* this.parent.iteratePieces();
@@ -47,8 +40,9 @@ export class Step {
         for (let i = this.index + 1; i < this.model.pieces.length; i += 1) {
             const piece = this.model.pieces[i];
             for (const offset of this.field) {
-                for (const rotation of piece.uniqRotations()) {
-                    const step = new Step(this.model, this, i, offset, rotation);
+                for (const rotated of piece.uniqRotations()) {
+                    const p = rotated.offset(offset);
+                    const step = new Step(this.model, this, i, p);
                     if (!step.isValid) {
                         continue;
                     }
@@ -77,5 +71,4 @@ export class Step {
 
 export class StepContext {
     stepsCount: number = 0;
-    visited: Set<string> = new Set();
 }

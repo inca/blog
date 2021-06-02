@@ -1,7 +1,7 @@
 <template>
     <h2>Combinations</h2>
     <p>
-        Let's now iterate all possible combinations.
+        Let's now iterate over all possible combinations.
     </p>
     <PlaySteps :model="model"/>
 </template>

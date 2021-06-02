@@ -71,6 +71,19 @@ export class Hex {
         );
     }
 
+    offsetCoords(): Vector2 {
+        const col = this.q + (this.r - (this.r & 1)) / 2;
+        const row = this.r;
+        return [col, row];
+    }
+
+    static fromOffsetCoords(coords: Vector2): Hex {
+        return new Hex(
+            coords[0] - (coords[1] - (coords[1] & 1)) / 2,
+            coords[1],
+        );
+    }
+
     cubeCoords() {
         return [this.q, this.r, 0 - this.q - this.r];
     }

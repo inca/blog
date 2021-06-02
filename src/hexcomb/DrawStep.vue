@@ -3,7 +3,7 @@
         <svg :width="width" :height="height">
             <g class="Center"
                 :transform="`translate(${width / 2}, ${height / 2}) scale(1, -1)`">
-                <path v-for="(hex, i) in cells"
+                <path v-for="(hex, i) in step.field"
                     :key="i"
                     :d="getPath(hex)"
                     :stroke="stroke"
