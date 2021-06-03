@@ -26,6 +26,10 @@
             <strong>Done!</strong>
         </template>
     </div>
+    <p class="Stats">
+        Processed <strong>{{ count }}</strong> steps,
+        found <strong>{{ savedSteps.length }}</strong> perfect fits.
+    </p>
     <div class="SavedSteps">
         <DrawStep v-for="step of savedSteps"
             :key="step"
@@ -58,12 +62,11 @@ export default {
 
         getNewData() {
             return {
-                combinator: new Combinator(this.model),
                 currentStep: { field: this.model.field, pieces: [] },
-                iterator: null,
                 done: false,
                 playing: false,
                 savedSteps: [],
+                count: 0,
             };
         },
 
@@ -86,21 +89,27 @@ export default {
         },
 
         async _scanForward() {
-            if (!this.iterator) {
-                this.iterator = this.combinator.generateSteps();
+            if (!this.$iterator) {
+                // OPT prevent using Vue-observed model
+                const combinator = new Combinator(Model.load());
+                this.$iterator = combinator.generateSteps();
             }
             while (true) {
-                const { value: step, done } = this.iterator.next();
+                const { value: step, done } = this.$iterator.next();
                 if (done) {
                     this.done = true;
                     this.playing = false;
                     return;
                 }
+                this.count += 1;
                 this.currentStep = step;
                 // Save perfect fits
                 if (step.field.size === 0) {
                     this.savedSteps.push(step);
-                    await new Promise(r => setTimeout(r, 1));
+                    await new Promise(r => setTimeout(r, 10));
+                }
+                if (this.count % 1000 === 0) {
+                    await new Promise(r => setTimeout(r, 10));
                 }
                 if (!this.playing) {
                     return;

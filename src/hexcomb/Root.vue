@@ -20,7 +20,7 @@ export default {
 
     data() {
         return {
-            model: new Model().load(),
+            model: Model.load(),
         }
     }
 
