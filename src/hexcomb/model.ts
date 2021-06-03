@@ -1,5 +1,5 @@
 import { Vector2 } from '../math';
-import { HexSet } from './hexset';
+import { HexSet } from './HexSet';
 
 export class Model {
     field: HexSet = new HexSet();

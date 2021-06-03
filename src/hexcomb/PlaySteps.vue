@@ -33,7 +33,7 @@
 
 <script>
 import { Model } from './model';
-import { Step } from './step';
+import { Step } from './Step';
 import DrawStep from './DrawStep.vue';
 
 export default {

@@ -19,7 +19,7 @@
 
 <script>
 import { Hex } from '../hex';
-import { HexSet } from './hexset';
+import { HexSet } from './HexSet';
 import { getPlotHeight, getPlotWidth, getSvgPath } from './helpers';
 
 export default {

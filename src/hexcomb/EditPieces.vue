@@ -45,7 +45,7 @@
 import HexInput from './HexInput.vue';
 import { Model } from './model';
 import { colorScheme } from '../util';
-import { HexSet } from './hexset';
+import { HexSet } from './HexSet';
 
 export default {
 

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { Step } from './step';
+import { Step } from './Step';
 import { colorScheme } from '../util';
 import { Model } from './model';
 import { getPlotHeight, getPlotWidth, getSvgPath } from './helpers';

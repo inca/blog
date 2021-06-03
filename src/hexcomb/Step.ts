@@ -1,5 +1,5 @@
 import { Hex } from '../hex';
-import { HexSet } from './hexset';
+import { HexSet } from './HexSet';
 import { Model } from './model';
 
 export class Step {
