@@ -143,7 +143,7 @@ export default {
     position: absolute;
     top: 8px;
     left: 8px;
-    font-family: var(--font-face--alt);
+    font-family: var(--font-family--alt);
     font-size: var(--font-size--smaller);
 }
 </style>

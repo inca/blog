@@ -38,7 +38,7 @@ figure {
 }
 
 code {
-    font-family: var(--font-face--code), monospace;
+    font-family: var(--font-family--code), monospace;
     font-size: var(--font-size--code);
     line-height: 1.4;
     color: var(--color-code);
@@ -62,12 +62,12 @@ pre::after {
 }
 
 h1 {
-    font: var(--font-weight--alt) 32px/1.3 var(--font-face--alt);
+    font: var(--font-weight--alt) 32px/1.3 var(--font-family--alt);
     margin: 1em 0;
 }
 
 h2 {
-    font: 400 28px/1.3 var(--font-face--alt);
+    font: 400 28px/1.3 var(--font-family--alt);
     margin: 2em 0 1em;
 }
 

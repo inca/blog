@@ -71,7 +71,7 @@ export class Hex {
         );
     }
 
-    offsetCoords(): Vector2 {
+    get offsetCoords(): Vector2 {
         const col = this.q + (this.r - (this.r & 1)) / 2;
         const row = this.r;
         return [col, row];
@@ -84,7 +84,7 @@ export class Hex {
         );
     }
 
-    cubeCoords() {
+    get cubeCoords() {
         return [this.q, this.r, 0 - this.q - this.r];
     }
 
@@ -99,7 +99,7 @@ export class Hex {
     rotate(dir: number): Hex {
         // Normalize dir
         const steps = ((dir % 6) + 6) % 6;
-        let coords = this.cubeCoords();
+        let coords = this.cubeCoords;
         for (let i = 0; i < steps; i++) {
             const [x, y, z] = coords;
             coords = [-y, -z, -x];

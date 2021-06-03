@@ -1,12 +1,12 @@
 :root {
-    --font-face: Source Serif Pro, Palatino Linotype, serif;
+    --font-family: Source Serif Pro, Palatino Linotype, serif;
     --font-size: 18px;
     --font-weight: 400;
 
-    --font-face--alt: sans-serif;
+    --font-family--alt: Source Sans Pro, sans-serif;
     --font-weight--alt: 300;
 
-    --font-face--code: Menlo, Monaco, "Courier New", Courier, monospace;
+    --font-family--code: Menlo, Monaco, "Courier New", Courier, monospace;
     --font-weight--code: 400;
     --font-size--code: .9em;
     --font-size--code-block: 12px;

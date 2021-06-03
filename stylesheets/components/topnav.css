@@ -9,7 +9,7 @@
     margin: 0 calc(-1 * var(--gap));
     padding: var(--gap) 0;
 
-    font: var(--font-weight--alt) 16px/32px var(--font-face--alt);
+    font: var(--font-weight--alt) 16px/32px var(--font-family--alt);
     font-weight: 500;
 }
 

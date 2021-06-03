@@ -3,15 +3,18 @@
         <svg :width="width" :height="height">
             <g class="Center"
                 :transform="`translate(${width / 2}, ${height / 2}) scale(1, -1)`">
-                <path v-for="(hex, i) in cells"
+                <g v-for="(hex, i) in cells"
                     :key="i"
-                    :d="getPath(hex)"
-                    :stroke="stroke"
-                    :fill="getFill(hex)"
-                    :stroke-width="strokeWidth"
-                    @mousemove="onMouseMove(hex)"
-                    @mousedown="onMouseDown(hex)"
-                    @mouseup="onMouseUp(hex)"/>
+                    :transform="getTransform(hex)">
+                    <path
+                        :d="hexPath"
+                        :stroke="stroke"
+                        :fill="getFill(hex)"
+                        :stroke-width="strokeWidth"
+                        @mousemove="onMouseMove(hex)"
+                        @mousedown="onMouseDown(hex)"
+                        @mouseup="onMouseUp(hex)"/>
+                </g>
             </g>
         </svg>
     </div>
@@ -55,12 +58,17 @@ export default {
             return [...Hex.spiral(Hex.zero, 0, this.rings)];
         },
 
+        hexPath() {
+            return getSvgPath(Hex.zero, this.radius);
+        },
+
     },
 
     methods: {
 
-        getPath(hex) {
-            return getSvgPath(hex, this.radius);
+        getTransform(hex) {
+            const [x, y] = hex.toOrthogonal(this.radius);
+            return `translate(${x}, ${y}) scale(1, -1)`;
         },
 
         getFill(hex) {
