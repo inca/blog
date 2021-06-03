@@ -1,6 +1,17 @@
 import { Hex } from '../hex';
 import { HexSet } from './HexSet';
-import { Model } from './model';
+import { Model } from './Model';
+
+class Combinator {
+
+    protected constructor(
+        readonly model: Model
+    ) {
+
+    }
+
+
+}
 
 export class Step {
     field!: HexSet;

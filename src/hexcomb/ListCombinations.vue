@@ -8,7 +8,7 @@
 
 <script>
 import PlaySteps from './PlaySteps.vue';
-import { Model } from './model';
+import { Model } from './Model';
 
 export default {
 

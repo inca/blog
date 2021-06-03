@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { Model } from './model';
+import { Model } from './Model';
 import { Step } from './Step';
 import DrawStep from './DrawStep.vue';
 
@@ -73,7 +73,7 @@ export default {
 
         next() {
             if (!this.iterator) {
-                this.iterator = this.step.generateSteps();
+                this.iterator = this.step.generatePerfectFits();
             }
             const { value, done } = this.iterator.next();
             if (done) {

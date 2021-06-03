@@ -56,11 +56,19 @@ export class HexSet {
     }
 
     rotate(rot: number): HexSet {
-        return this.map(_ => _.rotate(rot));
+        return this.map(_ => _.rotate(rot)).normalize();
     }
 
     normalize() {
-        return this.map(_ => _.subtract(this.median));
+        // Find closest piece to median — that's our new origin
+        const median = this.median;
+        const rings = this.occupiedRings;
+        for (const hex of Hex.spiral(median, 0, rings)) {
+            if (this.has(hex)) {
+                return this.map(_ => _.subtract(hex));
+            }
+        }
+        return this;
     }
 
     equals(set: HexSet) {
@@ -102,7 +110,7 @@ export class HexSet {
         yield norm.rotate(5).normalize();
     }
 
-    maxRing() {
+    get occupiedRings() {
         let max = 0;
         for (const hex of this) {
             max = Math.max(max, Math.abs(hex.q), Math.abs(hex.r));
@@ -115,7 +123,7 @@ export class HexSet {
         for (const hex of this) {
             sum = sum.add(hex);
         }
-        return new Hex(Math.ceil(sum.q / this.size), Math.ceil(sum.r / this.size));
+        return new Hex(Math.floor(sum.q / this.size), Math.floor(sum.r / this.size));
     }
 
 }

@@ -27,7 +27,7 @@
 <script>
 import { Step } from './Step';
 import { colorScheme } from '../util';
-import { Model } from './model';
+import { Model } from './Model';
 import { getPlotHeight, getPlotWidth, getSvgPath } from './helpers';
 
 export default {
@@ -49,7 +49,7 @@ export default {
         },
 
         rings() {
-            return this.model.field.maxRing();
+            return this.model.field.occupiedRings;
         },
 
         width() {

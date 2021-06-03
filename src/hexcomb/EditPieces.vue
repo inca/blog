@@ -43,7 +43,7 @@
 
 <script>
 import HexInput from './HexInput.vue';
-import { Model } from './model';
+import { Model } from './Model';
 import { colorScheme } from '../util';
 import { HexSet } from './HexSet';
 

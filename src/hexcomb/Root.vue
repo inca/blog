@@ -8,7 +8,7 @@
 import EditField from './EditField.vue';
 import EditPieces from './EditPieces.vue';
 import ListCombinations from './ListCombinations.vue';
-import { Model } from './model';
+import { Model } from './Model';
 
 export default {
 
