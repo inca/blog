@@ -1,7 +1,7 @@
 <template>
     <DrawStep
         :model="model"
-        :step="step" />
+        :step="currentStep" />
     <div class="block">
         <button @click="next()"
             :disabled="playing">
@@ -21,6 +21,10 @@
             :disabled="playing">
             Reset
         </button>
+        <template v-if="done">
+            &nbsp;
+            <strong>Done!</strong>
+        </template>
     </div>
     <div class="SavedSteps">
         <DrawStep v-for="step of savedSteps"
@@ -33,7 +37,7 @@
 
 <script>
 import { Model } from './Model';
-import { Step } from './Step';
+import { Combinator } from './Combinator';
 import DrawStep from './DrawStep.vue';
 
 export default {
@@ -47,64 +51,62 @@ export default {
     },
 
     data() {
-        return {
-            savedSteps: [],
-            ...this.getNewData(),
-        };
+        return this.getNewData();
     },
 
     methods: {
 
         getNewData() {
             return {
-                step: Step.init(this.model),
+                combinator: new Combinator(this.model),
+                currentStep: { field: this.model.field, pieces: [] },
                 iterator: null,
                 done: false,
                 playing: false,
+                savedSteps: [],
             };
         },
 
         reset() {
-            Object.assign(this, {
-                ...this.getNewData(),
-                savedSteps: [],
-            });
+            Object.assign(this, this.getNewData());
         },
 
         next() {
-            if (!this.iterator) {
-                this.iterator = this.step.generatePerfectFits();
-            }
-            const { value, done } = this.iterator.next();
-            if (done) {
-                this.done = true;
-                this.playing = false;
-            }
-            if (value) {
-                this.step = value;
-                // Stop on perfect fit
-                if (this.step.field.size === 0) {
-                    this.savedSteps.push(this.step);
-                    this.playing = false;
-                }
-            }
+            this.playinf = false;
+            this._scanForward();
         },
 
         play() {
             this.playing = true;
-            this._playLoop();
+            this._scanForward();
         },
 
         pause() {
             this.playing = false;
         },
 
-        async _playLoop() {
-            while (this.playing) {
-                await new Promise(r => requestAnimationFrame(r));
-                this.next();
+        async _scanForward() {
+            if (!this.iterator) {
+                this.iterator = this.combinator.generateSteps();
             }
-        },
+            while (true) {
+                const { value: step, done } = this.iterator.next();
+                if (done) {
+                    this.done = true;
+                    this.playing = false;
+                    return;
+                }
+                this.currentStep = step;
+                // Save perfect fits
+                if (step.field.size === 0) {
+                    this.savedSteps.push(step);
+                    await new Promise(r => setTimeout(r, 1));
+                }
+                if (!this.playing) {
+                    return;
+                }
+            }
+        }
 
     }
 

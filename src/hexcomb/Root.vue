@@ -1,21 +1,21 @@
 <template>
-    <EditField :model="model"/>
-    <EditPieces :model="model"/>
-    <ListCombinations :model="model"/>
+    <SectionField :model="model"/>
+    <SectionPieces :model="model"/>
+    <SectionCombinations :model="model"/>
 </template>
 
 <script>
-import EditField from './EditField.vue';
-import EditPieces from './EditPieces.vue';
-import ListCombinations from './ListCombinations.vue';
+import SectionField from './SectionField.vue';
+import SectionPieces from './SectionPieces.vue';
+import SectionCombinations from './SectionCombinations.vue';
 import { Model } from './Model';
 
 export default {
 
     components: {
-        EditField,
-        EditPieces,
-        ListCombinations,
+        SectionField,
+        SectionPieces,
+        SectionCombinations,
     },
 
     data() {

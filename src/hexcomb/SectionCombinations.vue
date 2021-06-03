@@ -3,17 +3,17 @@
     <p>
         Let's now iterate over all possible combinations.
     </p>
-    <PlaySteps :model="model"/>
+    <Combinations :model="model"/>
 </template>
 
 <script>
-import PlaySteps from './PlaySteps.vue';
+import Combinations from './Combinations.vue';
 import { Model } from './Model';
 
 export default {
 
     components: {
-        PlaySteps,
+        Combinations,
     },
 
     props: {

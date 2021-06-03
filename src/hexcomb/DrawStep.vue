@@ -10,7 +10,7 @@
                     :fill="fill"
                     :stroke-width="strokeWidth"/>
 
-                <g v-for="piece of pieces"
+                <g v-for="piece of step.pieces"
                     :key="piece">
                     <path v-for="hex in piece.cells"
                         :key="hex"
@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import { Step } from './Step';
 import { colorScheme } from '../util';
 import { Model } from './Model';
 import { getPlotHeight, getPlotWidth, getSvgPath } from './helpers';
@@ -34,7 +33,7 @@ export default {
 
     props: {
         model: { type: Model, required: true },
-        step: { type: Step, required: true },
+        step: { type: Object, required: true },
         radius: { type: Number, default: 16 },
         margin: { type: Number, default: 16 },
         fill: { type: String, default: '#fff' },
@@ -58,10 +57,6 @@ export default {
 
         height() {
             return getPlotHeight(this.rings, this.radius, this.margin);
-        },
-
-        pieces() {
-            return [...this.step.iteratePieces()];
         },
 
     },
