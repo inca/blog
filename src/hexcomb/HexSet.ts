@@ -15,7 +15,7 @@ export class HexSet {
     }
 
     toJSON() {
-        return this.getCells();
+        return [...this];
     }
 
     static fromJSON(arr: Vector2[]) {
@@ -24,10 +24,6 @@ export class HexSet {
 
     get size() {
         return this._map.size;
-    }
-
-    getCells() {
-        return [...this];
     }
 
     add(hex: Hex) {
@@ -56,7 +52,7 @@ export class HexSet {
     }
 
     rotate(rot: number): HexSet {
-        return this.map(_ => _.rotate(rot)).normalize();
+        return this.map(_ => _.rotate(rot));
     }
 
     normalize() {
@@ -108,15 +104,6 @@ export class HexSet {
         yield rot3;
         yield norm.rotate(4).normalize();
         yield norm.rotate(5).normalize();
-    }
-
-    *symmetryCells(): IterableIterator<Hex> {
-        const maxQuadrant = [...this.uniqRotations()].length - 1;
-        for (const hex of this) {
-            if (hex.quadrant <= maxQuadrant) {
-                yield hex;
-            }
-        }
     }
 
     get occupiedRings() {

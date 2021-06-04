@@ -14,12 +14,7 @@
                         @mousemove="onMouseMove(hex)"
                         @mousedown="onMouseDown(hex)"
                         @mouseup="onMouseUp(hex)"/>
-                    <text class="Label">{{ hex.quadrant }}</text>
-                </g>
-                <g v-for="(hex, i) in [...hexset.symmetryCells()]"
-                    :key="i"
-                    :transform="getTransform(hex)">
-                    <circle r="4" cx="0" cy="0"/>
+                    <text class="HexInput__label"></text>
                 </g>
             </g>
         </svg>
@@ -112,7 +107,7 @@ export default {
 </script>
 
 <style scoped>
-.Label {
+.HexInput__label {
     text-anchor: middle;
     alignment-baseline: middle;
     font-size: 7px;

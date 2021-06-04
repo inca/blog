@@ -88,26 +88,6 @@ export class Hex {
         return [this.q, this.r, 0 - this.q - this.r];
     }
 
-    get quadrant() {
-        const [x, y, z] = this.cubeCoords;
-        if (x >= 0 && y >= 0 && z <= 0) {
-            return 0;
-        }
-        if (x <= 0 && y >= 0 && z <= 0) {
-            return 1;
-        }
-        if (x <= 0 && y >= 0 && z >= 0) {
-            return 2;
-        }
-        if (x <= 0 && y <= 0 && z >= 0) {
-            return 3;
-        }
-        if (x >= 0 && y <= 0 && z >= 0) {
-            return 4;
-        }
-        return 5;
-    }
-
     add(hex: Hex): Hex {
         return new Hex(this.q + hex.q, this.r + hex.r);
     }
