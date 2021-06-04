@@ -110,6 +110,15 @@ export class HexSet {
         yield norm.rotate(5).normalize();
     }
 
+    *symmetryCells(): IterableIterator<Hex> {
+        const maxQuadrant = [...this.uniqRotations()].length - 1;
+        for (const hex of this) {
+            if (hex.quadrant <= maxQuadrant) {
+                yield hex;
+            }
+        }
+    }
+
     get occupiedRings() {
         let max = 0;
         for (const hex of this) {

@@ -1,3 +1,4 @@
+import { Hex } from '../hex';
 import { HexSet } from './HexSet';
 import { Model } from './Model';
 
@@ -13,6 +14,7 @@ interface Step {
 
 export class Combinator {
     pieceVariations: Array<HexSet[]>;
+    totalPieceCellsCount: number;
 
     constructor(
         readonly model: Model
@@ -20,6 +22,7 @@ export class Combinator {
         this.pieceVariations = model.pieces.map(piece => {
             return [...piece.uniqRotations()];
         });
+        this.totalPieceCellsCount = model.pieces.reduce((sum, p) => sum + p.size, 0);
     }
 
     *generateSteps() {
@@ -35,15 +38,15 @@ export class Combinator {
             return;
         }
         const pieceVars = this.pieceVariations[pieceIndex];
-        for (const piece of pieceVars) {
-            offsetLoop: for (const offset of field) {
+        for (const offset of field) {
+            loop: for (const piece of pieceVars) {
                 const newField = new HexSet(field);
                 const offsetPiece = piece.offset(offset);
                 // Try remove piece from that field
                 for (const cell of offsetPiece) {
                     const had = newField.remove(cell);
                     if (!had) {
-                        continue offsetLoop;
+                        continue loop;
                     }
                 }
                 // Placed successfully
@@ -51,6 +54,10 @@ export class Combinator {
                 yield { field: newField, pieces: newPieces };
                 yield* this._generateSteps(newField, newPieces, pieceIndex + 1);
             }
+        }
+        // Also traverse variants where piece is skipped
+        if (this.model.field.size < this.totalPieceCellsCount) {
+            yield* this._generateSteps(field, piecesUsed, pieceIndex + 1);
         }
     }
 
