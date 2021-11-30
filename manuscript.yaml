@@ -1,0 +1,28 @@
+isProduction: false
+siteTitle: Boris Okunskiy
+titleDelimiter: " · "
+description: ""
+charset: utf-8
+lang: en
+favicon: /favicon.ico
+themeColor: "#fff"
+cssUrls:
+    - https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400;1,600&display=swap
+navbar:
+  - href: /posts
+    title: Blog
+  - href: /
+    title: About
+logoImage: /bo-icon.svg
+logoSize: 32
+logoTitle:
+stylesheets:
+  - name: index.css
+scripts:
+  - name: main
+    source: main/index.ts
+  - name: hexcomb
+    source: hexcomb/index.ts
+    excluded: true
+customBlocks:
+  - sidenote

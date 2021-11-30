@@ -1,0 +1,33 @@
+.h-card {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size--small);
+
+    a {
+        text-decoration: none;
+    }
+
+    .u-email {
+        display: block;
+        font-size: var(--font-size--smaller);
+    }
+}
+
+.h-card-main {
+    margin-left: 1em;
+}
+
+.h-card-pronouns {
+    &::before {
+        content: ' · ';
+        opacity: .5;
+    }
+
+    span:not(:last-child)::after {
+        content: ' / '
+    }
+}
+
+.h-card-photo {
+    border-radius: 100%;
+}

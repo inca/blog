@@ -1,0 +1,55 @@
+html, body, img {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html, body {
+    color: var(--text-color);
+    fill: var(--text-color);
+    background: var(--background-color);
+
+    font-size: var(--font-size);
+    font-family: var(--font-family);
+    line-height: var(--line-height);
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    scroll-behavior: smooth;
+}
+
+h1 {
+    font-family: var(--font-family-alt);
+    font-size: 36px;
+    line-height: 48px;
+    font-weight: normal;
+    margin: var(--sp4) 0 var(--sp8);
+}
+
+h2 {
+    font-size: 28px;
+    font-style: italic;
+    margin: var(--sp6) 0 var(--sp2);
+}
+
+h3 {
+    font-size: 20px;
+    font-style: italic;
+    color: var(--color-subtle);
+}
+
+a {
+    color: var(--link-color);
+}
+
+code {
+    color: var(--color-secondary);
+    font-size: .9em;
+    font-family: var(--font-family-code);
+}
+
+pre code {
+    font-size: var(--font-size-code);
+    line-height: 1.25;
+}

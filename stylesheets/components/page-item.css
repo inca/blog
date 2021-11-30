@@ -1,0 +1,10 @@
+.page-item {
+    display: block;
+    margin: var(--sp2) 0;
+    text-decoration: none;
+}
+
+.page-item-summary {
+    font-size: var(--font-size-small);
+    color: var(--color-subtle);
+}

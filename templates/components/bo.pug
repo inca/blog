@@ -1,0 +1,13 @@
+svg.icon-bo(viewBox="0 0 64 64" width="28" height="28")
+  defs
+    linearGradient#gradRed(gradientTransform="rotate(30)")
+      stop(offset="0%" stop-color="hsl(355deg, 70%, 85%)")
+      stop(offset="100%" stop-color="hsl(355deg, 70%, 55%)")
+    linearGradient#gradMagenta(gradientTransform="rotate(30)")
+      stop(offset="0%" stop-color="hsl(320deg, 50%, 85%)")
+      stop(offset="100%" stop-color="hsl(320deg, 50%, 60%)")
+  g(transform="scale(1, .9)" transform-origin="center")
+    g(transform="matrix(1.83333,0,0,2.33333,-13,-21.6667)")
+      circle(fill="url(#gradMagenta)" cx="30" cy="23" r="12")
+    g(transform="matrix(0.875,0,0,0.875,10,4)")
+      path(fill="url(#gradRed)" d="M-11.429,0L11.429,0C20.259,0 27.429,7.169 27.429,16C27.429,24.831 20.259,32 11.429,32C20.259,32 27.429,39.169 27.429,48C27.429,56.831 20.259,64 11.429,64L-11.429,64L-11.429,0Z")

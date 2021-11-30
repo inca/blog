@@ -1,0 +1,41 @@
+:root {
+    --sphalf: 4px;
+    --sp: 8px;
+    --sp2: 16px;
+    --sp3: 24px;
+    --sp4: 32px;
+    --sp6: 48px;
+    --sp8: 64px;
+
+    --font-size: 20px;
+    --font-size-small: 16px;
+    --font-size-smaller: 14px;
+    --font-size-code: 14px;
+    --line-height: 1.5;
+    --font-family: Source Serif Pro, serif;
+    --font-family-alt: Source Sans Pro, sans-serif;
+    --font-family-code: Menlo, Monaco, "Courier New", Courier, monospace;
+
+    --container-width: 640px;
+
+    --color-primary: hsl(210deg, 64%, 60%);
+    --color-secondary: hsl(280deg, 40%, 60%);
+    --color-subtle: hsl(32deg, 7%, 50%);
+
+    --color-red: hsl(0deg, 80%, 64%);
+    --color-magenta: hsl(280deg, 48%, 64%);
+
+    --text-color: #333;
+    --background-color: #fff;
+    --footer-background-color: #f5f5f5;
+    --link-color: var(--color-primary);
+
+    --border-radius: 4px;
+}
+
+html.dark {
+    --text-color: hsl(200deg, 15%, 86%);
+    --background-color: hsl(200deg, 25%, 20%);
+    --footer-background-color: hsl(200deg, 25%, 30%);
+    --color-subtle: hsl(200deg, 20%, 75%);
+}

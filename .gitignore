@@ -1,0 +1,15 @@
+node_modules/
+*.log
+yarn.lock
+.DS_Store
+.tmp*
+
+.env*
+!.env.example
+!.env.test
+
+out/
+dist/
+
+# Local Netlify folder
+.netlify

@@ -1,0 +1,145 @@
+.container {
+    position: relative;
+}
+
+.header, .footer {
+    position: relative;
+    font-family: var(--font-family-alt);
+}
+
+.header-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.sitelogo {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    height: var(--sp6);
+}
+
+.navbar {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.navbar-link {
+    font-size: var(--font-size-small);
+    text-decoration: none;
+    padding: var(--sp) var(--sp2);
+    color: var(--color-subtle);
+}
+
+.content {
+    padding-top: var(--sp4);
+    min-height: 100vh;
+}
+
+.footer {
+    font-size: var(--font-size-small);
+    margin-top: var(--sp8);
+    padding: var(--sp2) 0;
+    background: var(--footer-background-color);
+}
+
+.content-container, .footer-container {
+    margin: auto;
+    max-width: var(--container-width);
+}
+
+.color-mode-switch {
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    color: var(--color-subtle);
+    padding: 0 var(--sp2);
+}
+
+.sidenote {
+    padding-left: var(--sp2);
+    width: 160px;
+    transform: translate(0, -50%);
+    box-sizing: border-box;
+    font-size: var(--font-size-smaller);
+    color: var(--color-subtle);
+}
+
+html.light .icon-moon { display: none }
+html.dark .icon-sun { display: none }
+
+@media (max-width: 960px) {
+
+    .header::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(to right, var(--color-red), var(--color-magenta));
+    }
+
+    .container {
+        padding: 0 var(--sp2);
+    }
+
+    .header-container {
+        margin: auto;
+        max-width: var(--container-width);
+    }
+
+    .sitelogo {
+        flex: 1;
+    }
+
+    .sidenote {
+        margin-left: auto;
+    }
+}
+
+@media (min-width: 961px) {
+
+    .header {
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        right: 50%;
+        margin-right: calc(.5 * var(--container-width));
+        padding: var(--sp8) 0 var(--sp3);
+        width: 160px;
+        height: 100vh;
+        box-sizing: border-box;
+
+        display: flex;
+        flex-flow: column nowrap;
+
+        transition: opacity .5s;
+    }
+
+    html:not(.top) .header:not(:hover) {
+        opacity: 0;
+    }
+
+    .header-container {
+        flex: 1;
+        display: flex;
+        flex-flow: column nowrap;
+    }
+
+    .navbar {
+        flex: 1;
+        flex-flow: column nowrap;
+        padding-top: 58px;
+    }
+
+    .sidenote {
+        position: absolute;
+        left: 100%;
+    }
+
+}
