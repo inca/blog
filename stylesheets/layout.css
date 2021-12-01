@@ -4,7 +4,7 @@
 
 .header, .footer {
     position: relative;
-    font-family: var(--font-family-alt);
+    font-family: var(--font-family--alt);
 }
 
 .header-container {
@@ -27,7 +27,7 @@
 }
 
 .navbar-link {
-    font-size: var(--font-size-small);
+    font-size: var(--font-size--small);
     text-decoration: none;
     padding: var(--sp) var(--sp2);
     color: var(--color-subtle);
@@ -39,7 +39,7 @@
 }
 
 .footer {
-    font-size: var(--font-size-small);
+    font-size: var(--font-size--small);
     margin-top: var(--sp8);
     padding: var(--sp2) 0;
     background: var(--footer-background-color);
@@ -63,9 +63,8 @@
 .sidenote {
     padding-left: var(--sp2);
     width: 160px;
-    transform: translate(0, -50%);
     box-sizing: border-box;
-    font-size: var(--font-size-smaller);
+    font-size: var(--font-size--smaller);
     color: var(--color-subtle);
 }
 
@@ -140,6 +139,7 @@ html.dark .icon-sun { display: none }
     .sidenote {
         position: absolute;
         left: 100%;
+        transform: translate(0, -50%);
     }
 
 }

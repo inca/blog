@@ -7,10 +7,10 @@
                     :key="i"
                     :transform="getTransform(hex)">
                     <path
+                        class="HexCell"
+                        :class="{ 'HexCell--active': isCellActive(hex) }"
                         :d="hexPath"
-                        :stroke="stroke"
-                        :fill="getFill(hex)"
-                        :stroke-width="strokeWidth"
+                        :style="getStyle(hex)"
                         @mousemove="onMouseMove(hex)"
                         @mousedown="onMouseDown(hex)"
                         @mouseup="onMouseUp(hex)"/>
@@ -23,6 +23,7 @@
 
 <script>
 import { Hex } from '../hex';
+import { colorScheme } from '../util';
 import { getPlotHeight, getPlotWidth, getSvgPath } from './helpers';
 import { HexSet } from './HexSet';
 
@@ -33,10 +34,7 @@ export default {
         rings: { type: Number, default: 3 },
         radius: { type: Number, default: 16 },
         margin: { type: Number, default: 16 },
-        strokeWidth: { type: Number, default: 1 },
-        stroke: { type: String, default: 'rgba(0,0,0,.25)' },
-        fillActive: { type: String, default: '#fff' },
-        fillInactive: { type: String, default: '#ddd' },
+        colorIndex: { type: Number },
     },
 
     data() {
@@ -72,8 +70,17 @@ export default {
             return `translate(${x}, ${y}) scale(1, -1)`;
         },
 
-        getFill(hex) {
-            return this.hexset.has(hex) ? this.fillActive : this.fillInactive;
+        isCellActive(hex) {
+            return this.hexset.has(hex);
+        },
+
+        getStyle(hex) {
+            if (!this.isCellActive(hex) || this.colorIndex == null) {
+                return {};
+            }
+            return {
+                fill: colorScheme[this.colorIndex],
+            };
         },
 
         setCell(hex, value) {
@@ -112,5 +119,15 @@ export default {
     alignment-baseline: middle;
     font-size: 7px;
     font-family: var(--font-family--alt)
+}
+
+.HexCell {
+    stroke-width: 1px;
+    stroke: rgba(0,0,0,.25);
+    fill: var(--background-color--inactive);
+}
+
+.HexCell--active {
+    fill: var(--background-color);
 }
 </style>

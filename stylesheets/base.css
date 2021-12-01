@@ -20,7 +20,7 @@ html, body {
 }
 
 h1 {
-    font-family: var(--font-family-alt);
+    font-family: var(--font-family--alt);
     font-size: 36px;
     line-height: 48px;
     font-weight: normal;
@@ -46,7 +46,7 @@ a {
 code {
     color: var(--color-secondary);
     font-size: .9em;
-    font-family: var(--font-family-code);
+    font-family: var(--font-family--code);
 }
 
 pre code {

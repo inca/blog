@@ -7,7 +7,7 @@
                 :radius="8"
                 :rings="2"
                 :hexset="piece"
-                :fillActive="getColor(i)"
+                :colorIndex="i"
                 @change="onPieceChanged(piece)"/>
             <span class="PieceSymmetry">C{{ piece.rotSymmetry() }}</span>
             <button class="PieceRotateCw button button--circle"
@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import { colorScheme } from '../util';
 import HexInput from './HexInput.vue';
 import { HexSet } from './HexSet';
 
@@ -57,10 +56,6 @@ export default {
     },
 
     methods: {
-
-        getColor(i) {
-            return colorScheme[i % 10];
-        },
 
         addPiece() {
             this.model.pieces.push(new HexSet());
@@ -134,7 +129,7 @@ export default {
     position: absolute;
     top: 8px;
     left: 8px;
-    font-family: var(--font-family-alt);
-    font-size: var(--font-size-small);
+    font-family: var(--font-family--alt);
+    font-size: var(--font-size--small);
 }
 </style>

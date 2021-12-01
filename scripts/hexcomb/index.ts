@@ -1,11 +1,10 @@
 import { createApp, reactive } from 'vue';
 
-import DrawStep from './DrawStep.vue';
-import HexInput from './HexInput.vue';
+import ComputeCombs from './ComputeCombs.vue';
 import DefineField from './DefineField.vue';
 import DefinePieces from './DefinePieces.vue';
-import ComputeCombs from './ComputeCombs.vue';
-
+import DrawStep from './DrawStep.vue';
+import HexInput from './HexInput.vue';
 import { Model } from './Model';
 
 const model = reactive(Model.load());
