@@ -25,8 +25,8 @@
 
 <script>
 import { colorScheme } from '../util';
-import { Model } from './Model';
 import { getPlotHeight, getPlotWidth, getSvgPath } from './helpers';
+import { Model } from './Model';
 
 export default {
 
@@ -72,5 +72,5 @@ export default {
 
     }
 
-}
+};
 </script>

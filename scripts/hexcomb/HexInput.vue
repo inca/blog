@@ -23,8 +23,8 @@
 
 <script>
 import { Hex } from '../hex';
-import { HexSet } from './HexSet';
 import { getPlotHeight, getPlotWidth, getSvgPath } from './helpers';
+import { HexSet } from './HexSet';
 
 export default {
 
@@ -91,7 +91,7 @@ export default {
             this.setCell(hex, this.dragMode);
         },
 
-        onMouseUp(hex) {
+        onMouseUp(_hex) {
             this.dragMode = null;
         },
 
@@ -103,7 +103,7 @@ export default {
 
     }
 
-}
+};
 </script>
 
 <style scoped>

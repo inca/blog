@@ -40,9 +40,9 @@
 </template>
 
 <script>
-import { Model } from './Model';
 import { Combinator } from './Combinator';
 import DrawStep from './DrawStep.vue';
+import { Model } from './Model';
 
 export default {
 
@@ -116,7 +116,7 @@ export default {
 
     }
 
-}
+};
 </script>
 
 <style scoped>

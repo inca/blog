@@ -29,7 +29,7 @@
         <button class="PieceAddButton"
             @click="addPiece()"
             title="Add piece">
-            + Add piece
+            + Add piece
         </button>
     </div>
     <p>
@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import HexInput from './HexInput.vue';
 import { colorScheme } from '../util';
+import HexInput from './HexInput.vue';
 import { HexSet } from './HexSet';
 
 export default {
@@ -89,7 +89,7 @@ export default {
 
     },
 
-}
+};
 </script>
 
 <style scoped>
