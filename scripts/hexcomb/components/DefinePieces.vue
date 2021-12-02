@@ -1,7 +1,7 @@
 <template>
     <div class="PiecesList">
         <div class="PieceItem"
-            v-for="(piece, i) of model.pieces"
+            v-for="(piece, i) of state.pieces"
             :key="i">
             <HexInput
                 :radius="8"
@@ -33,15 +33,19 @@
         </button>
     </div>
     <p>
-        That's <strong>{{ model.pieces.length }}</strong> pieces containing <strong>{{ cellCount }}</strong> cells in total.
+        That's <strong>{{ state.pieces.length }}</strong> pieces containing <strong>{{ cellCount }}</strong> cells in total.
     </p>
 </template>
 
 <script>
+import { HexSet } from '../../commons/HexSet';
 import HexInput from './HexInput.vue';
-import { HexSet } from './HexSet';
 
 export default {
+
+    inject: [
+        'state',
+    ],
 
     components: {
         HexInput
@@ -50,7 +54,7 @@ export default {
     computed: {
 
         cellCount() {
-            return this.model.pieces.reduce((sum, p) => sum + p.size, 0);
+            return this.state.pieces.reduce((sum, p) => sum + p.size, 0);
         },
 
     },
@@ -58,18 +62,18 @@ export default {
     methods: {
 
         addPiece() {
-            this.model.pieces.push(new HexSet());
+            this.state.pieces.push(new HexSet());
             this.save();
         },
 
         removePiece(i) {
-            this.model.pieces.splice(i, 1);
+            this.state.pieces.splice(i, 1);
             this.save();
         },
 
         rotate(i, dir) {
-            const piece = this.model.pieces[i];
-            this.model.pieces[i] = piece.rotate(dir);
+            const piece = this.state.pieces[i];
+            this.state.pieces[i] = piece.rotate(dir);
             this.save();
         },
 
@@ -78,8 +82,7 @@ export default {
         },
 
         save() {
-            this.model.save();
-            this.$emit('change');
+            this.state.save();
         }
 
     },

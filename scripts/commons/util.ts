@@ -1,4 +1,4 @@
-import { Hex } from './hex';
+import { Hex } from './Hex';
 import { sqrt3 } from './math';
 
 export const colorScheme = [

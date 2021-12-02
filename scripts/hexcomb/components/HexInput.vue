@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import { Hex } from '../commons/hex';
-import { colorScheme, getPlotHeight, getPlotWidth, getSvgPath } from '../commons/util';
-import { HexSet } from './HexSet';
+import { Hex } from '../../commons/Hex';
+import { HexSet } from '../../commons/HexSet';
+import { colorScheme, getPlotHeight, getPlotWidth, getSvgPath } from '../../commons/util';
 
 export default {
 
@@ -122,11 +122,11 @@ export default {
 
 .HexCell {
     stroke-width: 1px;
-    stroke: rgba(0,0,0,.25);
-    fill: var(--background-color--inactive);
+    stroke: var(--hex-border-color);
+    fill: var(--hex-color);
 }
 
 .HexCell--active {
-    fill: var(--background-color);
+    fill: var(--hex-color--active);
 }
 </style>

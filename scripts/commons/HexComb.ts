@@ -1,32 +1,23 @@
 import { HexSet } from './HexSet';
-import { Model } from './Model';
+import { Piece, Step } from './types';
 
-interface Piece {
-    index: number;
-    cells: HexSet;
-}
-
-interface Step {
-    field: HexSet;
-    pieces: Piece[];
-}
-
-export class Combinator {
+export class HexComb {
     pieceVariations: Array<HexSet[]>;
     totalPieceCellsCount: number;
     visitedSteps: Set<string> = new Set();
 
     constructor(
-        readonly model: Model
+        readonly field: HexSet,
+        readonly pieces: HexSet[],
     ) {
-        this.pieceVariations = model.pieces.map(piece => {
+        this.pieceVariations = pieces.map(piece => {
             return [...piece.uniqRotations()];
         });
-        this.totalPieceCellsCount = model.pieces.reduce((sum, p) => sum + p.size, 0);
+        this.totalPieceCellsCount = pieces.reduce((sum, p) => sum + p.size, 0);
     }
 
     *generateSteps() {
-        yield* this._generateSteps(this.model.field, [], 0);
+        yield* this._generateSteps(this.field, [], 0);
     }
 
     protected *_generateSteps(
@@ -65,7 +56,7 @@ export class Combinator {
             }
         }
         // Also traverse variants where piece is skipped
-        if (this.model.field.size < this.totalPieceCellsCount) {
+        if (this.field.size < this.totalPieceCellsCount) {
             yield* this._generateSteps(field, piecesUsed, pieceIndex + 1);
         }
     }

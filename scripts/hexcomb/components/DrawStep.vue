@@ -23,13 +23,15 @@
 </template>
 
 <script>
-import { colorScheme, getPlotHeight, getPlotWidth, getSvgPath } from '../commons/util';
-import { Model } from './Model';
+import { colorScheme, getPlotHeight, getPlotWidth, getSvgPath } from '../../commons/util';
 
 export default {
 
+    inject: [
+        'state'
+    ],
+
     props: {
-        model: { type: Model, required: true },
         step: { type: Object, required: true },
         radius: { type: Number, default: 16 },
         margin: { type: Number, default: 16 },
@@ -38,11 +40,11 @@ export default {
     computed: {
 
         cells() {
-            return [...this.model.field];
+            return [...this.state.field];
         },
 
         rings() {
-            return this.model.field.occupiedRings;
+            return this.state.field.occupiedRings;
         },
 
         width() {
@@ -73,7 +75,7 @@ export default {
 <style scoped>
 .HexCell {
     stroke-width: 1px;
-    stroke: rgba(0,0,0,.25);
-    fill: var(--background-color--inactive);
+    stroke: var(--hex-border-color);
+    fill: var(--background-color);
 }
 </style>

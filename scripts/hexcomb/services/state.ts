@@ -1,6 +1,6 @@
 import { service } from 'mesh-ioc';
 
-import { HexSet } from '../HexSet';
+import { HexSet } from '../../commons/HexSet';
 
 @service({ alias: 'state' })
 export class State {

@@ -18,10 +18,10 @@ export function saturate(x: number) {
     return clamp(x, 0, 1);
 }
 
-export function smoothstep(min: number, max: number, x: number) {
-    var x = saturate((x - min) / (max - min));
+export function smoothstep(min: number, max: number, value: number) {
+    const x = saturate((value - min) / (max - min));
     return x * x * (3 - 2 * x);
-};
+}
 
 export function step(y: number, x: number) {
     return x > y ? 1 : 0;
@@ -36,7 +36,7 @@ export function dot<V extends Vector>(a: V, b: V): number {
 }
 
 export function add<V extends Vector>(a: V, b: V | number): V {
-    let res = [];
+    const res = [];
     for (let i = 0; i < a.length; i++) {
         const p = typeof b === 'number' ? b : b[i];
         res[i] = a[i] + p;
@@ -45,7 +45,7 @@ export function add<V extends Vector>(a: V, b: V | number): V {
 }
 
 export function mul<V extends Vector>(a: V, b: V | number): V {
-    let res = [];
+    const res = [];
     for (let i = 0; i < a.length; i++) {
         const p = typeof b === 'number' ? b : b[i];
         res[i] = a[i] * p;
@@ -54,7 +54,7 @@ export function mul<V extends Vector>(a: V, b: V | number): V {
 }
 
 export function div<V extends Vector>(a: V, b: V | number): V {
-    let res = [];
+    const res = [];
     for (let i = 0; i < a.length; i++) {
         const p = typeof b === 'number' ? b : b[i];
         res[i] = a[i] / p;

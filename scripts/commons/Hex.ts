@@ -1,4 +1,4 @@
-import { Vector2, add, mul, dot, sqrt3 } from './math';
+import { add, dot, mul, sqrt3, Vector2 } from './math';
 
 export class Hex {
     static zero = new Hex(0, 0);
@@ -26,7 +26,7 @@ export class Hex {
         new Hex(1, -1),
     ];
 
-    constructor (
+    constructor(
         public readonly q: number,
         public readonly r: number,
     ) {}
@@ -134,7 +134,7 @@ export class Hex {
     }
 
     static *spiral(center: Hex, minRadius: number, maxRadius: number): IterableIterator<Hex> {
-        if (minRadius == 0) {
+        if (minRadius === 0) {
             yield center;
             minRadius += 1;
         }

@@ -1,10 +1,20 @@
 import { Mesh, serviceMetadata } from 'mesh-ioc';
 import { App as VueApp, createApp, reactive } from 'vue';
 
+// Resolve services and components
+
+const components = new Map<string, any>();
+
 // https://webpack.js.org/guides/dependency-management/#requirecontext
-const resolve = (require as any).context('./services', true, /\.ts$/);
-for (const key of resolve.keys()) {
-    resolve(key);
+const resolveServices = (require as any).context('./services', true, /\.ts$/);
+for (const key of resolveServices.keys()) {
+    resolveServices(key);
+}
+const resolveComponents = (require as any).context('./components', true, /\.vue$/);
+for (const key of resolveComponents.keys()) {
+    const module = resolveComponents(key);
+    const name = key.replace(/\.vue$/, '').replace(/[^a-z0-9_-]/gi, '');
+    components.set(name, module.default);
 }
 
 export class App {
@@ -15,10 +25,13 @@ export class App {
     initialised = false;
 
     constructor() {
-        this.vue = createApp({});
+        this.vue = createApp({
+            inject: serviceMetadata.map(_ => _.alias ?? '').filter(Boolean),
+        });
         this.mesh = new Mesh('App');
         this.mesh.use(_ => reactive(_));
         this.bindServices();
+        this.registerComponents();
     }
 
     async init() {
@@ -47,6 +60,12 @@ export class App {
                 this.services[svc.alias] = instance;
                 this.vue.provide(svc.alias, instance);
             }
+        }
+    }
+
+    registerComponents() {
+        for (const [k, v] of components) {
+            this.vue.component(k, v);
         }
     }
 
