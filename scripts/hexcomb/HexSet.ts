@@ -1,5 +1,5 @@
-import { Hex } from '../hex';
-import { Vector2 } from '../math';
+import { Hex } from '../commons/hex';
+import { Vector2 } from '../commons/math';
 
 export class HexSet {
     protected _map: Map<string, Hex> = new Map();

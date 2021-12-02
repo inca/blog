@@ -1,3 +1,5 @@
+/* eslint-disable import/no-default-export */
+
 declare module '*.svg' {
     export default string;
 }
@@ -7,7 +9,8 @@ declare module '*?raw' {
 }
 
 declare module '*.vue' {
-    import type { DefineComponent } from 'vue'
-    const component: DefineComponent<{}, {}, any>
-    export default component
+    import type { DefineComponent } from 'vue';
+
+    const component: DefineComponent<{}, {}, any>;
+    export default component;
 }

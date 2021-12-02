@@ -1,23 +1,19 @@
-import { HexSet } from './HexSet';
+import { service } from 'mesh-ioc';
 
-export class Model {
+import { HexSet } from '../HexSet';
 
-    constructor(
-        public field: HexSet = new HexSet(),
-        public pieces: HexSet[] = [],
-    ) {}
+@service({ alias: 'state' })
+export class State {
+    public field: HexSet = new HexSet();
+    public pieces: HexSet[] = [];
 
-    static load(): Model {
+    init() {
         try {
             const state = JSON.parse(localStorage.getItem('hexCombState') ?? '{}') as SerializedState;
             const { field = [], pieces = [] } = state;
-            return new Model(
-                HexSet.fromJSON(field),
-                pieces.map(_ => HexSet.fromJSON(_))
-            );
-        } catch (err) {
-            return new Model();
-        }
+            this.field = HexSet.fromJSON(field);
+            this.pieces = pieces.map(_ => HexSet.fromJSON(_));
+        } catch (err) {}
     }
 
     save(): this {

@@ -11,10 +11,11 @@
     "license": "ISC",
     "dependencies": {
         "highlight.js": "^11.3.1",
+        "mesh-ioc": "^1.1.0",
         "vue": "^3.2.23"
     },
     "devDependencies": {
-        "@inca/manuscript": "^0.4.0",
+        "@inca/manuscript": "^0.5.0",
         "@ubio/eslint-config": "^1.1.6",
         "eslint": "^7.32.0",
         "eslint-plugin-vue": "^8.1.1"

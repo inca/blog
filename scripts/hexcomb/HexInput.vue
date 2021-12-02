@@ -22,9 +22,8 @@
 </template>
 
 <script>
-import { Hex } from '../hex';
-import { colorScheme } from '../util';
-import { getPlotHeight, getPlotWidth, getSvgPath } from './helpers';
+import { Hex } from '../commons/hex';
+import { colorScheme, getPlotHeight, getPlotWidth, getSvgPath } from '../commons/util';
 import { HexSet } from './HexSet';
 
 export default {

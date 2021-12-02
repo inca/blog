@@ -1,5 +1,18 @@
-import { sqrt3 } from '../math';
-import { Hex } from '../hex';
+import { Hex } from './hex';
+import { sqrt3 } from './math';
+
+export const colorScheme = [
+    '#4e79a7',
+    '#f28e2c',
+    '#e15759',
+    '#76b7b2',
+    '#59a14f',
+    '#edc949',
+    '#af7aa1',
+    '#ff9da7',
+    '#9c755f',
+    '#bab0ab',
+];
 
 export function getPlotWidth(rings: number, cellRadius: number, margin: number) {
     const r = rings * 2 + 1;

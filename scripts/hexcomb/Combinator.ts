@@ -1,4 +1,3 @@
-import { Hex } from '../hex';
 import { HexSet } from './HexSet';
 import { Model } from './Model';
 

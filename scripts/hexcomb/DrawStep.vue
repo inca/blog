@@ -23,8 +23,7 @@
 </template>
 
 <script>
-import { colorScheme } from '../util';
-import { getPlotHeight, getPlotWidth, getSvgPath } from './helpers';
+import { colorScheme, getPlotHeight, getPlotWidth, getSvgPath } from '../commons/util';
 import { Model } from './Model';
 
 export default {
