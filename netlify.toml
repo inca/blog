@@ -2,6 +2,7 @@
     base = "./"
     publish = "./dist"
     command = "npm run build"
+    environment = { NODE_VERSION = "16.13.1" }
 
 [dev]
     framework = "#custom"
