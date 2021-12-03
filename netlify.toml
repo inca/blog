@@ -2,7 +2,6 @@
     base = "./"
     publish = "./dist"
     command = "npm run build"
-    environment = { NODE_VERSION = "16.13.1" }
 
 [dev]
     framework = "#custom"
@@ -28,7 +27,6 @@
     force = true
     status = 301
 
-# [[redirects]]
-#     from = "/"
-#     to = "/about"
-#     force = true
+[[redirects]]
+    from = "/about"
+    to = "/"
