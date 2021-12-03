@@ -1,18 +1,19 @@
 <template>
     <div class="PiecesList">
-        <template
-            v-for="group, i of uniqRotations">
-            <div class="PieceItem"
+        <span
+            v-for="group, i of uniqRotations"
+            :key="i">
+            <span class="PieceItem"
                 v-for="(piece, j) of group"
-                :key="i * 10 + j">
+                :key="j">
                 <HexInput
                     :readonly="true"
                     :radius="4"
                     :rings="2"
                     :hexset="piece"
                     :colorIndex="i"/>
-            </div>
-        </template>
+            </span>
+        </span>
     </div>
 </template>
 
@@ -26,7 +27,7 @@ export default {
     computed: {
 
         uniqRotations() {
-            return this.state.pieces.map(_ => _.uniqRotations());
+            return this.state.pieces.map(_ => [..._.uniqRotations()]);
         },
 
     },

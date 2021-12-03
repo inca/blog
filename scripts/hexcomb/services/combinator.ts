@@ -32,6 +32,7 @@ export class CombinatorService {
         this.playing = false;
         this.done = false;
         this.count = 0;
+        this.savedSteps = [];
         this.$iterator = null;
     }
 
