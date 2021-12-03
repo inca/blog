@@ -8,17 +8,11 @@
 </template>
 
 <script>
-import HexInput from './HexInput.vue';
-
 export default {
 
     inject: [
         'state',
     ],
-
-    components: {
-        HexInput,
-    },
 
     computed: {
 

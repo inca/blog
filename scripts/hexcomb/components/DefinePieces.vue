@@ -32,32 +32,16 @@
             + Add piece
         </button>
     </div>
-    <p>
-        That's <strong>{{ state.pieces.length }}</strong> pieces containing <strong>{{ cellCount }}</strong> cells in total.
-    </p>
 </template>
 
 <script>
 import { HexSet } from '../../commons/HexSet';
-import HexInput from './HexInput.vue';
 
 export default {
 
     inject: [
         'state',
     ],
-
-    components: {
-        HexInput
-    },
-
-    computed: {
-
-        cellCount() {
-            return this.state.pieces.reduce((sum, p) => sum + p.size, 0);
-        },
-
-    },
 
     methods: {
 

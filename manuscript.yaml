@@ -11,6 +11,8 @@ cssUrls:
 navbar:
   - href: /posts
     title: Blog
+  - href: https://github.com/inca
+    title: GitHub
   - href: /
     title: About
 logoImage: /bo-icon.svg

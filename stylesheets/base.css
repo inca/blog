@@ -29,7 +29,8 @@ h1 {
 
 h2 {
     font-size: 28px;
-    font-style: italic;
+    font-family: var(--font-family--alt);
+    font-weight: 400;
     margin: var(--sp6) 0 var(--sp2);
 }
 
@@ -40,6 +41,7 @@ h3 {
 }
 
 a {
+    position: relative;
     color: var(--link-color);
 }
 

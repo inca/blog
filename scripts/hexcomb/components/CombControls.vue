@@ -2,7 +2,7 @@
     <div class="block">
         <button @click="combinator.next()"
             :disabled="combinator.playing">
-            Next
+            Next Step
         </button>
         &nbsp;
         <button v-if="!combinator.playing"
@@ -18,10 +18,6 @@
             :disabled="combinator.playing">
             Reset
         </button>
-        <template v-if="combinator.done">
-            &nbsp;
-            <strong>Done!</strong>
-        </template>
     </div>
 </template>
 

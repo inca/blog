@@ -1,5 +1,8 @@
 <template>
-    <div class="HexInput">
+    <div class="HexInput"
+        :class="{
+            'HexInput--readonly': readonly,
+        }">
         <svg :width="width" :height="height">
             <g class="Center"
                 :transform="`translate(${width / 2}, ${height / 2}) scale(1, -1)`">
@@ -34,6 +37,7 @@ export default {
         radius: { type: Number, default: 16 },
         margin: { type: Number, default: 16 },
         colorIndex: { type: Number },
+        readonly: { type: Boolean, default: false },
     },
 
     data() {
@@ -83,6 +87,9 @@ export default {
         },
 
         setCell(hex, value) {
+            if (this.readonly) {
+                return;
+            }
             if (value && !this.hexset.has(hex)) {
                 this.hexset.add(hex);
                 this.$emit('change');
@@ -93,15 +100,24 @@ export default {
         },
 
         onMouseDown(hex) {
+            if (this.readonly) {
+                return;
+            }
             this.dragMode = !this.hexset.has(hex);
             this.setCell(hex, this.dragMode);
         },
 
         onMouseUp(_hex) {
+            if (this.readonly) {
+                return;
+            }
             this.dragMode = null;
         },
 
         onMouseMove(hex) {
+            if (this.readonly) {
+                return;
+            }
             if (this.dragMode != null) {
                 this.setCell(hex, this.dragMode);
             }

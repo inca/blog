@@ -1,5 +1,5 @@
 ---
-summary: A tiny experiment for generating hex puzzles
+summary: A tiny experiment on combinatorics and puzzles
 extraScripts:
     - name: hexcomb
 ---
@@ -8,7 +8,7 @@ extraScripts:
 
 I've created this tiny experiment to help with a 3D printing project I once had in mind. The idea was to create a simple fit-the-blocks puzzle, but on a hexagonal grid.
 
-As tends to happen with this variety of puzzles, there are a number of challenges that are best solved using computers. How to figure out which pieces to make? How to prove that one can actually fit them on the field? How many different combinations exist?
+As tends to happen with this variety of puzzles, there are a number of challenges that are best solved using computers. How to figure out which pieces to make? How to prove that one can actually fit them on the board? How many different combinations exist?
 
 This tiny experiment helped me with finding these answers.
 
@@ -40,17 +40,35 @@ Next, let's define which pieces are available for placement.
 <define-pieces>
 </define-pieces>
 
+That's <strong v-text="state.pieces.length"></strong> pieces containing
+<strong>{{ state.pieces.reduce((sum, p) => sum + p.size, 0) }}</strong> cells in total.
+
+Taking the symmetry of each piece into account we can work out the unique rotations of those pieces.
+
+<uniq-rotations>
+</uniq-rotations>
+
+By precomputing the unique rotations (i.e. piece variations) we reduce the task to trying out different variations on different positions on the field — until we find the combination that leaves no empty cells.
+
+There's a total of <strong v-text="state.pieces.flatMap(_ => [..._.uniqRotations()]).length"></strong> piece variations in our case.
+
 ## Combinations
 
 Let's now iterate over all possible combinations.
 
 <draw-step :step="combinator.currentStep"></draw-step>
 
-<comb-controls></comb-controls>
+<comb-controls>
+</comb-controls>
 
-<p v-if="combinator.count > -110">
-    Processed <strong v-text="combinator.count"></strong> steps so far.
-</p>
+::: sidenote
+The algorithm combines the depth-first search into pieces and the breadth-first search into the possible piece positions.
+:::
+
+On each step we'll pick one piece variation and place it somewhere on the field. If there's no place for it, we'll backtrack and take a different piece variation.
+
+The algorithm has processed <strong v-text="combinator.count"></strong> steps so far
+and found <strong v-text="combinator.savedSteps.length"></strong> solutions.
 
 <comb-solutions>
 </comb-solutions>
