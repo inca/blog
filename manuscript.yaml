@@ -26,8 +26,5 @@ scripts:
   - name: hexcomb
     source: hexcomb/index.ts
     excluded: true
-  - name: music
-    source: music/index.ts
-    excluded: true
 customBlocks:
   - sidenote
