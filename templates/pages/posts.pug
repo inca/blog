@@ -2,9 +2,8 @@ extends @layout.pug
 
 block content
   h1 Blog
-  each page in pages.filter(_ => _.id.startsWith('posts/'))
+  each page in pages.filter(_ => _.id.startsWith('posts/') && !_.opts.draft)
     a.page-item(href=`/${page.id}`)
       div.page-item-title= page.title
       if page.opts.summary
         div.page-item-summary= page.opts.summary
-    //- pre= JSON.stringify(page, null, 2)

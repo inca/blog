@@ -1,4 +1,5 @@
-import { dep, service } from 'mesh-ioc';
+import { service } from '@inca/vue-mesh';
+import { dep } from 'mesh-ioc';
 import { toRaw } from 'vue';
 
 import { HexComb } from '../../commons/HexComb';
@@ -6,7 +7,7 @@ import { HexSet } from '../../commons/HexSet';
 import { Step } from '../../commons/types';
 import { State } from './state';
 
-@service({ alias: 'combinator' })
+@service('combinator')
 export class CombinatorService {
 
     @dep() state!: State;

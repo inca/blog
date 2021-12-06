@@ -1,8 +1,8 @@
-import { service } from 'mesh-ioc';
+import { service } from '@inca/vue-mesh';
 
 import { HexSet } from '../../commons/HexSet';
 
-@service({ alias: 'state' })
+@service('state')
 export class State {
     public field: HexSet = new HexSet();
     public pieces: HexSet[] = [];

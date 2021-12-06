@@ -11,8 +11,9 @@
     "author": "Boris Okunskiy",
     "license": "ISC",
     "dependencies": {
+        "@inca/vue-mesh": "^0.1.0",
         "highlight.js": "^11.3.1",
-        "mesh-ioc": "^1.1.0",
+        "mesh-ioc": "^1.2.0",
         "vue": "^3.2.23"
     },
     "devDependencies": {
