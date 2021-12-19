@@ -1,6 +1,6 @@
 <template>
     <div class="PiecesList">
-        <span
+        <div
             v-for="group, i of uniqRotations"
             :key="i">
             <span class="PieceItem"
@@ -13,7 +13,7 @@
                     :hexset="piece"
                     :colorIndex="i"/>
             </span>
-        </span>
+        </div>
     </div>
 </template>
 
