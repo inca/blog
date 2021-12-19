@@ -17,7 +17,7 @@
         "vue": "^3.2.23"
     },
     "devDependencies": {
-        "@inca/manuscript": "^0.5.2",
+        "@inca/manuscript": "^0.5.3",
         "@ubio/eslint-config": "^1.1.6",
         "eslint": "^7.32.0",
         "eslint-plugin-vue": "^8.1.1"

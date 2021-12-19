@@ -26,7 +26,7 @@
 
     --text-color: #333;
     --background-color: #fff;
-    --background-color--dim: #f5f5f5;
+    --background-color--dim: #f0f0f0;
     --footer-background-color: var(--background-color--dim);
     --link-color: var(--color-primary);
     --hex-color: var(--background-color--dim);
@@ -43,5 +43,7 @@ html.dark {
     --background-color--dim: hsl(200deg, 25%, 30%);
     --color-subtle: hsl(200deg, 20%, 75%);
 
+    --hex-color: var(--background-color);
+    --hex-color--active: var(--background-color--dim);
     --hex-border-color: hsla(200deg, 20%, 75%, .25);
 }

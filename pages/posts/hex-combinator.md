@@ -13,10 +13,6 @@ As tends to happen with this variety of puzzles, there are a number of challenge
 
 This tiny experiment helped me with finding these answers.
 
-::: sidenote
-Unfortunately, it didn't help with finding time to actually finish the project. 🤷‍♂️
-:::
-
 ## Field
 
 First, let's define the _field_ — a collection of hex cells where the players can place their pieces.
