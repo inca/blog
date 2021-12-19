@@ -1,0 +1,25 @@
+.protip {
+    position: relative;
+    padding: var(--sp2);
+    padding-left: var(--sp4);
+    border-radius: 8px;
+    background: rgba(0,0,0,.03);
+}
+
+.protip::after {
+    content: 'ProTip™';
+    position: absolute;
+    top: -4px;
+    left: -16px;
+    height: 16px;
+    border-radius: 16px;
+    padding: 0 4px;
+
+    background: var(--color-red);
+    color: #fff;
+
+    font-size: 12px;
+    font-family: var(--font-family--alt);
+    line-height: 16px;
+    text-align: center;
+}

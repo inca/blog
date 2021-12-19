@@ -13,6 +13,14 @@ As tends to happen with this variety of puzzles, there are a number of challenge
 
 This tiny experiment helped me with finding these answers.
 
+::: protip
+
+If you bump into an interesting combination, you can save it as JSON and later load it (note, it will replace the state you have here).
+
+<import-export>
+</import-export>
+:::
+
 ## Field
 
 First, let's define the _field_ — a collection of hex cells where the players can place their pieces.

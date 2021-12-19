@@ -1,0 +1,7 @@
+.color-subtle {
+    color: var(--color-subtle);
+}
+
+.text-small {
+    font-size: var(--font-size--small);
+}

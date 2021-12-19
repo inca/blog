@@ -1,0 +1,52 @@
+/* Fade */
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .3s;
+}
+
+.fade-enter-from, .fade-leave-to {
+    opacity: 0;
+}
+
+/* Fade Scale */
+
+.fade-scale-enter-active, .fade-scale-leave-active {
+    transition: opacity .25s, transform .25s;
+}
+
+.fade-scale-enter-from {
+    transform: scale(.75);
+    opacity: 0;
+}
+
+.fade-scale-leave-to {
+    transform: scale(1.25);
+    opacity: 0;
+}
+
+/* Fade Squash */
+
+.fade-squash-enter-active, .fade-squash-leave-active {
+    transition: opacity .25s, transform .25s;
+}
+
+.fade-squash-enter-from, .fade-squash-leave-to {
+    transform: scale(10, 0.1);
+    opacity: 0;
+}
+
+/* Fade Swipe */
+
+.fade-swipe-enter-active, .fade-swipe-leave-active {
+    transition: opacity .25s, transform .25s;
+}
+
+.fade-swipe-enter-from {
+    transform: translate(-96px, -32px);
+    opacity: 0;
+}
+
+.fade-swipe-leave-to {
+    transform: translate(96px, -32px);
+    opacity: 0;
+}

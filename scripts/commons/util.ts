@@ -32,3 +32,31 @@ export function getSvgPath(hex: Hex, radius: number) {
     ]);
     return 'M ' + coords.map(c => `${c[0]},${c[1]}`).join(' ') + 'z';
 }
+
+export function openFile(): Promise<string> {
+    return new Promise(resolve => {
+        const el = document.createElement('input');
+        el.style.display = 'none';
+        el.setAttribute('type', 'file');
+        document.body.appendChild(el);
+        el.addEventListener('change', ev => {
+            const reader = new FileReader();
+            reader.onload = ev => {
+                resolve(ev.target?.result as string);
+            };
+            reader.readAsText((ev as any).target.files[0]);
+        });
+        el.click();
+        document.body.removeChild(el);
+    });
+}
+
+export function createDownloadFile(filename: string, content: string) {
+    const el = document.createElement('a');
+    el.setAttribute('href', 'data:text/plain;base64,' + btoa(content));
+    el.setAttribute('download', filename);
+    el.style.display = 'none';
+    document.body.appendChild(el);
+    el.click();
+    document.body.removeChild(el);
+}

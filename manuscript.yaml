@@ -28,3 +28,4 @@ scripts:
     excluded: true
 customBlocks:
   - sidenote
+  - protip

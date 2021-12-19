@@ -5,12 +5,14 @@ import { toRaw } from 'vue';
 import { HexComb } from '../../commons/HexComb';
 import { HexSet } from '../../commons/HexSet';
 import { Step } from '../../commons/types';
+import { EventBus } from './events';
 import { State } from './state';
 
 @service('combinator')
 export class CombinatorService {
 
     @dep() state!: State;
+    @dep() events!: EventBus;
 
     savedSteps: Step[] = [];
 
@@ -22,14 +24,15 @@ export class CombinatorService {
     $iterator: IterableIterator<Step> | null = null;
 
     init() {
+        this.events.stateLoaded.on(() => this.reset());
+        this.events.stateSaved.on(() => this.reset());
+    }
+
+    reset() {
         this.currentStep = {
             field: this.state.field,
             pieces: [],
         };
-    }
-
-    reset() {
-        this.init();
         this.playing = false;
         this.done = false;
         this.count = 0;
