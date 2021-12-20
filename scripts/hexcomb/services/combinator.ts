@@ -73,7 +73,19 @@ export class CombinatorService {
     async importJson() {
         try {
             const text = await openFile();
-            this.savedSteps = JSON.parse(text);
+            const json = JSON.parse(text);
+            this.savedSteps = [];
+            for (const data of json) {
+                this.savedSteps.push({
+                    field: HexSet.fromJSON(data.field),
+                    pieces: data.pieces.map((d: any) => {
+                        return {
+                            index: Number(d.index),
+                            cells: HexSet.fromJSON(d.cells),
+                        };
+                    }),
+                });
+            }
         } catch (err) {
             console.warn('Could not import file', err);
         }
