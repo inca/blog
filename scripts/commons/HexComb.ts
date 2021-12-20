@@ -9,9 +9,10 @@ export class HexComb {
     constructor(
         readonly field: HexSet,
         readonly pieces: HexSet[],
+        readonly allowFlip: boolean,
     ) {
         this.pieceVariations = pieces.map(piece => {
-            return [...piece.uniqRotations()];
+            return [...piece.uniqVariations(allowFlip)];
         });
         this.totalPieceCellsCount = pieces.reduce((sum, p) => sum + p.size, 0);
     }

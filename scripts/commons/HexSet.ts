@@ -55,8 +55,12 @@ export class HexSet {
         return this.map(_ => _.rotate(rot));
     }
 
+    flip(): HexSet {
+        return this.map(_ => _.flip());
+    }
+
     normalize() {
-        // Find closest piece to median — that's our new origin
+        // Find closest piece to median — that's our new origin
         const median = this.median;
         const rings = this.occupiedRings;
         for (const hex of Hex.spiral(median, 0, rings)) {
@@ -86,24 +90,25 @@ export class HexSet {
 
     *uniqRotations(): IterableIterator<HexSet> {
         const norm = this.normalize();
-        yield norm;
-        const rot1 = norm.rotate(1).normalize();
-        if (rot1.equals(norm)) {
-            return;
+        const hashes = new Set<string>();
+        for (let i = 0; i <= 5; i++) {
+            const rot = norm.rotate(i).normalize();
+            if (hashes.has(rot.hash)) {
+                continue;
+            }
+            yield rot;
+            hashes.add(rot.hash);
         }
-        yield rot1;
-        const rot2 = norm.rotate(2).normalize();
-        if (rot2.equals(norm)) {
-            return;
+    }
+
+    *uniqVariations(allowFlip: boolean): IterableIterator<HexSet> {
+        const candidates = [...this.uniqRotations()];
+        if (allowFlip) {
+            candidates.push(...this.flip().uniqRotations());
         }
-        yield rot2;
-        const rot3 = norm.rotate(3).normalize();
-        if (rot3.equals(norm)) {
-            return;
-        }
-        yield rot3;
-        yield norm.rotate(4).normalize();
-        yield norm.rotate(5).normalize();
+        // TODO deduplicate better
+        const map = new Map<string, HexSet>(candidates.map(_ => [_.hash, _]));
+        yield* map.values();
     }
 
     get occupiedRings() {
@@ -120,6 +125,10 @@ export class HexSet {
             sum = sum.add(hex);
         }
         return new Hex(Math.floor(sum.q / this.size), Math.floor(sum.r / this.size));
+    }
+
+    get hash() {
+        return [...this].sort((a, b) => a.q - b.q || a.r - b.r).join();
     }
 
 }

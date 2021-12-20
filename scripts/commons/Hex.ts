@@ -107,6 +107,11 @@ export class Hex {
         return new Hex(coords[0], coords[1]);
     }
 
+    flip() {
+        const [x, y, z] = this.cubeCoords;
+        return new Hex(x, z);
+    }
+
     distanceTo(hex: Hex) {
         return (
             Math.abs(this.q - hex.q) +

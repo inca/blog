@@ -48,12 +48,16 @@ Next, let's define which pieces are available for placement.
 That's <strong v-text="state.pieces.length"></strong> pieces containing
 <strong>{{ state.pieces.reduce((sum, p) => sum + p.size, 0) }}</strong> cells in total.
 
-Taking the symmetry of each piece into account we can work out the unique rotations of those pieces.
+Depending on the game we may want to either allow or disallow "flipping" the pieces (i.e. mirroring them in one of the directions):
 
-<uniq-rotations>
-</uniq-rotations>
+<define-flip></define-flip>
 
-By precomputing the unique rotations (i.e. piece variations) we reduce the task to trying out different variations on different positions on the field — until we find the combination that leaves no empty cells.
+Taking the symmetry <span v-if="state.allowFlip">and flipping</span> of each piece into account we can work out the unique variations of those pieces.
+
+<piece-variations>
+</piece-variations>
+
+By precomputing the variations of each piece we reduce the task to trying out different variations on different positions on the field — until we find the combination that leaves no empty cells.
 
 There's a total of <strong v-text="state.pieces.flatMap(_ => [..._.uniqRotations()]).length"></strong> piece variations in our case.
 

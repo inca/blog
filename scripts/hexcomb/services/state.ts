@@ -11,6 +11,7 @@ export class State {
 
     public field: HexSet = new HexSet();
     public pieces: HexSet[] = [];
+    public allowFlip = false;
 
     init() {
         try {
@@ -20,9 +21,10 @@ export class State {
     }
 
     loadFromJson(json: any) {
-        const { field = [], pieces = [] } = json as SerializedState;
+        const { field = [], pieces = [], allowFlip = false } = json;
         this.field = HexSet.fromJSON(field);
-        this.pieces = pieces.map(_ => HexSet.fromJSON(_));
+        this.pieces = pieces.map((_: any) => HexSet.fromJSON(_));
+        this.allowFlip = Boolean(allowFlip);
         this.events.stateLoaded.emit({});
     }
 
@@ -44,9 +46,4 @@ export class State {
         createDownloadFile('hexcomb.json', JSON.stringify(this));
     }
 
-}
-
-export interface SerializedState {
-    field: any;
-    pieces: any[];
 }
