@@ -82,7 +82,7 @@ export default {
                 return {};
             }
             return {
-                fill: colorScheme[this.colorIndex],
+                fill: colorScheme[this.colorIndex % colorScheme.length],
             };
         },
 

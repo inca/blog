@@ -59,21 +59,32 @@ There's a total of <strong v-text="state.pieces.flatMap(_ => [..._.uniqRotations
 
 ## Combinations
 
-Let's now iterate over all possible combinations.
+Let's now iterate over all possible combinations and find the _solutions_ where pieces fit the field exactly leaving no vacant cells.
+
+On each step we'll pick one piece variation and place it somewhere on the field. If there's no place for it, we'll backtrack and take a different piece variation.
+
+::: sidenote
+The algorithm combines the depth-first search into pieces and the breadth-first search into the possible piece positions.
+:::
 
 <draw-step :step="combinator.currentStep"></draw-step>
 
 <comb-controls>
 </comb-controls>
 
-::: sidenote
-The algorithm combines the depth-first search into pieces and the breadth-first search into the possible piece positions.
-:::
-
-On each step we'll pick one piece variation and place it somewhere on the field. If there's no place for it, we'll backtrack and take a different piece variation.
+### Results
 
 The algorithm has processed <strong v-text="combinator.count"></strong> steps so far
 and found <strong v-text="combinator.savedSteps.length"></strong> solutions.
 
 <comb-solutions>
 </comb-solutions>
+
+<template v-if="combinator.savedSteps.length">
+
+### Stats
+
+Let's see how many times each piece was used in the solutions (because some pieces can be more difficult to fit than the others).
+
+<comb-stats></comb-stats>
+</template>

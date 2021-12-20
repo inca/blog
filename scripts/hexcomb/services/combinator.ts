@@ -5,6 +5,7 @@ import { toRaw } from 'vue';
 import { HexComb } from '../../commons/HexComb';
 import { HexSet } from '../../commons/HexSet';
 import { Step } from '../../commons/types';
+import { createDownloadFile, openFile } from '../../commons/util';
 import { EventBus } from './events';
 import { State } from './state';
 
@@ -54,6 +55,30 @@ export class CombinatorService {
         this.playing = false;
     }
 
+    getPieceStats(): Map<number, number> {
+        const counts = new Map<number, number>();
+        for (const step of this.savedSteps) {
+            for (const piece of step.pieces) {
+                const count = counts.get(piece.index) || 0;
+                counts.set(piece.index, count + 1);
+            }
+        }
+        return counts;
+    }
+
+    exportJson() {
+        createDownloadFile('hexcomb-solutions.json', JSON.stringify(this.savedSteps));
+    }
+
+    async importJson() {
+        try {
+            const text = await openFile();
+            this.savedSteps = JSON.parse(text);
+        } catch (err) {
+            console.warn('Could not import file', err);
+        }
+    }
+
     protected async scanForward() {
         if (!this.$iterator) {
             // OPT prevent using Vue-observed state
@@ -83,4 +108,9 @@ export class CombinatorService {
         }
     }
 
+}
+
+export interface PieceStat {
+    index: number;
+    count: number;
 }

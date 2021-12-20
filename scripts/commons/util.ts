@@ -12,6 +12,12 @@ export const colorScheme = [
     '#ff9da7',
     '#9c755f',
     '#bab0ab',
+    '#7a65cc',
+    '#abc321',
+    '#a93659',
+    '#99abed',
+    '#459c8a',
+    '#c9755f',
 ];
 
 export function getPlotWidth(rings: number, cellRadius: number, margin: number) {

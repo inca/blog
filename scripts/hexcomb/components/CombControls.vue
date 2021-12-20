@@ -25,6 +25,16 @@
             :disabled="combinator.playing">
             Reset
         </button>
+        &nbsp;
+        ·
+        &nbsp;
+        <button @click="combinator.exportJson()">
+            Save solutions
+        </button>
+        &nbsp;
+        <button @click="combinator.importJson()">
+            Load solutions
+        </button>
     </div>
 </template>
 

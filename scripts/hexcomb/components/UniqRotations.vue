@@ -8,7 +8,7 @@
                 :key="j">
                 <HexInput
                     :readonly="true"
-                    :radius="4"
+                    :radius="6"
                     :rings="2"
                     :hexset="piece"
                     :colorIndex="i"/>
