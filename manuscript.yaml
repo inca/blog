@@ -6,6 +6,7 @@ charset: utf-8
 lang: en
 favicon: /favicon.ico
 themeColor: "#fff"
+baseUrl: https://boris.okunskiy.name
 cssUrls:
     - https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400;1,600&display=swap
 navbar:
@@ -29,3 +30,5 @@ scripts:
 customBlocks:
   - sidenote
   - protip
+appendHead: >
+  <script src="https://yastatic.net/share2/share.js" defer async></script>

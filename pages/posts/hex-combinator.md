@@ -1,6 +1,7 @@
 ---
 summary: A tiny experiment on combinatorics and puzzles
 tags: ['hex', 'combinatorics', 'experiments']
+image: /posts/hexcomb-screenshot.jpg
 extraScripts:
     - name: hexcomb
 ---

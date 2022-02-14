@@ -1,0 +1,21 @@
+- var isPost = page.id.startsWith('posts/')
+- var image = page.opts.image ? (opts.baseUrl + page.opts.image) : ''
+
+.page-content
+  if isPost
+    .page-social-header
+      .ya-share2(
+        data-lang="en"
+        data-services="pinterest,twitter,telegram,reddit,facebook",
+        data-image=image
+      )
+  != page.html
+  if isPost
+    .page-social-footer
+      hr
+      p If you enjoy this post, please share it with your friends
+      .ya-share2(
+        data-lang="en"
+        data-services="pinterest,twitter,telegram,reddit,facebook",
+        data-image=image
+      )

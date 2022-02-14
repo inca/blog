@@ -68,6 +68,14 @@
     color: var(--color-subtle);
 }
 
+.page-social-header {
+    float: right;
+}
+
+.page-social-footer {
+    text-align: center;
+}
+
 html.light .icon-moon { display: none }
 html.dark .icon-sun { display: none }
 

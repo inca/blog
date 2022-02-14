@@ -55,3 +55,11 @@ pre code {
     font-size: var(--font-size-code);
     line-height: 1.25;
 }
+
+hr {
+    margin: 1em 0;
+    border: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(to right, var(--color-red), var(--color-magenta));
+}
