@@ -18,9 +18,9 @@ There's something inexplicably fascinating about the shapes and patterns occurri
     </figcaption>
 </figure>
 
-People have always been attracted to organic forms, as is evidenced by an endless number of various design elements found in human craft and art since prehistoric times; the "Mother Nature" has always been a source of inspiration and symbolism for people throughout the globe. The ability and desire to contemplate the organic processes seems to be an inherent part of human nature.
+People have always been attracted to organic forms, as is evidenced by an endless number of various design elements found in human craft and art since prehistoric times; the "Mother Nature" has always been a source of inspiration and symbolism for people throughout the globe. The desire to contemplate and reflect upon the organic processes seems to be an inherent part of human nature.
 
-In their search of beauty people have invented a large number of tools and ways to produce organic patterns.
+In search for beauty people have come up with a large number of tools and ways to produce organic patterns.
 
 Today I'm proud to introduce my humble contribution to the generative art ecosystem — [Differential Growth Addon](https://github.com/inca/blender-differential-growth) for [Blender](https://www.blender.org/). Fully in-line with Blender Manifesto, it's open source, completely free to use and built with tons of love.
 
