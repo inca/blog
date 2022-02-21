@@ -29,6 +29,7 @@ scripts:
     excluded: true
 customBlocks:
   - sidenote
+  - remark
   - protip
 appendHead: >
   <script src="https://yastatic.net/share2/share.js" defer async></script>

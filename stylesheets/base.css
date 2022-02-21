@@ -63,3 +63,18 @@ hr {
     border-radius: 2px;
     background: linear-gradient(to right, var(--color-red), var(--color-magenta));
 }
+
+img, video {
+    max-width: 100%;
+}
+
+figure {
+    margin: 1em 0;
+    text-align: center;
+}
+
+figcaption {
+    color: var(--color-subtle);
+    text-align: center;
+    font-size: var(--font-size--small);
+}

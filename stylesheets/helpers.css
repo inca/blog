@@ -5,3 +5,9 @@
 .text-small {
     font-size: var(--font-size--small);
 }
+
+.remark {
+    padding-left: 2em;
+    font-size: var(--font-size--small);
+    color: var(--color-subtle);
+}
