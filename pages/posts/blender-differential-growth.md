@@ -1,7 +1,7 @@
 ---
 summary: Nature-inspired procedural mesh generation algorithm
 tags: ['blender', '3d', 'generative', 'procedural', 'art', 'experiments']
-image: /posts/lichen1-transparent.png
+image: /media/posts/lichen1-transparent.png
 ---
 
 # Introducing Differential Growth Addon for Blender
@@ -9,9 +9,13 @@ image: /posts/lichen1-transparent.png
 There's something inexplicably fascinating about the shapes and patterns occurring in nature.
 
 <figure>
-    <img src="/posts/lichen1-transparent.png"
-        width="640"
-        alt="Foliose lichen mesh"/>
+    <picture>
+        <source srcset="/media/posts/lichen1-transparent.webp" type="image/webp">
+        <source srcset="/media/posts/lichen1-transparent.png" type="image/png">
+        <img src="/media/posts/lichen1-transparent.png"
+            width="640"
+            alt="Foliose lichen mesh"/>
+    </picture>
     <figcaption>
         <a href="https://en.wikipedia.org/wiki/Xanthoria_parietina" target="_blank">Xanthoria foliose lichen</a>
         mesh, procedurally generated.
@@ -28,7 +32,7 @@ A few examples follow.
 
 <figure>
     <video controls autoplay loop>
-        <source src="/posts/dg-lettuce.mp4" type="video/mp4"/>
+        <source src="/media/posts/dg-lettuce.mp4" type="video/mp4"/>
     </video>
     <figcaption>
     Lettuce-like form produced from a unit circle with standard settings and gradually reducing Split Radius, resulting in finer detalization towards the end of simulation.
@@ -37,7 +41,7 @@ A few examples follow.
 
 <figure>
     <video controls autoplay loop>
-        <source src="/posts/dg-lichen.mp4" type="video/mp4"/>
+        <source src="/media/posts/dg-lichen.mp4" type="video/mp4"/>
     </video>
     <figcaption>
     Lichen-like form produced by inhibiting inner growth and limiting Z movement.
@@ -46,7 +50,7 @@ A few examples follow.
 
 <figure>
     <video controls autoplay loop>
-        <source src="/posts/dg-algae.mp4" type="video/mp4"/>
+        <source src="/media/posts/dg-algae.mp4" type="video/mp4"/>
     </video>
     <figcaption>
     Algae-like form produced by adding growth along Z+ and inhibiting inner growth.
