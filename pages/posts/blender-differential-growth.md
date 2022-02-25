@@ -6,6 +6,8 @@ image: /media/posts/lichen1-transparent.png
 
 # Introducing Differential Growth Addon for Blender
 
+[Latest Release](https://github.com/inca/blender-differential-growth/releases/latest) · [Tutorial Video](https://www.youtube.com/watch?v=Q-nu3SOcvOg)
+
 There's something inexplicably fascinating about the shapes and patterns occurring in nature.
 
 <figure>
