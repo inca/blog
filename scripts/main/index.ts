@@ -1,6 +1,6 @@
-import { initLinks } from './links';
-import { initDarkMode } from './dark';
 import { highlightCodeBlocks } from './code';
+import { initDarkMode } from './dark';
+import { initLinks } from './links';
 import { initScroll } from './scroll';
 
 initLinks({

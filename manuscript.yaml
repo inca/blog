@@ -33,3 +33,12 @@ customBlocks:
   - protip
 appendHead: >
   <script src="https://yastatic.net/share2/share.js" defer async></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQH42VN0BR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-PQH42VN0BR');
+  </script>

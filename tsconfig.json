@@ -12,7 +12,8 @@
         "checkJs": false,
         "lib": [
             "DOM",
-            "ES2019"
+            "DOM.Iterable",
+            "ES2020"
         ],
         "rootDir": "scripts",
         "outDir": "dist"
