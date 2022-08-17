@@ -27,6 +27,9 @@ scripts:
   - name: hexcomb
     source: hexcomb/index.ts
     excluded: true
+  - name: growth
+    source: growth/index.ts
+    excluded: true
 customBlocks:
   - sidenote
   - remark

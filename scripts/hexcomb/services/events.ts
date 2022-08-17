@@ -1,7 +1,8 @@
-import { service } from '@inca/vue-mesh';
 import { Event } from 'typesafe-event';
 
-@service('events')
+import { provide } from '../../commons/provide.js';
+
+@provide('events')
 export class EventBus {
 
     stateSaved = new Event<{}>();

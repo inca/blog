@@ -1,15 +1,15 @@
-import { service } from '@inca/vue-mesh';
 import { dep } from 'mesh-ioc';
 import { toRaw } from 'vue';
 
-import { HexComb } from '../../commons/HexComb';
-import { HexSet } from '../../commons/HexSet';
-import { Step } from '../../commons/types';
-import { createDownloadFile, openFile } from '../../commons/util';
-import { EventBus } from './events';
-import { State } from './state';
+import { HexComb } from '../../commons/HexComb.js';
+import { HexSet } from '../../commons/HexSet.js';
+import { provide } from '../../commons/provide.js';
+import { Step } from '../../commons/types.js';
+import { createDownloadFile, openFile } from '../../commons/util.js';
+import { EventBus } from './events.js';
+import { State } from './state.js';
 
-@service('combinator')
+@provide('combinator')
 export class CombinatorService {
 
     @dep() state!: State;

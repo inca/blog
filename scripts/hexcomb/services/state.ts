@@ -1,11 +1,11 @@
-import { service } from '@inca/vue-mesh';
 import { dep } from 'mesh-ioc';
 
-import { HexSet } from '../../commons/HexSet';
-import { createDownloadFile, openFile } from '../../commons/util';
-import { EventBus } from './events';
+import { HexSet } from '../../commons/HexSet.js';
+import { provide } from '../../commons/provide.js';
+import { createDownloadFile, openFile } from '../../commons/util.js';
+import { EventBus } from './events.js';
 
-@service('state')
+@provide('state')
 export class State {
     @dep() events!: EventBus;
 

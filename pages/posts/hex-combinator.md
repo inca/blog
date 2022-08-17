@@ -51,7 +51,8 @@ That's <strong v-text="state.pieces.length"></strong> pieces containing
 
 Depending on the game we may want to either allow or disallow "flipping" the pieces (i.e. mirroring them in one of the directions):
 
-<define-flip></define-flip>
+<define-flip>
+</define-flip>
 
 Taking the symmetry <span v-if="state.allowFlip">and flipping</span> of each piece into account we can work out the unique variations of those pieces.
 
@@ -91,5 +92,7 @@ and found <strong v-text="combinator.savedSteps.length"></strong> solutions.
 
 Let's see how many times each piece was used in the solutions (because some pieces can be more difficult to fit than the others).
 
-<comb-stats></comb-stats>
+<comb-stats>
+</comb-stats>
+
 </template>
