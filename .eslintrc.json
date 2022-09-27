@@ -1,21 +1,11 @@
 {
-    "extends": ["@ubio/eslint-config"],
-    "overrides": [
-        {
-            "files": [
-                "*.vue"
-            ],
-            "plugins": [
-                "vue"
-            ],
-            "extends": [
-                "plugin:vue/essential"
-            ],
-            "rules": {
-                "vue/no-multiple-template-root": 0,
-                "import/no-default-export": 0,
-                "vue/require-v-for-key": 0
-            }
-        }
-    ]
+    "extends": [
+        "@ubio/eslint-config"
+    ],
+    "rules": {
+        "import/namespace": 0,
+        "import/no-extraneous-dependencies": 0,
+        "require-yield": 0,
+        "vue/no-mutating-props": 0
+    }
 }
