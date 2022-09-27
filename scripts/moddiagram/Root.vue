@@ -29,6 +29,15 @@
                     step="1" />
             </label>
             <label class="Row">
+                <div class="Label">Stroke</div>
+                <input
+                    v-model="modDiagram.stroke"
+                    type="number"
+                    min="0"
+                    max="2"
+                    step=".1" />
+            </label>
+            <label class="Row">
                 <div class="Label">Hue</div>
                 <input
                     v-model="modDiagram.hueRange[0]"
