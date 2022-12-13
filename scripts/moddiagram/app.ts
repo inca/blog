@@ -1,4 +1,4 @@
-import { Mesh } from 'mesh-ioc';
+import { Mesh } from '@nodescript/mesh';
 import { App as VueApp, createApp, reactive, ReactiveFlags } from 'vue';
 
 import { globalProvideMap } from '../commons/provide.js';

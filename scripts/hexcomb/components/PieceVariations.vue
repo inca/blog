@@ -3,15 +3,16 @@
         <div
             v-for="group, i of uniqVariations"
             :key="i">
-            <span class="PieceItem"
+            <span
                 v-for="(piece, j) of group"
-                :key="j">
+                :key="j"
+                class="PieceItem">
                 <HexInput
                     :readonly="true"
                     :radius="6"
-                    :rings="2"
+                    :rings="3"
                     :hexset="piece"
-                    :colorIndex="i"/>
+                    :colorIndex="i" />
             </span>
         </div>
     </div>

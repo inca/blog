@@ -1,6 +1,7 @@
-import { dep } from 'mesh-ioc';
+import { dep } from '@nodescript/mesh';
 
 import { HexSet } from '../../commons/HexSet.js';
+import { init } from '../../commons/init.js';
 import { provide } from '../../commons/provide.js';
 import { createDownloadFile, openFile } from '../../commons/util.js';
 import { EventBus } from './events.js';
@@ -13,6 +14,7 @@ export class State {
     public pieces: HexSet[] = [];
     public allowFlip = false;
 
+    @init()
     init() {
         try {
             const json = JSON.parse(localStorage.getItem('hexCombState') ?? '{}');

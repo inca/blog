@@ -1,5 +1,6 @@
-import { Mesh } from 'mesh-ioc';
+import { Mesh } from '@nodescript/mesh';
 import { App as VueApp, createApp, reactive, ReactiveFlags } from 'vue';
+import { invokeInitHandlers } from '../commons/init.js';
 
 import { globalProvideMap } from '../commons/provide.js';
 import CombControls from './components/CombControls.vue';
@@ -42,10 +43,11 @@ export class App {
         this.vue.component('PieceVariations', PieceVariations);
     }
 
-    start() {
+    async start() {
         for (const [alias, instance] of Object.entries(this.provides)) {
             this.vue.provide(alias, instance);
         }
+        await invokeInitHandlers(this.mesh, true);
         this.vue.mount('.page');
     }
 

@@ -1,8 +1,9 @@
-import { dep } from 'mesh-ioc';
+import { dep } from '@nodescript/mesh';
 import { toRaw } from 'vue';
 
 import { HexComb } from '../../commons/HexComb.js';
 import { HexSet } from '../../commons/HexSet.js';
+import { init } from '../../commons/init.js';
 import { provide } from '../../commons/provide.js';
 import { Step } from '../../commons/types.js';
 import { createDownloadFile, openFile } from '../../commons/util.js';
@@ -24,6 +25,7 @@ export class CombinatorService {
 
     $iterator: IterableIterator<Step> | null = null;
 
+    @init()
     init() {
         this.events.stateLoaded.on(() => this.reset());
         this.events.stateSaved.on(() => this.reset());
