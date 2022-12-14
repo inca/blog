@@ -4,7 +4,6 @@ import { Piece, Step } from './types';
 export class HexComb {
     pieceVariations: Array<HexSet[]>;
     totalPieceCellsCount: number;
-    visitedSteps: Set<string> = new Set();
 
     constructor(
         readonly field: HexSet,
@@ -26,7 +25,7 @@ export class HexComb {
         piecesUsed: Piece[],
         pieceIndex: number,
     ): IterableIterator<Step> {
-
+        const visitedHashes = new Set<string>();
         if (pieceIndex >= this.pieceVariations.length) {
             return;
         }
@@ -36,21 +35,18 @@ export class HexComb {
                 const newField = new HexSet(field);
                 const offsetPiece = piece.offset(offset);
                 // Try remove piece from that field
-                for (const cell of offsetPiece) {
-                    const had = newField.remove(cell);
-                    if (!had) {
-                        continue next;
-                    }
+                if (!newField.tryRemoveAll(offsetPiece)) {
+                    continue next;
                 }
                 // Placed successfully
                 const newPieces = piecesUsed.concat([{ index: pieceIndex, cells: offsetPiece }]);
                 const step: Step = { field: newField, pieces: newPieces };
                 // Deduplicate
                 for (const hash of this.getStepHashes(step)) {
-                    if (this.visitedSteps.has(hash)) {
+                    if (visitedHashes.has(hash)) {
                         continue next;
                     }
-                    this.visitedSteps.add(hash);
+                    visitedHashes.add(hash);
                 }
                 yield step;
                 yield* this._generateSteps(newField, newPieces, pieceIndex + 1);
@@ -62,7 +58,7 @@ export class HexComb {
         }
     }
 
-    protected *getStepHashes(step: Step) {
+    private *getStepHashes(step: Step) {
         const maxRotDir = 6 - step.field.rotSymmetry();
         for (let i = 0; i < maxRotDir; i++) {
             const pc = step.pieces.map(p => this.rotatePiece(p, i));
@@ -71,16 +67,17 @@ export class HexComb {
         }
     }
 
-    protected rotatePiece(piece: Piece, rot: number) {
+    private rotatePiece(piece: Piece, rot: number) {
         return {
             index: piece.index,
             cells: piece.cells.map(_ => _.rotate(rot))
         };
     }
 
-    protected hashPiece(piece: Piece) {
+    private hashPiece(piece: Piece) {
         return piece.index + ';' +
-            [...piece.cells].sort((a, b) => a.q - b.q || a.r - b.r).join();
+            [...piece.cells].sort((a, b) => a.q === b.q ? a.r - b.r : a.q - b.q)
+            .join();
     }
 
 }

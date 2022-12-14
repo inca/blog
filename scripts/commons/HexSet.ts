@@ -35,6 +35,15 @@ export class HexSet {
         return had;
     }
 
+    tryRemoveAll(cells: Iterable<Hex>) {
+        for (const cell of cells) {
+            if (!this.remove(cell)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     has(hex: Hex) {
         return this._map.has(hex.toString());
     }
