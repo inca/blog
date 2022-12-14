@@ -1,11 +1,10 @@
 import { dep } from '@nodescript/mesh';
 import { toRaw } from 'vue';
 
-import { HexComb } from '../../commons/HexComb.js';
+import { HexComb, HexCombStep } from '../../commons/HexComb.js';
 import { HexSet } from '../../commons/HexSet.js';
 import { init } from '../../commons/init.js';
 import { provide } from '../../commons/provide.js';
-import { Step } from '../../commons/types.js';
 import { createDownloadFile, openFile } from '../../commons/util.js';
 import { EventBus } from './events.js';
 import { State } from './state.js';
@@ -16,14 +15,14 @@ export class CombinatorService {
     @dep() state!: State;
     @dep() events!: EventBus;
 
-    savedSteps: Step[] = [];
+    savedSteps: HexCombStep[] = [];
 
-    currentStep: Step = { field: new HexSet(), pieces: [] };
+    currentStep: HexCombStep = { field: new HexSet(), pieces: [] };
     playing = false;
     done = false;
     count = 0;
 
-    $iterator: IterableIterator<Step> | null = null;
+    $iterator: IterableIterator<HexCombStep> | null = null;
 
     @init()
     init() {

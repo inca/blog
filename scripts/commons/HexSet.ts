@@ -48,6 +48,15 @@ export class HexSet {
         return this._map.has(hex.toString());
     }
 
+    hasAll(cells: Iterable<Hex>) {
+        for (const cell of cells) {
+            if (!this.has(cell)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     map(fn: (hex: Hex) => Hex): HexSet {
         const set = new HexSet();
         for (const hex of this) {

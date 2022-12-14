@@ -9,7 +9,7 @@
                 class="PieceItem">
                 <HexInput
                     :readonly="true"
-                    :radius="6"
+                    :radius="4"
                     :rings="3"
                     :hexset="piece"
                     :colorIndex="i" />
