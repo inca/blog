@@ -13,6 +13,7 @@ export interface HexCombStep {
 export class HexComb {
     pieceVariations: Array<HexPiece[]>;
     totalPieceCellsCount: number;
+    counter = 0;
 
     constructor(
         readonly field: HexSet,
@@ -20,8 +21,9 @@ export class HexComb {
         readonly allowFlip: boolean,
     ) {
         this.pieceVariations = this.generatePieceVariations();
-        console.log(this.pieceVariations);
         this.totalPieceCellsCount = pieces.reduce((sum, p) => sum + p.size, 0);
+        const totalCombs = this.pieceVariations.reduce((res, vars) => res * vars.length, 1);
+        console.log('Total combs', totalCombs);
     }
 
     *generateSteps() {
@@ -39,6 +41,10 @@ export class HexComb {
         }
         const pieceVars = this.pieceVariations[pieceIndex];
         next: for (const pieceVar of pieceVars) {
+            this.counter += 1;
+            if (this.counter % 1_000_000 === 0) {
+                console.log(this.counter);
+            }
             const newField = new HexSet(field);
             // Try remove piece from that field
             if (!newField.tryRemoveAll(pieceVar.cells)) {

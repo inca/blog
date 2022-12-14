@@ -114,10 +114,10 @@ export class CombinatorService {
             // Save perfect fits
             if (step.field.size === 0) {
                 this.savedSteps.push(step);
-                await new Promise(r => setTimeout(r, 10));
+                await new Promise(r => setTimeout(r, 1));
             }
             if (this.count % 1000 === 0) {
-                await new Promise(r => setTimeout(r, 10));
+                await new Promise(r => setTimeout(r, 1));
             }
             if (!this.playing) {
                 return;
