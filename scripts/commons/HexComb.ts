@@ -13,15 +13,17 @@ export interface HexCombStep {
 export class HexComb {
     pieceVariations: Array<HexPiece[]>;
     totalPieceCellsCount: number;
+    minPieceCellsCount: number;
     counter = 0;
 
     constructor(
         readonly field: HexSet,
-        readonly pieces: HexSet[],
+        readonly pieces: HexPiece[],
         readonly allowFlip: boolean,
     ) {
         this.pieceVariations = this.generatePieceVariations();
-        this.totalPieceCellsCount = pieces.reduce((sum, p) => sum + p.size, 0);
+        this.totalPieceCellsCount = pieces.reduce((sum, p) => sum + p.cells.size, 0);
+        this.minPieceCellsCount = pieces.reduce((res, p) => Math.min(res, p.cells.size), +Infinity);
         const totalCombs = this.pieceVariations.reduce((res, vars) => res * vars.length, 1);
         console.log('Total combs', totalCombs);
     }
@@ -37,6 +39,11 @@ export class HexComb {
     ): IterableIterator<HexCombStep> {
         const visitedHashes = new Set<string>();
         if (pieceIndex >= this.pieceVariations.length) {
+            return;
+        }
+        // Opt: check min partition
+        const minPart = field.getMinPartition();
+        if (minPart.size < this.minPieceCellsCount) {
             return;
         }
         const pieceVars = this.pieceVariations[pieceIndex];
@@ -87,22 +94,23 @@ export class HexComb {
 
     private hashPiece(piece: HexPiece) {
         return piece.index + ';' +
-            [...piece.cells].sort((a, b) => a.q === b.q ? a.r - b.r : a.q - b.q)
+            [...piece.cells].sort((a, b) => a.q - b.q || a.r - b.r)
             .join();
     }
 
     private generatePieceVariations() {
         const buckets: Array<HexPiece[]> = [];
-        for (const [index, initialCells] of this.pieces.entries()) {
+        const sortedPieces = this.pieces.slice().sort((a, b) => b.cells.size - a.cells.size);
+        for (const piece of sortedPieces) {
             const bucket: HexPiece[] = [];
             buckets.push(bucket);
             for (const offset of this.field) {
-                for (const varCells of initialCells.uniqVariations(this.allowFlip)) {
+                for (const varCells of piece.cells.uniqVariations(this.allowFlip)) {
                     const offsetCells = varCells.offset(offset);
                     const fits = this.field.hasAll(offsetCells);
                     if (fits) {
                         bucket.push({
-                            index,
+                            index: piece.index,
                             cells: offsetCells,
                         });
                     }

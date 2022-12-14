@@ -26,6 +26,11 @@ export class HexSet {
         return this._map.size;
     }
 
+    pick(): Hex | null {
+        const res = this._map.values().next();
+        return res.done ? null : res.value;
+    }
+
     add(hex: Hex) {
         this._map.set(hex.toString(), hex);
     }
@@ -147,6 +152,31 @@ export class HexSet {
 
     get hash() {
         return [...this].sort((a, b) => a.q - b.q || a.r - b.r).join();
+    }
+
+    getMinPartition(): HexSet {
+        const remaining = new HexSet(this);
+        const scan = (bucket: HexSet, cell: Hex) => {
+            remaining.remove(cell);
+            bucket.add(cell);
+            for (const neighbour of cell.neighbours()) {
+                if (remaining.has(neighbour)) {
+                    scan(bucket, neighbour);
+                }
+            }
+        };
+        let result = new HexSet(this);
+        while (true) {
+            const cell = remaining.pick();
+            if (!cell) {
+                return result;
+            }
+            let bucket = new HexSet();
+            scan(bucket, cell);
+            if (bucket.size < result.size) {
+                result = bucket;
+            }
+        }
     }
 
 }

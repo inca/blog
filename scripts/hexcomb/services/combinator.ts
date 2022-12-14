@@ -97,7 +97,9 @@ export class CombinatorService {
             // OPT prevent using Vue-observed state
             const hexcomb = new HexComb(
                 toRaw(this.state.field),
-                toRaw(this.state.pieces),
+                toRaw(this.state.pieces).map((cells, index) => {
+                    return { cells, index };
+                }),
                 toRaw(this.state.allowFlip),
             );
             this.$iterator = hexcomb.generateSteps();
