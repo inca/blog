@@ -1,6 +1,6 @@
 {
     "extends": [
-        "@ubio/eslint-config"
+        "@nodescript/eslint-config"
     ],
     "rules": {
         "import/namespace": 0,

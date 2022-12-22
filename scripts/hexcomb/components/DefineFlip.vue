@@ -3,7 +3,7 @@
         <input
             type="checkbox"
             :checked="state.allowFlip"
-            @change="onChange($event)"/>
+            @change="onChange($event)" />
         &nbsp;
         <span>
             <span v-if="state.allowFlip">Flipping is allowed</span>

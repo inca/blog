@@ -9,9 +9,11 @@
         </button>
         &nbsp;
         <transition name="fade-scale">
-        <span v-if="message" class="color-subtle text-small">
-            {{ message }}
-        </span>
+            <span
+                v-if="message"
+                class="color-subtle text-small">
+                {{ message }}
+            </span>
         </transition>
     </div>
 </template>

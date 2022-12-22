@@ -1,9 +1,10 @@
 <template>
     <div class="SavedSteps">
-        <DrawStep v-for="step of combinator.savedSteps"
+        <DrawStep
+            v-for="step of state.savedSteps"
             :key="step"
             :step="step"
-            :radius="8"/>
+            :radius="8" />
     </div>
 </template>
 
@@ -11,7 +12,7 @@
 export default {
 
     inject: [
-        'combinator',
+        'state',
     ],
 
 };

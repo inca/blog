@@ -1,21 +1,24 @@
 <template>
     <div class="DrawStep">
-        <svg :width="width" :height="height">
+        <svg
+            :width="width"
+            :height="height">
             <g :transform="`translate(${width / 2}, ${height / 2}) scale(1, -1)`">
                 <path
-                    class="HexCell"
                     v-for="(hex, i) in step.field"
                     :key="i"
-                    :d="getPath(hex)"/>
+                    class="HexCell"
+                    :d="getPath(hex)" />
 
-                <g v-for="piece of step.pieces"
+                <g
+                    v-for="piece of step.pieces"
                     :key="piece">
                     <path
-                        class="HexCell HexCell--piece"
                         v-for="hex in piece.cells"
                         :key="hex"
+                        class="HexCell HexCell--piece"
                         :d="getPath(hex)"
-                        :style="getPieceStyle(piece.index)"/>
+                        :style="getPieceStyle(piece.index)" />
                 </g>
             </g>
         </svg>

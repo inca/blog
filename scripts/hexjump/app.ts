@@ -1,9 +1,8 @@
 import { Mesh } from 'mesh-ioc';
 import { App as VueApp, createApp, reactive, ReactiveFlags } from 'vue';
+import { invokeInitHandlers } from '../commons/init.js';
 
 import { globalProvideMap } from '../commons/provide.js';
-import { ModDiagram } from './diagram.js';
-import Root from './Root.vue';
 
 export class App {
     mesh: Mesh;
@@ -13,17 +12,17 @@ export class App {
         this.mesh = new Mesh();
         (this.mesh as any)[ReactiveFlags.SKIP] = true;
         this.mesh.use(instance => reactive(instance));
-        this.mesh.service(ModDiagram);
         this.vue = createApp({
             inject: Object.keys(this.provides),
         });
-        this.vue.component('Root', Root);
+
     }
 
-    start() {
+    async start() {
         for (const [alias, instance] of Object.entries(this.provides)) {
             this.vue.provide(alias, instance);
         }
+        await invokeInitHandlers(this.mesh, true);
         this.vue.mount('.page');
     }
 

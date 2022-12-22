@@ -1,9 +1,10 @@
-import { Mesh } from '@nodescript/mesh';
+import { Mesh } from 'mesh-ioc';
 import { App as VueApp, createApp, reactive, ReactiveFlags } from 'vue';
-import { invokeInitHandlers } from '../commons/init.js';
 
+import { invokeInitHandlers } from '../commons/init.js';
 import { globalProvideMap } from '../commons/provide.js';
 import CombControls from './components/CombControls.vue';
+import CombExplore from './components/CombExplore.vue';
 import CombSolutions from './components/CombSolutions.vue';
 import CombStats from './components/CombStats.vue';
 import DefineField from './components/DefineField.vue';
@@ -15,6 +16,7 @@ import ImportExport from './components/ImportExport.vue';
 import PieceVariations from './components/PieceVariations.vue';
 import { CombinatorService } from './services/combinator.js';
 import { EventBus } from './services/events.js';
+import { SolutionExplorer } from './services/explorer.js';
 import { State } from './services/state.js';
 
 export class App {
@@ -26,12 +28,14 @@ export class App {
         (this.mesh as any)[ReactiveFlags.SKIP] = true;
         this.mesh.use(instance => reactive(instance));
         this.mesh.service(CombinatorService);
+        this.mesh.service(SolutionExplorer);
         this.mesh.service(EventBus);
         this.mesh.service(State);
         this.vue = createApp({
             inject: Object.keys(this.provides),
         });
         this.vue.component('CombControls', CombControls);
+        this.vue.component('CombExplore', CombExplore);
         this.vue.component('CombSolutions', CombSolutions);
         this.vue.component('CombStats', CombStats);
         this.vue.component('DefineField', DefineField);

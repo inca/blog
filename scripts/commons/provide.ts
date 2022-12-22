@@ -1,4 +1,4 @@
-import { ServiceConstructor } from '@nodescript/mesh';
+import { ServiceConstructor } from 'mesh-ioc';
 
 export const globalProvideMap = new Map<string, ServiceConstructor<any>>();
 

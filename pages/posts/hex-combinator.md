@@ -1,6 +1,6 @@
 ---
 summary: A tiny experiment on combinatorics and puzzles
-tags: ['hex', 'combinatorics', 'experiments']
+tags: ['hex', 'combinatorics', 'experiments', 'games']
 image: /media/posts/hexcomb-screenshot.jpg
 extraScripts:
     - name: hexcomb
@@ -78,15 +78,14 @@ The algorithm combines the depth-first search into pieces and the breadth-first 
 <comb-controls>
 </comb-controls>
 
+<template v-if="state.savedSteps.length">
+
 ### Results
 
-The algorithm has processed <strong v-text="combinator.count"></strong> steps so far
-and found <strong v-text="combinator.savedSteps.length"></strong> solutions.
+We have found <strong v-text="state.savedSteps.length"></strong> solutions.
 
 <comb-solutions>
 </comb-solutions>
-
-<template v-if="combinator.savedSteps.length">
 
 ### Stats
 
@@ -94,5 +93,10 @@ Let's see how many times each piece was used in the solutions (because some piec
 
 <comb-stats>
 </comb-stats>
+
+### Explore solutions
+
+<comb-explore>
+</comb-explore>
 
 </template>

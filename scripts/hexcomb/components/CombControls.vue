@@ -1,16 +1,19 @@
 <template>
     <div class="block">
         <template v-if="!combinator.done">
-            <button @click="combinator.next()"
-                :disabled="combinator.playing">
+            <button
+                :disabled="combinator.playing"
+                @click="combinator.next()">
                 Next Step
             </button>
             &nbsp;
-            <button v-if="!combinator.playing"
+            <button
+                v-if="!combinator.playing"
                 @click="combinator.play()">
                 Play
             </button>
-            <button v-if="combinator.playing"
+            <button
+                v-if="combinator.playing"
                 @click="combinator.pause()">
                 Pause
             </button>
@@ -21,20 +24,17 @@
             </button>
         </template>
         &nbsp;
-        <button @click="combinator.reset()"
-            :disabled="combinator.playing">
+        <button
+            :disabled="combinator.playing"
+            @click="combinator.reset()">
             Reset
         </button>
         &nbsp;
-        ·
-        &nbsp;
-        <button @click="combinator.exportJson()">
-            Save solutions
-        </button>
-        &nbsp;
-        <button @click="combinator.importJson()">
-            Load solutions
-        </button>
+        <span
+            v-if="combinator.count > 0"
+            class="color-subtle">
+            {{ combinator.count }} steps processed
+        </span>
     </div>
 </template>
 

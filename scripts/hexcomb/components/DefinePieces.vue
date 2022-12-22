@@ -1,34 +1,39 @@
 <template>
     <div class="PiecesList">
-        <div class="PieceItem"
+        <div
             v-for="(piece, i) of state.pieces"
-            :key="i">
+            :key="i"
+            class="PieceItem">
             <HexInput
                 :radius="8"
                 :rings="2"
                 :hexset="piece"
                 :colorIndex="i"
-                @change="onPieceChanged(piece)"/>
+                @change="onPieceChanged(piece)" />
             <span class="PieceSymmetry">C{{ piece.rotSymmetry() }}</span>
-            <button class="PieceRotateCw button button--circle"
-                @click="rotate(i, 5)"
-                title="Rotate CW">
+            <button
+                class="PieceRotateCw button button--circle"
+                title="Rotate CW"
+                @click="rotate(i, 5)">
                 &orarr;
             </button>
-            <button class="PieceRotateCcw button button--circle"
-                @click="rotate(i, 1)"
-                title="Rotate CCW">
+            <button
+                class="PieceRotateCcw button button--circle"
+                title="Rotate CCW"
+                @click="rotate(i, 1)">
                 &olarr;
             </button>
-            <button class="PieceRemoveButton button button--circle"
-                @click="removePiece(i)"
-                title="Remove piece">
+            <button
+                class="PieceRemoveButton button button--circle"
+                title="Remove piece"
+                @click="removePiece(i)">
                 &times;
             </button>
         </div>
-        <button class="PieceAddButton"
-            @click="addPiece()"
-            title="Add piece">
+        <button
+            class="PieceAddButton"
+            title="Add piece"
+            @click="addPiece()">
             + Add piece
         </button>
     </div>

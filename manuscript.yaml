@@ -27,6 +27,9 @@ scripts:
   - name: hexcomb
     source: hexcomb/index.ts
     excluded: true
+  - name: hexjump
+    source: hexjump/index.ts
+    excluded: true
   - name: moddiagram
     source: moddiagram/index.ts
     excluded: true

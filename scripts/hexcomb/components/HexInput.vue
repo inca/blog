@@ -1,12 +1,17 @@
 <template>
-    <div class="HexInput"
+    <div
+        class="HexInput"
         :class="{
             'HexInput--readonly': readonly,
         }">
-        <svg :width="width" :height="height">
-            <g class="Center"
+        <svg
+            :width="width"
+            :height="height">
+            <g
+                class="Center"
                 :transform="`translate(${width / 2}, ${height / 2}) scale(1, -1)`">
-                <g v-for="(hex, i) in cells"
+                <g
+                    v-for="(hex, i) in cells"
                     :key="i"
                     :transform="getTransform(hex)">
                     <path
@@ -16,8 +21,8 @@
                         :style="getStyle(hex)"
                         @mousemove="onMouseMove(hex)"
                         @mousedown="onMouseDown(hex)"
-                        @mouseup="onMouseUp(hex)"/>
-                    <text class="HexInput__label"></text>
+                        @mouseup="onMouseUp(hex)" />
+                    <text class="HexInput__label" />
                 </g>
             </g>
         </svg>

@@ -1,4 +1,4 @@
-import { Mesh } from '@nodescript/mesh';
+import { Mesh } from 'mesh-ioc';
 
 export interface InitHandler {
     target: any;

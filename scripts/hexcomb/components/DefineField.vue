@@ -4,7 +4,7 @@
         :rings="4"
         :radius="16"
         :hexset="state.field"
-        @change="onChange()"/>
+        @change="onChange()" />
 </template>
 
 <script>

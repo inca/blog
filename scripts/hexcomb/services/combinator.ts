@@ -1,11 +1,9 @@
-import { dep } from '@nodescript/mesh';
+import { dep } from 'mesh-ioc';
 import { toRaw } from 'vue';
 
 import { HexComb, HexCombStep } from '../../commons/HexComb.js';
 import { HexSet } from '../../commons/HexSet.js';
-import { init } from '../../commons/init.js';
 import { provide } from '../../commons/provide.js';
-import { createDownloadFile, openFile } from '../../commons/util.js';
 import { EventBus } from './events.js';
 import { State } from './state.js';
 
@@ -15,20 +13,12 @@ export class CombinatorService {
     @dep() state!: State;
     @dep() events!: EventBus;
 
-    savedSteps: HexCombStep[] = [];
-
     currentStep: HexCombStep = { field: new HexSet(), pieces: [] };
     playing = false;
     done = false;
     count = 0;
 
     $iterator: IterableIterator<HexCombStep> | null = null;
-
-    @init()
-    init() {
-        this.events.stateLoaded.on(() => this.reset());
-        this.events.stateSaved.on(() => this.reset());
-    }
 
     reset() {
         this.currentStep = {
@@ -38,8 +28,9 @@ export class CombinatorService {
         this.playing = false;
         this.done = false;
         this.count = 0;
-        this.savedSteps = [];
         this.$iterator = null;
+        this.state.savedSteps = [];
+        this.state.save();
     }
 
     next() {
@@ -48,8 +39,10 @@ export class CombinatorService {
     }
 
     play() {
-        this.playing = true;
-        this.scanForward();
+        if (!this.playing) {
+            this.playing = true;
+            this.scanForward();
+        }
     }
 
     pause() {
@@ -58,7 +51,7 @@ export class CombinatorService {
 
     getPieceStats(): Map<number, number> {
         const counts = new Map<number, number>();
-        for (const step of this.savedSteps) {
+        for (const step of this.state.savedSteps) {
             for (const piece of step.pieces) {
                 const count = counts.get(piece.index) || 0;
                 counts.set(piece.index, count + 1);
@@ -67,34 +60,10 @@ export class CombinatorService {
         return counts;
     }
 
-    exportJson() {
-        createDownloadFile('hexcomb-solutions.json', JSON.stringify(this.savedSteps));
-    }
-
-    async importJson() {
-        try {
-            const text = await openFile();
-            const json = JSON.parse(text);
-            this.savedSteps = [];
-            for (const data of json) {
-                this.savedSteps.push({
-                    field: HexSet.fromJSON(data.field),
-                    pieces: data.pieces.map((d: any) => {
-                        return {
-                            index: Number(d.index),
-                            cells: HexSet.fromJSON(d.cells),
-                        };
-                    }),
-                });
-            }
-        } catch (err) {
-            console.warn('Could not import file', err);
-        }
-    }
-
     protected async scanForward() {
         if (!this.$iterator) {
             // OPT prevent using Vue-observed state
+            this.state.savedSteps = [];
             const hexcomb = new HexComb(
                 toRaw(this.state.field),
                 toRaw(this.state.pieces).map((cells, index) => {
@@ -115,7 +84,8 @@ export class CombinatorService {
             this.currentStep = step;
             // Save perfect fits
             if (step.field.size === 0) {
-                this.savedSteps.push(step);
+                this.state.savedSteps.push(step);
+                this.state.saveDebounced();
                 await new Promise(r => setTimeout(r, 1));
             }
             if (this.count % 1000 === 0) {
