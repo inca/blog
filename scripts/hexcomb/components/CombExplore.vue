@@ -1,5 +1,42 @@
 <template>
-    <div class="CombExplore">
+
+    <div class="SetControls">
+        <button @click="explorer.findSolutionSets()">
+            Calc all sets
+        </button>
+        &nbsp;
+        Min solutions
+        <input
+            v-model="minCount"
+            type="number" />
+    </div>
+
+    <div
+        v-for="set, index of shownSets"
+        :key="index"
+        class="SolutionSet"
+        @click="selectSet(set)">
+        <div class="SolutionSetCount">
+            {{ set.count }}
+        </div>
+        <div class="SolutionSetPieces">
+            <HexInput
+                v-for="piece of set.pieces"
+                :key="piece.index"
+                :readonly="true"
+                :radius="6"
+                :rings="2"
+                :hexset="piece.cells"
+                :colorIndex="piece.index" />
+        </div>
+    </div>
+
+    <div class="block">
+        {{ explorer.filteredSteps.length }} solutions shown
+    </div>
+    <div
+        ref="exploreSolutions"
+        class="CombExplore">
         <div class="PieceSwitchColumn">
             <div
                 v-for="piece, i of state.pieces"
@@ -20,7 +57,6 @@
             </div>
         </div>
         <div class="SolutionsColumn">
-            {{ explorer.filteredSteps.length }} solutions shown
             <div class="SolutionsGrid">
                 <DrawStep
                     v-for="step of explorer.filteredSteps"
@@ -30,36 +66,6 @@
             </div>
         </div>
     </div>
-
-    <div class="SetControls">
-        <input
-            v-model="explorer.setSize"
-            min="0"
-            max="20" />
-        <button @click="explorer.findSolutionSets()">
-            Calc sets
-        </button>
-    </div>
-
-    <div
-        v-for="set, index of explorer.solutionSets"
-        :key="index"
-        class="SolutionSet">
-        <div class="SolutionSetCount">
-            {{ set.count }}
-        </div>
-        <div class="SolutionSetPieces">
-            <HexInput
-                v-for="piece of set.pieces"
-                :key="piece.index"
-                :readonly="true"
-                :radius="6"
-                :rings="2"
-                :hexset="piece.cells"
-                :colorIndex="piece.index" />
-        </div>
-    </div>
-
 </template>
 
 <script>
@@ -70,11 +76,30 @@ export default {
         'explorer',
     ],
 
+    data() {
+        return {
+            minCount: 0,
+        };
+    },
+
+    computed: {
+
+        shownSets() {
+            return this.explorer.solutionSets.filter(_ => _.count >= this.minCount);
+        },
+
+    },
+
     methods: {
 
         onSelectionChanged(index, ev) {
             this.explorer.setPieceSelected(index, ev.target.checked);
-        }
+        },
+
+        selectSet(set) {
+            this.explorer.selectSet(set);
+            this.$refs.exploreSolutions.scrollIntoView();
+        },
 
     }
 
@@ -118,6 +143,13 @@ export default {
     display: flex;
     align-items: center;
     margin: var(--sp);
+
+    cursor: pointer;
+    border-radius: var(--border-radius);
+}
+
+.SolutionSet:hover {
+    background: var(--background-color--dim);
 }
 
 .SolutionSetCount {

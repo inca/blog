@@ -22,5 +22,7 @@ export default {
 .SavedSteps {
     display: flex;
     flex-flow: row wrap;
+    max-height: 100vh;
+    overflow-y: auto;
 }
 </style>

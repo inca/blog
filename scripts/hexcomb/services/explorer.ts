@@ -13,7 +13,6 @@ export class SolutionExplorer {
     selectedIndexes: number[] = [];
     filteredSteps: HexCombStep[] = [];
 
-    setSize = 5;
     solutionSets: SolutionSet[] = [];
 
     isPieceSelected(index: number) {
@@ -31,28 +30,45 @@ export class SolutionExplorer {
         this.filterSteps();
     }
 
+    selectSet(set: SolutionSet) {
+        this.selectedIndexes = set.pieces.map(_ => _.index);
+        this.filterSteps();
+    }
+
     filterSteps() {
         this.filteredSteps = this.findStepsContainingPieces(this.selectedIndexes);
     }
 
     findSolutionSets() {
-        const indexes = [...this.state.pieces.keys()];
-        const sets = combinations(indexes, this.setSize);
         this.solutionSets = [];
-        for (const set of sets) {
-            const steps = this.findStepsContainingPieces(set);
-            if (steps.length === 0) {
-                continue;
-            }
-            this.solutionSets.push({
-                pieces: set.map(i => {
+        const indexes = [...this.state.pieces.keys()];
+        for (let size = 1; size < this.state.pieces.length; size++) {
+            const sets = combinations(indexes, size);
+            for (const set of sets) {
+                const pieces = set.map(i => {
                     return {
                         cells: this.state.pieces[i],
                         index: i,
                     };
-                }),
-                count: steps.length,
-            });
+                });
+                const cellCount = pieces.reduce((sum, p) => sum + p.cells.size, 0);
+                if (cellCount !== this.state.field.size) {
+                    continue;
+                }
+                const steps = this.findStepsContainingPieces(set);
+                if (steps.length === 0) {
+                    continue;
+                }
+                this.solutionSets.push({
+                    pieces: set.map(i => {
+                        return {
+                            cells: this.state.pieces[i],
+                            index: i,
+                        };
+                    }),
+                    count: steps.length,
+                });
+            }
         }
     }
 
