@@ -171,7 +171,7 @@ export class HexSet {
             if (!cell) {
                 return result;
             }
-            let bucket = new HexSet();
+            const bucket = new HexSet();
             scan(bucket, cell);
             if (bucket.size < result.size) {
                 result = bucket;
