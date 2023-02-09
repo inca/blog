@@ -4,8 +4,17 @@
         <div
             v-for="nodeType, i of nodeTypes.all"
             :key="i"
-            class="NodeType Tile">
-            Hi
+            class="NodeType Tile"
+            :class="{
+                'Tile--Selected': nodeTypes.selectedIndex === i,
+            }"
+            @click="nodeTypes.select(i)">
+            <SvgPlot :radius="radius">
+                <SvgHexCell
+                    :radius="radius"
+                    :fillColor="nodeType.fill"
+                    :borderColor="nodeType.border" />
+            </SvgPlot>
         </div>
 
         <button
@@ -22,7 +31,13 @@ export default {
 
     inject: [
         'nodeTypes',
-    ]
+    ],
+
+    data() {
+        return {
+            radius: 24,
+        };
+    }
 
 };
 </script>
@@ -34,6 +49,7 @@ export default {
     flex: 0 0 auto;
     display: flex;
     flex-flow: column nowrap;
+    gap: var(--sp);
 
     padding: var(--sp);
     border-right: 2px solid var(--background-color--dim);
@@ -44,14 +60,23 @@ export default {
 .Tile {
     width: var(--tile-size);
     height: var(--tile-size);
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: var(--border-radius);
+    border: 2px solid var(--color-base-1);
+}
+
+.Tile:hover:not(.Tile--Selected) {
+    border-color: var(--color-base-2);
+}
+
+.Tile--Selected {
+    border-color: var(--color-primary);
 }
 
 .AddNodeType {
-    border: 0;
     background: var(--background-color--dim);
-    border-radius: var(--border-radius);
 }
 </style>

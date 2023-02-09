@@ -4,7 +4,7 @@ export interface NodeType {
     id: string;
     z: number;
     placement: string[];
-    color: string;
+    fill: string;
     border: string;
     image: string;
 }
@@ -15,8 +15,8 @@ export const NodeTypeSchema = new Schema<NodeType>({
         id: { type: 'string' },
         z: { type: 'number' },
         placement: { type: 'array', items: { type: 'string' } },
-        color: { type: 'string' },
-        border: { type: 'string' },
+        fill: { type: 'string', default: '#888' },
+        border: { type: 'string', default: '#888' },
         image: { type: 'string' },
     }
 });

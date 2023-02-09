@@ -1,6 +1,6 @@
 <template>
     <div class="GameField">
-        Field
+        <div />
     </div>
 </template>
 

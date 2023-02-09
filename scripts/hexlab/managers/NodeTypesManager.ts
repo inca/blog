@@ -15,6 +15,10 @@ export class NodeTypesManager {
         return this.state.settings.nodeTypes[this.selectedIndex] ?? null;
     }
 
+    select(i = -1) {
+        this.selectedIndex = i;
+    }
+
     addNodeType() {
         const nodeType = NodeTypeSchema.decode({});
         this.state.settings.nodeTypes.push(nodeType);

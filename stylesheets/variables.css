@@ -18,26 +18,61 @@
 
     --container-width: 640px;
 
+    --color-base-0: hsl(200deg, 10%, 100%);
+    --color-base-1: hsl(200deg, 10%, 96%);
+    --color-base-2: hsl(200deg, 10%, 92%);
+    --color-base-3: hsl(200deg, 10%, 85%);
+
+    --color-text-0: hsl(200deg, 10%, 20%);
+    --color-text-1: hsl(200deg, 10%, 40%);
+    --color-text-2: hsl(200deg, 10%, 55%);
+    --color-text-3: hsl(200deg, 10%, 68%);
+
+    --color-highlight-0: hsl(48deg, 90%, 90%);
+    --color-highlight-1: hsl(48deg, 90%, 75%);
+    --color-highlight-2: hsl(48deg, 75%, 65%);
+    --color-highlight-3: hsl(48deg, 60%, 55%);
+
+    --color-focus-0: hsl(210deg, 75%, 95%);
+    --color-focus-1: hsl(210deg, 75%, 85%);
+    --color-focus-2: hsl(210deg, 75%, 75%);
+    --color-focus-3: hsl(210deg, 75%, 65%);
+
     --color-primary: hsl(210deg, 64%, 50%);
     --color-secondary: hsl(280deg, 40%, 60%);
     --color-subtle: hsl(32deg, 7%, 50%);
     --color-red: hsl(0deg, 80%, 64%);
     --color-magenta: hsl(280deg, 48%, 64%);
 
-    --text-color: #333;
-    --background-color: #fff;
-    --background-color--dim: #f0f0f0;
+    --text-color: var(--color-text-0);
+    --background-color: var(--color-base-0);
+    --background-color--dim: var(--color-base-1);
     --footer-background-color: var(--background-color--dim);
     --link-color: var(--color-primary);
     --hex-color: var(--background-color--dim);
     --hex-color--active: var(--background-color);
-    --hex-border-color: rgba(0,0,0,.2);
+    --hex-border-color: var(--color-base-2);
 
     --border-radius: 4px;
-
 }
 
 html.dark {
+
+    --color-base-0: hsl(200deg, 15%, 20%);
+    --color-base-1: hsl(200deg, 15%, 26%);
+    --color-base-2: hsl(200deg, 15%, 32%);
+    --color-base-3: hsl(200deg, 15%, 40%);
+
+    --color-text-0: hsl(200deg, 15%, 85%);
+    --color-text-1: hsl(200deg, 15%, 75%);
+    --color-text-2: hsl(200deg, 15%, 60%);
+    --color-text-3: hsl(200deg, 15%, 50%);
+
+    --color-highlight-0: hsl(48deg, 25%, 30%);
+    --color-highlight-1: hsl(48deg, 25%, 40%);
+    --color-highlight-2: hsl(48deg, 25%, 50%);
+    --color-highlight-3: hsl(48deg, 25%, 60%);
+
     --text-color: hsl(200deg, 15%, 86%);
     --background-color: hsl(200deg, 25%, 20%);
     --background-color--dim: hsl(200deg, 25%, 30%);
