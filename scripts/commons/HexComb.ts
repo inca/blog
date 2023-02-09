@@ -25,7 +25,7 @@ export class HexComb {
         this.totalPieceCellsCount = pieces.reduce((sum, p) => sum + p.cells.size, 0);
         this.minPieceCellsCount = pieces.reduce((res, p) => Math.min(res, p.cells.size), +Infinity);
         const totalCombs = this.pieceVariations.reduce((res, vars) => res * vars.length, 1);
-        console.log('Total combs', totalCombs);
+        console.info('Total combs', totalCombs);
     }
 
     *generateSteps() {
@@ -49,9 +49,9 @@ export class HexComb {
         const pieceVars = this.pieceVariations[pieceIndex];
         next: for (const pieceVar of pieceVars) {
             this.counter += 1;
-            if (this.counter % 1_000_000 === 0) {
-                console.log(this.counter);
-            }
+            // if (this.counter % 1_000_000 === 0) {
+            //     console.info(this.counter);
+            // }
             const newField = new HexSet(field);
             // Try remove piece from that field
             if (!newField.tryRemoveAll(pieceVar.cells)) {
@@ -95,7 +95,7 @@ export class HexComb {
     private hashPiece(piece: HexPiece) {
         return piece.index + ';' +
             [...piece.cells].sort((a, b) => a.q - b.q || a.r - b.r)
-            .join();
+                .join();
     }
 
     private generatePieceVariations() {

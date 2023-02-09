@@ -53,7 +53,10 @@ function toggleMode() {
 }
 
 function createSwitchEl() {
-    const parent = document.querySelector('.header-container')!;
+    const parent = document.querySelector('.header-container');
+    if (!parent) {
+        return;
+    }
     const el = document.createElement('div');
     el.setAttribute('class', 'color-mode-switch');
     parent.appendChild(el);

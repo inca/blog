@@ -1,8 +1,12 @@
 import { Mesh } from 'mesh-ioc';
 import { App as VueApp, createApp, reactive, ReactiveFlags } from 'vue';
-import { invokeInitHandlers } from '../commons/init.js';
 
+import { invokeInitHandlers } from '../commons/init.js';
 import { globalProvideMap } from '../commons/provide.js';
+import { EventManager } from './managers/EventManager.js';
+import { NodeTypesManager } from './managers/NodeTypesManager.js';
+import { StateManager } from './managers/StateManager.js';
+import RootView from './views/Root.vue';
 
 export class App {
     mesh: Mesh;
@@ -10,12 +14,12 @@ export class App {
 
     constructor() {
         this.mesh = new Mesh();
-        (this.mesh as any)[ReactiveFlags.SKIP] = true;
+        (this.mesh as any)[ReactiveFlags.RAW] = true;
         this.mesh.use(instance => reactive(instance));
-        this.vue = createApp({
-            inject: Object.keys(this.provides),
-        });
-
+        this.vue = createApp(RootView);
+        this.mesh.service(StateManager);
+        this.mesh.service(NodeTypesManager);
+        this.mesh.service(EventManager);
     }
 
     async start() {
@@ -23,7 +27,7 @@ export class App {
             this.vue.provide(alias, instance);
         }
         await invokeInitHandlers(this.mesh, true);
-        this.vue.mount('.page');
+        this.vue.mount('#app');
     }
 
     get provides() {

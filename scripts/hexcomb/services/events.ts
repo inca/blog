@@ -1,4 +1,4 @@
-import { Event } from 'typesafe-event';
+import { Event } from 'nanoevent';
 
 import { provide } from '../../commons/provide.js';
 

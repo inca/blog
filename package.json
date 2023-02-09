@@ -12,10 +12,11 @@
     "license": "ISC",
     "dependencies": {
         "@types/node": "^17.0.17",
+        "airtight": "^5.5.1",
         "highlight.js": "^11.3.1",
         "mesh-ioc": "^3.1.4",
+        "nanoevent": "^1.0.0",
         "reflect-metadata": "^0.1.13",
-        "typesafe-event": "^1.1.0",
         "vue": "^3.2.37"
     },
     "devDependencies": {

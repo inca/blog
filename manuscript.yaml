@@ -23,15 +23,15 @@ stylesheets:
   - name: index.css
 scripts:
   - name: main
-    source: main/index.ts
+    source: main/entrypoint.ts
   - name: hexcomb
-    source: hexcomb/index.ts
-    excluded: true
-  - name: hexjump
-    source: hexjump/index.ts
+    source: hexcomb/entrypoint.ts
     excluded: true
   - name: moddiagram
-    source: moddiagram/index.ts
+    source: moddiagram/entrypoint.ts
+    excluded: true
+  - name: hexlab
+    source: hexlab/entrypoint.ts
     excluded: true
 customBlocks:
   - sidenote

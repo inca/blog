@@ -1,6 +1,6 @@
 import { dep } from 'mesh-ioc';
-import { HexCombStep } from '../../commons/HexComb.js';
 
+import { HexCombStep } from '../../commons/HexComb.js';
 import { HexSet } from '../../commons/HexSet.js';
 import { init } from '../../commons/init.js';
 import { provide } from '../../commons/provide.js';
