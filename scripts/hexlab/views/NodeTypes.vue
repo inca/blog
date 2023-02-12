@@ -45,13 +45,14 @@ export default {
 
     flex: 0 0 auto;
     display: flex;
-    flex-flow: row rap;
+    flex-flow: row wrap;
     gap: var(--sp);
 
     overflow-y: auto;
 }
 
 .Tile {
+    flex: 0 0 auto;
     width: var(--tile-size);
     height: var(--tile-size);
     box-sizing: border-box;

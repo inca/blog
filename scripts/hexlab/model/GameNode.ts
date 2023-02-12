@@ -4,7 +4,7 @@ import { Vector2 } from '../../commons/math.js';
 
 export interface GameNode {
     pos: Vector2;
-    type: string;
+    type: number;
     cells: Vector2[];
 }
 
@@ -15,7 +15,7 @@ export const GameNodeSchema = new Schema<GameNode>({
             type: 'array',
             items: { type: 'number' },
         },
-        type: { type: 'string' },
+        type: { type: 'number' },
         cells: {
             type: 'array',
             items: {
