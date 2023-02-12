@@ -17,14 +17,21 @@ export class StateManager {
     init() {
         try {
             const json = JSON.parse(localStorage.getItem('hexlabState') ?? '{}');
-            this.settings = GameSettingsSchema.decode(json);
+            this.loadJson(json);
         } catch (err) {}
     }
 
+    loadJson(json: any) {
+        this.settings = GameSettingsSchema.decode(json);
+    }
 
-    @debounce(200)
+    toJson() {
+        return this.settings;
+    }
+
+    @debounce(300)
     save() {
-        localStorage.setItem('hexlabState', JSON.stringify(this.settings));
+        localStorage.setItem('hexlabState', JSON.stringify(this.toJson()));
         this.events.stateSaved.emit({});
     }
 

@@ -65,11 +65,14 @@ pre code {
 }
 
 hr {
-    margin: 1em 0;
+    margin: var(--sp) 0;
     border: 0;
     height: 2px;
     border-radius: 2px;
+    /*
     background: linear-gradient(to right, var(--color-red), var(--color-magenta));
+    */
+    background: var(--color-base-1);
 }
 
 img, video {

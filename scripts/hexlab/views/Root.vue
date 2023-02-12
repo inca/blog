@@ -20,6 +20,15 @@ export default {
         'state'
     ],
 
+    watch: {
+        'state': {
+            deep: true,
+            handler() {
+                this.state.save();
+            }
+        }
+    }
+
 };
 </script>
 

@@ -5,85 +5,94 @@
 
         <VGroup>
 
-            <FormField label="Id">
-                <input
-                    v-model="nodeType.id"
-                    type="text"
-                    @input="state.save()" />
-            </FormField>
+            <ExpandLabel
+                v-model="settingsShown"
+                label="Settings" />
 
-            <FormField label="Z">
-                <input
-                    v-model="nodeType.z"
-                    type="number"
-                    min="0"
-                    max="10000"
-                    @input="state.save()" />
-            </FormField>
+            <template v-if="settingsShown">
 
-            <FormField label="Fill">
-                <input
-                    v-model="nodeType.fill"
-                    type="text"
-                    @input="state.save()" />
-            </FormField>
+                <FormField label="Id">
+                    <input
+                        v-model="nodeType.id"
+                        type="text" />
+                </FormField>
 
-            <FormField label="Border">
-                <input
-                    v-model="nodeType.border"
-                    type="text"
-                    @input="state.save()" />
-            </FormField>
+                <FormField label="Z">
+                    <input
+                        v-model="nodeType.z"
+                        type="number"
+                        min="0"
+                        max="10000" />
+                </FormField>
 
-            <FormField label="Image">
-                <input
-                    v-model="nodeType.image"
-                    type="text"
-                    @input="state.save()" />
-            </FormField>
+                <FormField label="Fill">
+                    <input
+                        v-model="nodeType.fill"
+                        type="text" />
+                </FormField>
 
-            <FormField label="Placement">
-                <VGroup>
-                    <HGroup
-                        v-for="placement, i of nodeType.placement"
-                        :key="i">
-                        <span>{{ placement }}</span>
-                        <button @click="removePlacement(i)">
-                            <i class="fas fa-times" />
-                        </button>
-                    </HGroup>
-                    <HGroup>
-                        <select v-model="newPlacement">
-                            <option
-                                :value="null"
-                                label="- select -" />
-                            <option
-                                value="default"
-                                label="default" />
-                            <option
-                                v-for="nt, i of nodeTypes.all"
-                                :key="i"
-                                :label="nt.id"
-                                :value="nt.id"
-                                :disabled="nt.id === nodeType.id" />
-                        </select>
-                        <button @click="addPlacement()">
-                            <i class="fas fa-plus" />
-                        </button>
-                    </HGroup>
-                </VGroup>
-            </FormField>
+                <FormField label="Border">
+                    <input
+                        v-model="nodeType.border"
+                        type="text" />
+                </FormField>
 
+                <FormField label="Image">
+                    <input
+                        v-model="nodeType.image"
+                        type="text" />
+                </FormField>
+
+                <FormField label="Placement">
+                    <VGroup>
+                        <HGroup
+                            v-for="placement, i of nodeType.placement"
+                            :key="i">
+                            <span>{{ placement }}</span>
+                            <button @click="removePlacement(i)">
+                                <i class="fas fa-times" />
+                            </button>
+                        </HGroup>
+                        <HGroup>
+                            <select v-model="newPlacement">
+                                <option
+                                    :value="null"
+                                    label="- select -" />
+                                <option
+                                    value="default"
+                                    label="default" />
+                                <option
+                                    v-for="nt, i of nodeTypes.all"
+                                    :key="i"
+                                    :label="nt.id"
+                                    :value="nt.id"
+                                    :disabled="nt.id === nodeType.id" />
+                            </select>
+                            <button @click="addPlacement()">
+                                <i class="fas fa-plus" />
+                            </button>
+                        </HGroup>
+                    </VGroup>
+                </FormField>
+
+                <ExpandLabel
+                    v-model="advancedShown"
+                    label="Advanced" />
+
+                <template v-if="advancedShown">
+                    <button @click="nodeTypes.removeNodeType(nodeTypes.selectedIndex)">
+                        Delete
+                    </button>
+                </template>
+
+            </template>
         </VGroup>
-
     </div>
 </template>
 
 <script>
-import HGroup from '../../components/HGroup.vue';
 
 export default {
-    components: { HGroup },
 
     inject: [
         'nodeTypes',
@@ -92,6 +101,8 @@ export default {
 
     data() {
         return {
+            settingsShown: false,
+            advancedShown: false,
             newPlacement: null,
         };
     },
@@ -113,12 +124,10 @@ export default {
             }
             this.nodeType.placement.push(pl);
             this.newPlacement = null;
-            this.state.save();
         },
 
         removePlacement(i) {
             this.nodeType.placement.splice(i, 1);
-            this.state.save();
         }
 
     }

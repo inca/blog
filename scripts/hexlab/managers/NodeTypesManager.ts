@@ -19,19 +19,22 @@ export class NodeTypesManager {
         this.selectedIndex = i;
     }
 
-    addNodeType() {
-        const nodeType = NodeTypeSchema.decode({});
-        this.state.settings.nodeTypes.push(nodeType);
-        this.selectedIndex = this.state.settings.nodeTypes.length - 1;
-        this.state.save();
-    }
-
     get all() {
         return this.state.settings.nodeTypes;
     }
 
     get selected(): NodeType | null {
         return this.state.settings.nodeTypes[this.selectedIndex] ?? null;
+    }
+
+    addNodeType() {
+        const nodeType = NodeTypeSchema.decode({});
+        this.state.settings.nodeTypes.push(nodeType);
+        this.selectedIndex = this.state.settings.nodeTypes.length - 1;
+    }
+
+    removeNodeType(i: number) {
+        this.state.settings.nodeTypes.splice(i, 1);
     }
 
 }
