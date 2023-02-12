@@ -9,9 +9,11 @@
                 'Tile--Selected': nodeTypes.selectedIndex === i,
             }"
             @click="nodeTypes.select(i)">
-            <SvgPlot :radius="16">
+            <SvgPlot
+                :radius="16"
+                :margin="4">
                 <SvgHexCell
-                    :radius="14"
+                    :radius="16"
                     :fillColor="nodeType.fill"
                     :borderColor="nodeType.border"
                     :borderWidth="2"

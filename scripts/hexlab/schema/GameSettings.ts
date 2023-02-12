@@ -1,11 +1,11 @@
 import { Schema } from 'airtight';
 
-import { GameNode, GameNodeSchema } from './GameNode.js';
+import { NodeData, NodeDataSchema } from './NodeData.js';
 import { NodeType, NodeTypeSchema } from './NodeType.js';
 
 export interface GameSettings {
     nodeTypes: NodeType[];
-    nodes: GameNode[];
+    nodes: NodeData[];
 }
 
 export const GameSettingsSchema = new Schema<GameSettings>({
@@ -17,7 +17,7 @@ export const GameSettingsSchema = new Schema<GameSettings>({
         },
         nodes: {
             type: 'array',
-            items: GameNodeSchema.schema,
+            items: NodeDataSchema.schema,
         }
     }
 });

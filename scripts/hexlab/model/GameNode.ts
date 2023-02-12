@@ -1,27 +1,16 @@
-import { Schema } from 'airtight';
+import { Hex } from '../../commons/Hex.js';
+import { NodeData } from '../schema/NodeData.js';
+import { NodeType } from '../schema/NodeType.js';
 
-import { Vector2 } from '../../commons/math.js';
+export class GameNode {
 
-export interface GameNode {
-    pos: Vector2;
-    type: number;
-    cells: Vector2[];
-}
+    hex: Hex;
 
-export const GameNodeSchema = new Schema<GameNode>({
-    type: 'object',
-    properties: {
-        pos: {
-            type: 'array',
-            items: { type: 'number' },
-        },
-        type: { type: 'number' },
-        cells: {
-            type: 'array',
-            items: {
-                type: 'array',
-                items: { type: 'number' },
-            }
-        }
+    constructor(
+        readonly nodeData: NodeData,
+        readonly nodeType: NodeType,
+    ) {
+        this.hex = Hex.fromJSON(nodeData.pos);
     }
-});
+
+}

@@ -1,19 +1,21 @@
 <template>
-    <path
-        class="HexCell"
-        :d="path"
-        :stroke="borderColor"
-        :stroke-width="borderWidth"
-        :fill="fillColor"
-        :transform="transform" />
-    <image
-        v-if="image"
-        :href="image"
-        :height="ir"
-        :width="ir"
-        :x="-.5 * ir"
-        :y="-.5 * ir"
-        :transform="transform" />
+    <g>
+        <path
+            class="HexCell"
+            :d="path"
+            :stroke="borderColor"
+            :stroke-width="borderWidth"
+            :fill="fillColor"
+            :transform="transform" />
+        <image
+            v-if="image"
+            :href="image"
+            :height="imgR"
+            :width="imgR"
+            :x="-.5 * imgR"
+            :y="-.5 * imgR"
+            :transform="transform" />
+    </g>
 </template>
 
 <script>
@@ -43,7 +45,7 @@ export default {
             return `translate(${x}, ${y}) scale(1, -1)`;
         },
 
-        ir() {
+        imgR() {
             return this.radius * 2 * this.imageSize;
         },
 

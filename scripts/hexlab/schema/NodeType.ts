@@ -2,7 +2,7 @@ import { Schema } from 'airtight';
 
 export interface NodeType {
     id: string;
-    z: number;
+    layer: number;
     fill: string;
     border: string;
     image: string;
@@ -17,8 +17,8 @@ export const NodeTypeSchema = new Schema<NodeType>({
     type: 'object',
     properties: {
         id: { type: 'string' },
-        z: { type: 'number' },
-        fill: { type: 'string', default: 'none' },
+        layer: { type: 'number' },
+        fill: { type: 'string', default: 'transparent' },
         border: { type: 'string', default: '#888' },
         image: { type: 'string' },
         roles: { type: 'array', items: { type: 'string' } },

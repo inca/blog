@@ -2,6 +2,7 @@ import { Event } from 'nanoevent';
 
 export class EventManager {
 
-    stateSaved = new Event<{}>();
+    stateSaved = new Event<void>();
+    stateLoaded = new Event<void>();
 
 }

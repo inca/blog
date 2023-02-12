@@ -3,7 +3,7 @@ import { dep } from 'mesh-ioc';
 import { debounce } from '../../commons/debounce.js';
 import { init } from '../../commons/init.js';
 import { provide } from '../../commons/provide.js';
-import { GameSettingsSchema } from '../model/GameSettings.js';
+import { GameSettingsSchema } from '../schema/GameSettings.js';
 import { EventManager } from './EventManager.js';
 
 @provide('state')
@@ -23,6 +23,7 @@ export class StateManager {
 
     loadJson(json: any) {
         this.settings = GameSettingsSchema.decode(json);
+        this.events.stateLoaded.emit();
     }
 
     toJson() {
@@ -32,7 +33,7 @@ export class StateManager {
     @debounce(300)
     save() {
         localStorage.setItem('hexlabState', JSON.stringify(this.toJson()));
-        this.events.stateSaved.emit({});
+        this.events.stateSaved.emit();
     }
 
 }

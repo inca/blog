@@ -113,9 +113,6 @@ export default {
         },
 
         onMouseUp(_hex) {
-            if (this.readonly) {
-                return;
-            }
             this.dragMode = null;
         },
 

@@ -66,3 +66,29 @@ export function createDownloadFile(filename: string, content: string) {
     el.click();
     document.body.removeChild(el);
 }
+
+export function removeWhere<T>(array: T[], predicate: (item: T) => boolean) {
+    const i = array.findIndex(predicate);
+    if (i > -1) {
+        array.splice(i, 1);
+    }
+    return i !== -1;
+}
+
+export function removeAll<T>(array: T[], predicate: (item: T) => boolean) {
+    const removed = removeWhere(array, predicate);
+    if (removed) {
+        removeAll(array, predicate);
+    }
+}
+
+export function shuffle<T>(array: T[]): T[] {
+    const copy = array.slice();
+    for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = temp;
+    }
+    return copy;
+}

@@ -17,9 +17,9 @@
                         type="text" />
                 </FormField>
 
-                <FormField label="Z">
+                <FormField label="Layer">
                     <input
-                        v-model="nodeType.z"
+                        v-model="nodeType.layer"
                         type="number"
                         min="0"
                         max="10000" />
@@ -142,10 +142,7 @@
 </template>
 
 <script>
-import VGroup from '../../components/VGroup.vue';
-
 export default {
-    components: { VGroup },
 
     inject: [
         'nodeTypes',

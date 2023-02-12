@@ -1,7 +1,7 @@
 import { dep } from 'mesh-ioc';
 
 import { provide } from '../../commons/provide.js';
-import { NodeType, NodeTypeSchema } from '../model/NodeType.js';
+import { NodeType, NodeTypeSchema } from '../schema/NodeType.js';
 import { StateManager } from './StateManager.js';
 
 @provide('nodeTypes')

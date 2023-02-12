@@ -46,7 +46,7 @@ export class Hex {
         return this.q === hex.q && this.r === hex.r;
     }
 
-    toJSON() {
+    toJSON(): Vector2 {
         return [this.q, this.r];
     }
 

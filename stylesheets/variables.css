@@ -45,13 +45,12 @@
     --color-magenta: hsl(280deg, 48%, 64%);
 
     --link-color: var(--color-primary);
+    --border-radius: 4px;
+    --control-size: var(--sp3);
+
     --hex-color: var(--color-base-1);
     --hex-color--active: var(--color-base-0);
-    --hex-border-color: rgba(0,0,0,.2);
-
-    --border-radius: 4px;
-
-    --control-size: var(--sp3);
+    --hex-border-color: rgba(0, 0, 0, .2);
 }
 
 html.dark {
