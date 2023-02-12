@@ -3,8 +3,11 @@ import { App as VueApp, createApp, reactive, ReactiveFlags } from 'vue';
 
 import { invokeInitHandlers } from '../commons/init.js';
 import { globalProvideMap } from '../commons/provide.js';
+import FormField from '../components/FormField.vue';
+import HGroup from '../components/HGroup.vue';
 import SvgHexCell from '../components/SvgHexCell.vue';
 import SvgPlot from '../components/SvgPlot.vue';
+import VGroup from '../components/VGroup.vue';
 import { EventManager } from './managers/EventManager.js';
 import { NodeTypesManager } from './managers/NodeTypesManager.js';
 import { StateManager } from './managers/StateManager.js';
@@ -22,8 +25,11 @@ export class App {
         this.mesh.service(StateManager);
         this.mesh.service(NodeTypesManager);
         this.mesh.service(EventManager);
-        this.vue.component('SvgPlot', SvgPlot);
+        this.vue.component('FormField', FormField);
+        this.vue.component('HGroup', HGroup);
+        this.vue.component('VGroup', VGroup);
         this.vue.component('SvgHexCell', SvgHexCell);
+        this.vue.component('SvgPlot', SvgPlot);
     }
 
     async start() {

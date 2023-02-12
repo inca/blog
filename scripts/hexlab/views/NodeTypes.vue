@@ -9,11 +9,13 @@
                 'Tile--Selected': nodeTypes.selectedIndex === i,
             }"
             @click="nodeTypes.select(i)">
-            <SvgPlot :radius="radius">
+            <SvgPlot :radius="16">
                 <SvgHexCell
-                    :radius="radius"
+                    :radius="14"
                     :fillColor="nodeType.fill"
-                    :borderColor="nodeType.border" />
+                    :borderColor="nodeType.border"
+                    :borderWidth="2"
+                    :image="nodeType.image" />
             </SvgPlot>
         </div>
 
@@ -23,6 +25,7 @@
             @click="nodeTypes.addNodeType()">
             <i class="fas fa-plus" />
         </button>
+
     </div>
 </template>
 
@@ -33,26 +36,17 @@ export default {
         'nodeTypes',
     ],
 
-    data() {
-        return {
-            radius: 24,
-        };
-    }
-
 };
 </script>
 
 <style scoped>
 .NodeTypes {
-    --tile-size: 96px;
+    --tile-size: 48px;
 
     flex: 0 0 auto;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row rap;
     gap: var(--sp);
-
-    padding: var(--sp);
-    border-right: 2px solid var(--background-color--dim);
 
     overflow-y: auto;
 }
@@ -77,6 +71,6 @@ export default {
 }
 
 .AddNodeType {
-    background: var(--background-color--dim);
+    background: var(--color-base-1);
 }
 </style>

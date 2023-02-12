@@ -138,7 +138,7 @@ export default {
     text-anchor: middle;
     alignment-baseline: middle;
     font-size: 7px;
-    font-family: var(--font-family--alt)
+    font-family: var(--font-family-alt)
 }
 
 .HexCell {

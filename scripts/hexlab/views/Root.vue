@@ -1,18 +1,18 @@
 <template>
     <div class="Root">
-        <NodeTypes />
+        <Inspector />
         <GameField />
     </div>
 </template>
 
 <script>
 import GameField from './GameField.vue';
-import NodeTypes from './NodeTypes.vue';
+import Inspector from './Inspector.vue';
 
 export default {
 
     components: {
-        NodeTypes,
+        Inspector,
         GameField,
     },
 
@@ -28,5 +28,8 @@ export default {
     display: flex;
     height: 100vh;
     box-sizing: border-box;
+
+    font-family: var(--font-family-alt);
+    font-size: var(--font-size--small);
 }
 </style>

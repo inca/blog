@@ -3,6 +3,8 @@ import { App as VueApp, createApp, reactive, ReactiveFlags } from 'vue';
 
 import { invokeInitHandlers } from '../commons/init.js';
 import { globalProvideMap } from '../commons/provide.js';
+import HGroup from '../components/HGroup.vue';
+import VGroup from '../components/VGroup.vue';
 import CombControls from './components/CombControls.vue';
 import CombExplore from './components/CombExplore.vue';
 import CombSolutions from './components/CombSolutions.vue';
@@ -34,6 +36,10 @@ export class App {
         this.vue = createApp({
             inject: Object.keys(this.provides),
         });
+
+        this.vue.component('HGroup', HGroup);
+        this.vue.component('VGroup', VGroup);
+
         this.vue.component('CombControls', CombControls);
         this.vue.component('CombExplore', CombExplore);
         this.vue.component('CombSolutions', CombSolutions);

@@ -2,8 +2,17 @@
     <path
         class="HexCell"
         :d="path"
-        :stroke="strokeColor"
+        :stroke="borderColor"
+        :stroke-width="borderWidth"
         :fill="fillColor"
+        :transform="transform" />
+    <image
+        v-if="image"
+        :href="image"
+        :height="ir"
+        :width="ir"
+        :x="-.5 * ir"
+        :y="-.5 * ir"
         :transform="transform" />
 </template>
 
@@ -16,8 +25,11 @@ export default {
     props: {
         hex: { type: Hex, default: Hex.zero },
         radius: { type: Number, default: 16 },
-        strokeColor: { type: String },
+        borderColor: { type: String },
+        borderWidth: { type: Number },
         fillColor: { type: String },
+        image: { type: String },
+        imageSize: { type: Number, default: .75 }
     },
 
     computed: {
@@ -29,7 +41,11 @@ export default {
         transform() {
             const [x, y] = this.hex.toOrthogonal(this.radius);
             return `translate(${x}, ${y}) scale(1, -1)`;
-        }
+        },
+
+        ir() {
+            return this.radius * 2 * this.imageSize;
+        },
 
     }
 
@@ -39,6 +55,5 @@ export default {
 
 <style scoped>
 .HexCell {
-
 }
 </style>

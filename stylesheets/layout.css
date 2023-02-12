@@ -4,7 +4,7 @@
 
 .header, .footer {
     position: relative;
-    font-family: var(--font-family--alt);
+    font-family: var(--font-family-alt);
 }
 
 .header-container {
@@ -42,7 +42,7 @@
     font-size: var(--font-size--small);
     margin-top: var(--sp8);
     padding: var(--sp2) 0;
-    background: var(--footer-background-color);
+    background: var(--color-base-1);
 }
 
 .content-container, .footer-container {

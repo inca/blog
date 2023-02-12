@@ -5,9 +5,9 @@ html, body, img {
 }
 
 html, body {
-    color: var(--text-color);
-    fill: var(--text-color);
-    background: var(--background-color);
+    color: var(--color-text-0);
+    fill: var(--color-text-0);
+    background: var(--color-base-0);
 
     font-size: var(--font-size);
     font-family: var(--font-family);
@@ -20,7 +20,7 @@ html, body {
 }
 
 h1 {
-    font-family: var(--font-family--alt);
+    font-family: var(--font-family-alt);
     font-size: 36px;
     line-height: 48px;
     font-weight: normal;
@@ -29,7 +29,7 @@ h1 {
 
 h2 {
     font-size: 28px;
-    font-family: var(--font-family--alt);
+    font-family: var(--font-family-alt);
     font-weight: 400;
     margin: var(--sp6) 0 var(--sp2);
 }
@@ -40,6 +40,14 @@ h3 {
     color: var(--color-subtle);
 }
 
+h4 {
+    font-size: 16px;
+    text-transform: uppercase;
+    color: var(--color-subtle);
+    font-weight: normal;
+    margin: var(--sp) 0;
+}
+
 a {
     position: relative;
     color: var(--link-color);
@@ -48,7 +56,7 @@ a {
 code {
     color: var(--color-secondary);
     font-size: .9em;
-    font-family: var(--font-family--code);
+    font-family: var(--font-family-code);
 }
 
 pre code {
@@ -77,4 +85,9 @@ figcaption {
     color: var(--color-subtle);
     text-align: center;
     font-size: var(--font-size--small);
+}
+
+button, input[type="text"], input[type="number"], select {
+    box-sizing: border-box;
+    height: var(--control-size);
 }

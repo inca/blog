@@ -9,6 +9,7 @@ themeColor: "#fff"
 baseUrl: https://boris.okunskiy.name
 cssUrls:
     - https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400;1,600&display=swap
+    # - https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400;1,600&display=swap
 navbar:
   - href: /posts
     title: Posts

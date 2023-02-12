@@ -30,4 +30,8 @@ export class NodeTypesManager {
         return this.state.settings.nodeTypes;
     }
 
+    get selected(): NodeType | null {
+        return this.state.settings.nodeTypes[this.selectedIndex] ?? null;
+    }
+
 }

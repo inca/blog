@@ -79,6 +79,6 @@ export default {
 .HexCell {
     stroke-width: 1px;
     stroke: var(--hex-border-color);
-    fill: var(--background-color);
+    fill: var(--color-base-0);
 }
 </style>

@@ -18,17 +18,16 @@ export default {
     props: {
         rings: { type: Number, default: 0 },
         radius: { type: Number, default: 16 },
-        margin: { type: Number, default: 16 },
     },
 
     computed: {
 
         width() {
-            return getPlotWidth(this.rings, this.radius, this.margin);
+            return getPlotWidth(this.rings, this.radius, 0);
         },
 
         height() {
-            return getPlotHeight(this.rings, this.radius, this.margin);
+            return getPlotHeight(this.rings, this.radius, 0);
         },
 
     },

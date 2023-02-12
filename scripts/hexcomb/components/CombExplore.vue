@@ -1,15 +1,14 @@
 <template>
 
-    <div class="SetControls">
+    <HGroup class="SetControls">
         <button @click="explorer.findSolutionSets()">
             Calc all sets
         </button>
-        &nbsp;
-        Min solutions
+        <span>Min solutions</span>
         <input
             v-model="minCount"
             type="number" />
-    </div>
+    </HGroup>
 
     <div
         v-for="set, index of shownSets"
@@ -134,8 +133,6 @@ export default {
 }
 
 .SetControls {
-    display: flex;
-    gap: var(--sp);
     margin: var(--sp2) 0;
 }
 
@@ -149,7 +146,7 @@ export default {
 }
 
 .SolutionSet:hover {
-    background: var(--background-color--dim);
+    background: var(--color-base-1);
 }
 
 .SolutionSetCount {

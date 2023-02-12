@@ -21,13 +21,13 @@ export const colorScheme = [
 ];
 
 export function getPlotWidth(rings: number, cellRadius: number, margin: number) {
-    const r = rings * 2 + 1;
-    return (r * cellRadius + margin) * 2;
+    const d = 2 * cellRadius;
+    return 2 * margin + (2 * rings + 1) * d;
 }
 
 export function getPlotHeight(rings: number, cellRadius: number, margin: number) {
-    const r = rings * 2 + 1;
-    return (r * cellRadius * sqrt3 / 2 + margin) * 2;
+    const d = (2 * sqrt3 / 3) * cellRadius;
+    return 2 * margin + 2 * d + 3 * rings * d;
 }
 
 export function getSvgPath(hex: Hex, radius: number) {
