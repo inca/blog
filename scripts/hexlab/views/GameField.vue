@@ -1,6 +1,6 @@
 <template>
     <div class="GameField">
-        <SvgPlot
+        <SvgHexPlot
             :radius="24"
             :rings="rings"
             :margin="16">
@@ -21,7 +21,8 @@
                 :fillColor="node.nodeType.fill"
                 :borderColor="node.nodeType.border"
                 :borderWidth="2"
-                :image="node.nodeType.image" />
+                :image="node.nodeType.image"
+                :imageSize=".6" />
 
             <SvgHexCell
                 v-for="cell, i of cells"
@@ -31,7 +32,7 @@
                 fillColor="transparent"
                 @mousedown="onMouseDown(cell, $event)"
                 @mousemove="onMouseMove(cell, $event)" />
-        </SvgPlot>
+        </SvgHexPlot>
     </div>
 </template>
 

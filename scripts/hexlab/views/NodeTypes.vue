@@ -9,7 +9,7 @@
                 'Tile--Selected': nodeTypes.selectedIndex === i,
             }"
             @click="nodeTypes.select(i)">
-            <SvgPlot
+            <SvgHexPlot
                 :radius="16"
                 :margin="4">
                 <SvgHexCell
@@ -18,7 +18,7 @@
                     :borderColor="nodeType.border"
                     :borderWidth="2"
                     :image="nodeType.image" />
-            </SvgPlot>
+            </SvgHexPlot>
         </div>
 
         <button

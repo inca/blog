@@ -7,7 +7,7 @@ import ExpandLabel from '../components/ExpandLabel.vue';
 import FormField from '../components/FormField.vue';
 import HGroup from '../components/HGroup.vue';
 import SvgHexCell from '../components/SvgHexCell.vue';
-import SvgPlot from '../components/SvgPlot.vue';
+import SvgHexPlot from '../components/SvgHexPlot.vue';
 import VGroup from '../components/VGroup.vue';
 import { EventManager } from './managers/EventManager.js';
 import { GameFieldManager } from './managers/GameFieldManager.js';
@@ -35,7 +35,7 @@ export class App {
         this.vue.component('HGroup', HGroup);
         this.vue.component('VGroup', VGroup);
         this.vue.component('SvgHexCell', SvgHexCell);
-        this.vue.component('SvgPlot', SvgPlot);
+        this.vue.component('SvgHexPlot', SvgHexPlot);
     }
 
     async start() {

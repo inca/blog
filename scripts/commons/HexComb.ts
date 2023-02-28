@@ -1,3 +1,4 @@
+import { Hex } from './Hex.js';
 import { HexSet } from './HexSet';
 
 export interface HexPiece {
@@ -101,10 +102,11 @@ export class HexComb {
     private generatePieceVariations() {
         const buckets: Array<HexPiece[]> = [];
         const sortedPieces = this.pieces.slice().sort((a, b) => b.cells.size - a.cells.size);
+        const maxRings = this.field.occupiedRings + Math.max(...sortedPieces.map(_ => _.cells.occupiedRings));
         for (const piece of sortedPieces) {
             const bucket: HexPiece[] = [];
             buckets.push(bucket);
-            for (const offset of this.field) {
+            for (const offset of Hex.spiral(Hex.zero, 0, maxRings)) {
                 for (const varCells of piece.cells.uniqVariations(this.allowFlip)) {
                     const offsetCells = varCells.offset(offset);
                     const fits = this.field.hasAll(offsetCells);

@@ -1,5 +1,5 @@
 <template>
-    <label
+    <div
         class="FormField"
         :class="[
             `FormField--${align}`
@@ -8,7 +8,7 @@
         <div class="Slot">
             <slot />
         </div>
-    </label>
+    </div>
 </template>
 
 <script>

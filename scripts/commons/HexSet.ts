@@ -83,15 +83,8 @@ export class HexSet {
     }
 
     normalize() {
-        // Find closest piece to median — that's our new origin
         const median = this.median;
-        const rings = this.occupiedRings;
-        for (const hex of Hex.spiral(median, 0, rings)) {
-            if (this.has(hex)) {
-                return this.map(_ => _.subtract(hex));
-            }
-        }
-        return this;
+        return this.map(_ => _.subtract(median));
     }
 
     equals(set: HexSet) {

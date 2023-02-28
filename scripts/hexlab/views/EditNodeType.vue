@@ -43,6 +43,18 @@
                         type="text" />
                 </FormField>
 
+                <FormField label="Role">
+                    <select v-model="nodeType.role">
+                        <option
+                            value=""
+                            label="None" />
+                        <option
+                            value="actor"
+                            label="Actor" />
+                    </select>
+                </FormField>
+
+                <!--
                 <FormField label="Roles">
                     <VGroup>
                         <label>
@@ -61,70 +73,19 @@
                         </label>
                     </VGroup>
                 </FormField>
+                -->
 
-                <FormField label="Place Mask">
-                    <VGroup>
-                        <HGroup
-                            v-for="id, i of nodeType.placeMask"
-                            :key="i">
-                            <span>{{ id }}</span>
-                            <button @click="removePlace(i)">
-                                <i class="fas fa-times" />
-                            </button>
-                        </HGroup>
-                        <HGroup>
-                            <select v-model="newPlace">
-                                <option
-                                    :value="null"
-                                    label="- select -" />
-                                <option
-                                    value="default"
-                                    label="default" />
-                                <option
-                                    v-for="nt, i of nodeTypes.all"
-                                    :key="i"
-                                    :label="nt.id"
-                                    :value="nt.id"
-                                    :disabled="nt.id === nodeType.id" />
-                            </select>
-                            <button @click="addPlace()">
-                                <i class="fas fa-plus" />
-                            </button>
-                        </HGroup>
-                    </VGroup>
-                </FormField>
+                <EditMask
+                    v-model="nodeType.placeMask"
+                    label="Place Mask" />
 
-                <FormField label="Pass Mask">
-                    <VGroup>
-                        <HGroup
-                            v-for="id, i of nodeType.passMask"
-                            :key="i">
-                            <span>{{ id }}</span>
-                            <button @click="removePass(i)">
-                                <i class="fas fa-times" />
-                            </button>
-                        </HGroup>
-                        <HGroup>
-                            <select v-model="newPass">
-                                <option
-                                    :value="null"
-                                    label="- select -" />
-                                <option
-                                    value="default"
-                                    label="default" />
-                                <option
-                                    v-for="nt, i of nodeTypes.all"
-                                    :key="i"
-                                    :label="nt.id"
-                                    :value="nt.id"
-                                    :disabled="nt.id === nodeType.id" />
-                            </select>
-                            <button @click="addPass()">
-                                <i class="fas fa-plus" />
-                            </button>
-                        </HGroup>
-                    </VGroup>
-                </FormField>
+                <EditMask
+                    v-model="nodeType.passMask"
+                    label="Pass Mask" />
+
+                <EditMask
+                    v-model="nodeType.blockMask"
+                    label="Block Mask" />
 
                 <ExpandLabel
                     v-model="advancedShown"
@@ -142,7 +103,10 @@
 </template>
 
 <script>
+import EditMask from './EditMask.vue';
+
 export default {
+    components: { EditMask },
 
     inject: [
         'nodeTypes',
@@ -167,32 +131,6 @@ export default {
     },
 
     methods: {
-
-        addPlace() {
-            const pl = this.newPlace;
-            if (!pl || pl === this.nodeType.id) {
-                return;
-            }
-            this.nodeType.placeMask.push(pl);
-            this.newPlace = null;
-        },
-
-        removePlace(i) {
-            this.nodeType.placeMask.splice(i, 1);
-        },
-
-        addPass() {
-            const pl = this.newPass;
-            if (!pl || pl === this.nodeType.id) {
-                return;
-            }
-            this.nodeType.passMask.push(pl);
-            this.newPass = null;
-        },
-
-        removePass(i) {
-            this.nodeType.passMask.splice(i, 1);
-        },
 
     }
 
